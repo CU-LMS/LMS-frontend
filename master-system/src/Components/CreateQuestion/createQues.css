@@ -1,0 +1,16 @@
+.cQuesMain {
+  margin: 20px;
+}
+
+.QinutOption {
+  display: flex;
+  align-items: center;
+}
+
+.QinutOption > input {
+  margin-right: 10px;
+}
+
+textarea {
+  resize: none;
+}

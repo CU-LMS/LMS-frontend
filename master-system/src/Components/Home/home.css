@@ -1,0 +1,58 @@
+.Home_card {
+  background-color: rgb(219, 219, 219);
+  width: 300px;
+  padding: 20px;
+}
+
+.homeontainer {
+  /* background-color: #cbcbcb; */
+  background-image: url(https://i.pinimg.com/originals/ac/68/e9/ac68e9ede5b84d83bf172fa518f03461.gif);
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+td {
+  padding-right: 50px;
+  color: #999999;
+}
+
+.gap {
+  display: flex;
+  justify-content: space-between;
+}
+
+.summeryCards {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  /* background-color: rgb(228, 228, 228); */
+  padding: 200px;
+  height: 92vh;
+}
+
+.summeryCard {
+  margin: 20px;
+}
+
+.calender {
+  grid-column-start: 1;
+  grid-column-end: 4;
+}
+
+.dateInput {
+  margin: 20px;
+  padding: 7px;
+  border-radius: 5px;
+  border: none;
+}
+
+.calanderBtn {
+  margin-bottom: 4px;
+}
+
+@media (max-width: 1540px) {
+  .summeryCards {
+    padding: 0;
+  }
+}

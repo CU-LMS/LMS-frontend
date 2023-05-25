@@ -1,0 +1,152 @@
+.dashboard {
+  background-image: url(/src/asset/Dashboard-Background-Image-4.jpg);
+  height: 100%;
+}
+
+.crouselImg {
+  width: 99% !important;
+  height: 60vh !important;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.middle_row {
+  /* display: flex;
+  align-items: center;
+  justify-content: space-around; */
+  margin: 30px 20px;
+  display: grid;
+  grid-gap: 20px;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
+  justify-items: center;
+}
+
+.dashboardGridCard {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 278px;
+  height: 164px;
+  background-color: rgb(255, 255, 255);
+  padding: 24px 0;
+  transition: all 0.3s;
+  cursor: pointer;
+  position: relative;
+}
+.dashboardGridCard:hover,
+.dashboardGridCard_2:hover,
+.dash_courseCard:hover {
+  bottom: 3px;
+  box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.2);
+}
+
+.dashBoardCardIcons {
+  font-size: 3.5rem;
+  color: #35bdf0;
+}
+
+.dssh_cardheading {
+  color: #2c2262;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.dash_cardInfo {
+  font-size: 13px;
+  color: #2c2262;
+}
+
+.middle_row2 {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
+  margin: 18px;
+  /* justify-items: center; */
+}
+.dashboardGridCard_2 {
+  /* background-color: purple; */
+  text-align: center;
+  height: 49vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 10px;
+  position: relative;
+  transition: all 0.5s;
+  cursor: pointer;
+}
+
+#dashboardGridCard_2_1 {
+  background-image: url(/src/asset/Big-Tile-1-PhotoRoom.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+#dashboardGridCard_2_2 {
+  background-image: url(/src/asset/Big-Tile-2.1.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.dashboardFooter {
+  background-color: #2c2262;
+  height: 8vh;
+  padding: 6px 24px;
+  display: flex;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
+  transition: all 0.4s;
+}
+
+.dashFooterIcon {
+  color: white;
+  font-size: 2.3rem;
+}
+.dash_course {
+  margin: 23px;
+  display: grid;
+  justify-items: center;
+  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+  grid-template-columns: repeat(auto-fit, minmax(217px, 1fr));
+}
+
+.dash_courseCard {
+  border-radius: 10px;
+  height: 307px;
+  width: 217px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-around;
+  margin: 20px 6px 20px 6px;
+  background-color: white;
+  padding: 10px;
+  position: relative;
+}
+.dash_courseCard:hover {
+}
+
+.imageArea {
+  height: 164px;
+}
+
+.dashboardFooter_hide {
+  position: sticky;
+  bottom: -77px;
+}
+
+@media (max-width: 500px) {
+  .middle_row2 {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+
+  .dash_course {
+    margin: 15px;
+    display: grid;
+    /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
+    /* grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); */
+  }
+}
