@@ -11,9 +11,28 @@ import {
 import { ImBooks } from "react-icons/im";
 import "./dashboard.css";
 import axios from "axios";
+import ImageSlider from "./ImageSlider";
+
 
 const Dashboard = () => {
+  const [isLoading, setLoading] = useState(false);
+  const [currentImage, setCurrentImage] = useState(0);
   const [hideFooter, setHideFooter] = useState("dashboardFooter");
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImage((prevImage) => (prevImage + 1) % 4);
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, []);
+
+  const handleClickButtonRoll = () => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+    }, 3000);
+  };
 
   var lastScrollTop = window.scrollY;
   window.addEventListener("scroll", function () {
@@ -30,12 +49,6 @@ const Dashboard = () => {
     let profile = JSON.parse(localStorage.getItem("profile"));
     let accessToken = JSON.parse(localStorage.getItem("accessToken"));
 
-    // email: "amanv1011@gmail.com";//
-    // familyName: "Verma";//
-    // givenName: "Aman";//
-    // googleId: "109224128335912704138";//
-    // imageUrl: "https://lh3.googleusercontent.com/a/AGNmyxYlaHszXDQ4_ecX5Fb8CcBGV0uUnDh7HgYuPGsOttA=s96-c";//
-    // name: "Aman Verma";
     axios
       .post("http://172.17.18.255:8000/user_profile/", {
         username: profile.email,
@@ -56,92 +69,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      <div className="dashboard_crousel">
-        <div id="carouselExampleIndicators" className="carousel slide">
-          <div className="carousel-indicators">
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="0"
-              className="active"
-              aria-current="true"
-              aria-label="Slide 1"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="1"
-              aria-label="Slide 2"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="2"
-              aria-label="Slide 3"
-            ></button>
-            <button
-              type="button"
-              data-bs-target="#carouselExampleIndicators"
-              data-bs-slide-to="3"
-              aria-label="Slide 4"
-            ></button>
-          </div>
-          <div className="carousel-inner">
-            <div className="carousel-item active">
-              <img
-                src="https://www.cuchd.in/includes/assets/images/hero-slide-1.webp"
-                className="d-block  crouselImg"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://www.cuchd.in/includes/assets/images/qs-subject-banner-updated.webp"
-                className="d-block  crouselImg"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://www.cuchd.in/includes/assets/images/highest-patents-banner.webp"
-                className="d-block  crouselImg"
-                alt="..."
-              />
-            </div>
-            <div className="carousel-item">
-              <img
-                src="https://www.cuchd.in/includes/assets/images/ranking-banner-2.webp"
-                className="d-block  crouselImg"
-                alt="..."
-              />
-            </div>
-          </div>
-          <button
-            className="carousel-control-prev"
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="prev"
-          >
-            <span
-              className="carousel-control-prev-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Previous</span>
-          </button>
-          <button
-            className="carousel-control-next"
-            type="button"
-            data-bs-target="#carouselExampleIndicators"
-            data-bs-slide="next"
-          >
-            <span
-              className="carousel-control-next-icon"
-              aria-hidden="true"
-            ></span>
-            <span className="visually-hidden">Next</span>
-          </button>
-        </div>
+      <div>
+        <ImageSlider />
       </div>
+
       <div className="middle_row">
         <div className="dashboardGridCard">
           <div>
@@ -182,9 +113,9 @@ const Dashboard = () => {
         </div>
       </div>
       <div className="middle_row2">
-        <div className="dashboardGridCard_2" id="dashboardGridCard_2_1">
+        <div className="dashboardGridCard_2 " id="dashboardGridCard_2_1">
           <div>
-            <RiTeamLine className="dashBoardCardIcons" />
+            <RiTeamLine className="dashBoardCardIcons imageArea1" />
           </div>
           <div className="dssh_cardheading" style={{ color: "white" }}>
             Trending Courses
@@ -197,7 +128,7 @@ const Dashboard = () => {
         </div>
         <div className="dashboardGridCard_2" id="dashboardGridCard_2_2">
           <div>
-            <FaChalkboardTeacher className="dashBoardCardIcons" />
+            <FaChalkboardTeacher className="dashBoardCardIcons imageArea1" />
           </div>
           <div className="dssh_cardheading" style={{ color: "white" }}>
             Request a Live Class
@@ -215,7 +146,7 @@ const Dashboard = () => {
         {/* Dashboard cards  main  */}
 
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_10-Ways-2.png"
@@ -231,15 +162,18 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
 
         {/* dashboard card repeat */}
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_8-Ways.png"
@@ -255,13 +189,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Absorb-Infuse-26.png"
@@ -277,13 +214,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_eCommerce-2.png"
@@ -299,13 +239,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Absorb-Leaderboards.png"
@@ -321,13 +264,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Reporting-2.png"
@@ -343,13 +289,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Case-Studies-2.png"
@@ -365,13 +314,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Global-eTraining.png"
@@ -387,13 +339,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Talent-Development.png"
@@ -409,13 +364,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_10-Ways-2.png"
@@ -431,13 +389,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Branding.png"
@@ -453,13 +414,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_8-Ways.png"
@@ -475,13 +439,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Reporting-2.png"
@@ -497,13 +464,16 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
         <div className="dash_courseCard">
-          <div style={{ borderBottom: "7px solid grey" }}>
+          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
             <img
               className="imageArea"
               src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Absorb-Leaderboards.png"
@@ -519,22 +489,25 @@ const Dashboard = () => {
           >
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
-            <button class="btn btn-primary" href="#">
+            {/* <button class="btn btn-primary" href="#">
               Enroll Now
+            </button> */}
+            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
+              {isLoading ? <div className="loader" /> : "Enroll Now"}
             </button>
           </div>
         </div>
 
         {/* repeat end */}
       </div>
-      <footer className={hideFooter}>
+      {/* <footer className={hideFooter}>
         <BsGlobe className="dashFooterIcon" />{" "}
         <p style={{ color: "white", margin: "0 5px" }}>English</p>
         <p>Sign Out</p>
-      </footer>
+      </footer> */}
     </div>
   );
 
-  //   }
-};
+    }
+
 export default Dashboard;

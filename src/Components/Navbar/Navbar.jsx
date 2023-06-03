@@ -1,4 +1,5 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useContext } from "react";
 import "./nav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
@@ -8,8 +9,11 @@ import {
   Route,
   NavLink,
 } from "react-router-dom";
+import { AuthContext } from "../../AuthManagement/AuthContext";
 
 export default function Navbar() {
+
+  const { authenticated, logout } = useContext(AuthContext);
   const [toggle, seTtoggle] = React.useState("dropdown_menu");
   const [icon, setIcon] = React.useState(true);
   const [hideNav, setHideNav] = React.useState("navheader");
@@ -17,6 +21,8 @@ export default function Navbar() {
     setIcon(!icon);
     seTtoggle("dropdown_menu");
   }
+
+ 
 
   function hidemenu() {
     setIcon(!icon);
@@ -76,11 +82,15 @@ export default function Navbar() {
                 Contact
               </a>
             </li>
-           
           </ul>
+         
+
+      
           <NavLink to="/login">
             <button className="action_btn">Login</button>
           </NavLink>
+
+
           <div className="toggle_btn">
             {icon ? (
               <GiHamburgerMenu onClick={ham} />
@@ -108,9 +118,10 @@ export default function Navbar() {
           </li>
           <li onClick={hidemenu}>
             {" "}
-            <NavLink to="/login">
+            {/* <NavLink to="/login">
               <button className="action_btn">Login</button>
-            </NavLink>
+            </NavLink> */}
+            {authenticated && <button onClick={logout}>Sign Out</button>}
           </li>
         </div>
       </header>
