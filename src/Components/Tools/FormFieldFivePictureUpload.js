@@ -30,7 +30,7 @@ const FormFieldPictureUpload = () => {
         </div>
       )}
       <input type="file" onChange={handleFileChange} />
-      <button className="next1" onClick={handleUpload}>Upload</button>
+      <button className="next1" style={{ backgroundColor:"grey" , color: "white", borderRadius: "5px", }} onClick={handleUpload}>Upload</button>
     </div>
   );
 };

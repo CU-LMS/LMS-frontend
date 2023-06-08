@@ -189,25 +189,25 @@
   }
 }
 
-.loader {
-  /* border: 3px solid #f3f3f3; */
+/* .loader {
+
   border-top: 3px solid #ffffff;
   border-radius: 50%;
   width: 20px;
   height: 20px;
   animation: spin 1s linear infinite;
-  /* margin-right: 5px; */
-margin-left: 5px;
-}
 
-@keyframes spin {
+margin-left: 5px;
+} */
+
+/* @keyframes spin {
   0% {
     transform: rotate(0deg);
   }
   100% {
     transform: rotate(360deg);
   }
-}
+} */
 
 .enrollButtonNow{
   background-color: rgb(62, 24, 233);

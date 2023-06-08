@@ -2,3 +2,14 @@
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
 }
+.toast-message{
+position:"bottom-right";
+
+/* newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light" */
+}

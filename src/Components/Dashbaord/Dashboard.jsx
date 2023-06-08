@@ -12,9 +12,11 @@ import { ImBooks } from "react-icons/im";
 import "./dashboard.css";
 import axios from "axios";
 import ImageSlider from "./ImageSlider";
+import { useNavigate } from "react-router-dom";
 
 
 const Dashboard = () => {
+  const navigate = useNavigate();
   const [isLoading, setLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [hideFooter, setHideFooter] = useState("dashboardFooter");
@@ -28,10 +30,11 @@ const Dashboard = () => {
   }, []);
 
   const handleClickButtonRoll = () => {
-    setLoading(true);
-    setTimeout(() => {
-      setLoading(false);
-    }, 3000);
+    navigate("/view-content")
+    // setLoading(true);
+    // setTimeout(() => {
+    //   setLoading(false);
+    // }, 3000);
   };
 
   var lastScrollTop = window.scrollY;
@@ -163,10 +166,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -190,10 +193,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -215,10 +218,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -240,10 +243,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -265,10 +268,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -290,10 +293,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -315,10 +318,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -340,10 +343,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -365,10 +368,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -390,10 +393,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -415,10 +418,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -440,10 +443,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -465,10 +468,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>
@@ -490,10 +493,10 @@ const Dashboard = () => {
             <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
             <p className="dash_cardInfo">Online Course</p>
             {/* <button class="btn btn-primary" href="#">
-              Enroll Now
+              View More
             </button> */}
             <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "Enroll Now"}
+              {isLoading ? <div className="loader" /> : "View More"}
             </button>
           </div>
         </div>

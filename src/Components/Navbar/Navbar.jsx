@@ -10,19 +10,41 @@ import {
   NavLink,
 } from "react-router-dom";
 import { AuthContext } from "../../AuthManagement/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function Navbar() {
-
+  const navigate = useNavigate();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { authenticated, logout } = useContext(AuthContext);
   const [toggle, seTtoggle] = React.useState("dropdown_menu");
   const [icon, setIcon] = React.useState(true);
   const [hideNav, setHideNav] = React.useState("navheader");
+  const [googleAuth, setGoogleAuth] = useState();
+  let credentials = JSON.parse(localStorage?.getItem("cuchd-accessToken"));
   function toggleFunc() {
     setIcon(!icon);
     seTtoggle("dropdown_menu");
   }
 
- 
+
+
+  useEffect(() => {
+    if (localStorage.getItem("accessToken")) {
+      setIsLoggedIn(true);
+      localStorage.clear()
+      
+    }
+    
+  }, []);
+
+
+  const logUserOut =() => {
+    setGoogleAuth(false);
+    localStorage.clear("cuchd-accessToken");
+    navigate("/")
+    
+  }
 
   function hidemenu() {
     setIcon(!icon);
@@ -83,13 +105,21 @@ export default function Navbar() {
               </a>
             </li>
           </ul>
-         
 
-      
-          <NavLink to="/login">
-            <button className="action_btn">Login</button>
-          </NavLink>
-
+          {credentials?.isAdmin ? (
+            
+              <NavLink to="/">
+                <button onClick={logUserOut} className="action_btn">Logout</button>
+              </NavLink>
+              
+            
+          ) : (
+            
+              <NavLink to="/login">
+                <button className="action_btn">Login</button>
+              </NavLink>
+            
+          )}
 
           <div className="toggle_btn">
             {icon ? (

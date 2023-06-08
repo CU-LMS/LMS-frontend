@@ -276,3 +276,13 @@ form .form-content label:hover {
 .google-logout{
   bottom: 0;
 }
+.buttonSubmit{
+  width: 100%;
+}
+.buttonsubmithandle{
+  width: 100%;
+  background-color: #690000;
+  color: white;
+  border: none;
+
+}

@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from "react";
 import { HiMail } from "react-icons/hi";
 import { MdPassword } from "react-icons/md";
@@ -10,9 +9,16 @@ import loginUser from "../../api/login";
 import { loginSchema } from "../../helpers/schemaValidation";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+
+import { manualSignIn } from "../../redux/slices/authentication/authSliceAction";
 import "./login_signUp.css";
 
 export default function LoginSignUp() {
+  const isAuth = useSelector((state) => state.authenticationState.isAuth);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [googleAuth, setGoogleAuth] = useState(false);
@@ -25,11 +31,21 @@ export default function LoginSignUp() {
     handleSubmit,
     formState: { errors },
   } = useForm({
-    resolver: yupResolver(loginSchema),
+    // resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => console.log(data);
-  const onSubmit2 = (data) => console.log(data);
+  useEffect(() => {
+    if (isAuth === true) {
+      
+      navigate("/view-content");
+    }
+  }, [isAuth]);
+
+  const onSubmit = (data) => {
+    console.log("dddddddddddddd", data);
+    dispatch(manualSignIn(data.userEmail, data.userPassword));
+
+  };
 
   const users = [{ username: "", password: "" }];
 
@@ -148,12 +164,8 @@ export default function LoginSignUp() {
                     <div className="text">
                       <a href="#">Forgot Password</a>
                     </div>
-                    <div className="button input-box">
-                      <input
-                        type="submit"
-                        value="Submit"
-                        onClick={handleSubmit(onSubmit)}
-                      />
+                    <div className="buttonSubmit">
+                      <button className="buttonsubmithandle" onClick={handleSubmit(onSubmit)}>Submit</button>
                     </div>
 
                     <div className="line-container">
