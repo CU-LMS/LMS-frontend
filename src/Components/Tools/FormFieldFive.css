@@ -1,0 +1,19 @@
+.banner{
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 30px;
+    margin-top: 4%;
+   
+}
+.bannerpara{
+    font-style: italic;
+    color: rgb(61, 57, 57);
+    margin-top: 2%;
+    letter-spacing: 1px;
+
+}
+.banner-image{
+    margin-top: 3%;
+}
