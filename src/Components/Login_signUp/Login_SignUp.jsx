@@ -11,11 +11,13 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { gmailSignUp } from "../../redux/slices/authentication/authSliceAction";
 
 import { manualSignIn } from "../../redux/slices/authentication/authSliceAction";
 import "./login_signUp.css";
 
 export default function LoginSignUp() {
+  const [user, setUser] = useState({});
   const isAuth = useSelector((state) => state.authenticationState.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -36,7 +38,6 @@ export default function LoginSignUp() {
 
   useEffect(() => {
     if (isAuth === true) {
-      
       navigate("/view-content");
     }
   }, [isAuth]);
@@ -44,32 +45,26 @@ export default function LoginSignUp() {
   const onSubmit = (data) => {
     console.log("dddddddddddddd", data);
     dispatch(manualSignIn(data.userEmail, data.userPassword));
-
   };
 
   const users = [{ username: "", password: "" }];
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "email",
-      });
-    }
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.client.init({
+  //       clientId: clientId,
+  //       scope: "email",
+  //     });
+  //   }
 
-    gapi.load("client:auth2", start);
-  }, []);
+  //   gapi.load("client:auth2", start);
+  // }, []);
 
   const clientId =
     "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
 
   const onLoginSuccess = (res) => {
-    console.log("Login Success:", res);
-    console.log("Login Success:", res.profileObj.name);
-
-    setGoogleAuth(true);
-    localStorage.setItem("profile", JSON.stringify(res.profileObj));
-    localStorage.setItem("accessToken", JSON.stringify(res.accessToken));
+    dispatch(gmailSignUp(res.profileObj));
   };
 
   const onLoginFailure = (res) => {
@@ -89,22 +84,23 @@ export default function LoginSignUp() {
             clientId={clientId}
             buttonText="Sign Out"
             onLogoutSuccess={logoutSuccess}
-            // render={(renderProps) => (
-            //   <button
-            //     className="google-logout"
-            //     onClick={renderProps.onClick}
-            //     disabled={renderProps.disabled}
-            //     style={{ cursor: "pointer" }}
-            //   >
-            //     Sign out
-            //   </button>
-            // )}
+            render={(renderProps) => (
+              <button
+                className="action_btn_2"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                style={{ cursor: "pointer" }}
+              >
+                Sign out
+              </button>
+            )}
           />
+
           <Dashboard />
         </>
       ) : (
         <div className="body">
-          <div className="container">
+          <div className="containerLogin">
             <input type="checkbox" id="flip" />
             <div className="cover">
               <div className="front">
@@ -165,7 +161,12 @@ export default function LoginSignUp() {
                       <a href="#">Forgot Password</a>
                     </div>
                     <div className="buttonSubmit">
-                      <button className="buttonsubmithandle" onClick={handleSubmit(onSubmit)}>Submit</button>
+                      <button
+                        className="buttonsubmithandle"
+                        onClick={handleSubmit(onSubmit)}
+                      >
+                        Submit
+                      </button>
                     </div>
 
                     <div className="line-container">
@@ -180,7 +181,7 @@ export default function LoginSignUp() {
                       onSuccess={onLoginSuccess}
                       onFailure={onLoginFailure}
                       cookiePolicy={"single_host_origin"}
-                      isSignedIn={true}
+                      // isSignedIn={true}
                     >
                       <p className="google-button-text">Continue with Google</p>
                     </GoogleLogin>

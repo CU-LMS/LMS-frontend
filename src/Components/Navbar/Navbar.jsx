@@ -12,7 +12,6 @@ import {
 import { AuthContext } from "../../AuthManagement/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-
 export default function Navbar() {
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -21,30 +20,34 @@ export default function Navbar() {
   const [icon, setIcon] = React.useState(true);
   const [hideNav, setHideNav] = React.useState("navheader");
   const [googleAuth, setGoogleAuth] = useState();
-  let credentials = JSON.parse(localStorage?.getItem("cuchd-accessToken"));
+  let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
+
   function toggleFunc() {
     setIcon(!icon);
     seTtoggle("dropdown_menu");
   }
 
-
-
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setIsLoggedIn(true);
-      localStorage.clear()
-      
+      localStorage.clear();
     }
-    
   }, []);
 
-
-  const logUserOut =() => {
+  const logUserOut = () => {
+    
     setGoogleAuth(false);
     localStorage.clear("cuchd-accessToken");
-    navigate("/")
-    
+    localStorage.removeItem("cuchdCsrf")
+    navigate("/");
+  };
+
+
+  const loginUserClear =() => {
+    setGoogleAuth(false);
+    localStorage.removeItem("cuchdCsrf")
   }
+
 
   function hidemenu() {
     setIcon(!icon);
@@ -104,21 +107,26 @@ export default function Navbar() {
                 Contact
               </a>
             </li>
+
+            {credentials?.accessToken ? (
+              <>
+                <li >
+                  <NavLink to="/tool">Admin</NavLink>
+                </li>
+              </>
+            ) : null}
           </ul>
 
           {credentials?.isAdmin ? (
-            
-              <NavLink to="/">
-                <button onClick={logUserOut} className="action_btn">Logout</button>
-              </NavLink>
-              
-            
+            <NavLink to="/">
+              <button onClick={logUserOut} className="action_btn">
+                Logout
+              </button>
+            </NavLink>
           ) : (
-            
-              <NavLink to="/login">
-                <button className="action_btn">Login</button>
-              </NavLink>
-            
+            <NavLink to="/login">
+              <button onClick={loginUserClear} className="action_btn">Login</button>
+            </NavLink>
           )}
 
           <div className="toggle_btn">

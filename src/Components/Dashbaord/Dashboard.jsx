@@ -13,13 +13,21 @@ import "./dashboard.css";
 import axios from "axios";
 import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
-
+import { readCourseData } from "../../redux/slices/courses/coursesActions";
+import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const courses = useSelector((state) => state.courseState.courses);
+
   const [isLoading, setLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [hideFooter, setHideFooter] = useState("dashboardFooter");
+
+  useEffect(() => {
+    dispatch(readCourseData());
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -29,12 +37,8 @@ const Dashboard = () => {
     return () => clearInterval(interval);
   }, []);
 
-  const handleClickButtonRoll = () => {
-    navigate("/view-content")
-    // setLoading(true);
-    // setTimeout(() => {
-    //   setLoading(false);
-    // }, 3000);
+  const handleClickButtonRoll = (courseId) => {
+    navigate("/view-content", {state: { courseId } });
   };
 
   var lastScrollTop = window.scrollY;
@@ -48,42 +52,41 @@ const Dashboard = () => {
     lastScrollTop = scrollTop;
   });
 
-  useEffect(() => {
-    let profile = JSON.parse(localStorage.getItem("profile"));
-    let accessToken = JSON.parse(localStorage.getItem("accessToken"));
+  // useEffect(() => {
+  //   let profile = JSON.parse(localStorage.getItem("profile"));
+  //   let accessToken = JSON.parse(localStorage.getItem("accessToken"));
 
-    axios
-      .post("http://172.17.18.255:8000/user_profile/", {
-        username: profile.email,
-        email: profile.email,
-        first_name: profile.givenName,
-        last_name: profile.familyName,
-        profile_pic: profile.imageUrl,
-        access_token: accessToken,
-        google_id: profile.googleId,
-      })
-      .then(function (response) {
-        // console.log("$$$$$$$$", response);
-      })
-      .catch(function (error) {
-        console.log("########", error);
-      });
-  }, []);
+  //   axios
+  //     .post("http://172.17.18.255:8000/user_profile/", {
+  //       username: profile.email,
+  //       email: profile.email,
+  //       first_name: profile.givenName,
+  //       last_name: profile.familyName,
+  //       profile_pic: profile.imageUrl,
+  //       access_token: accessToken,
+  //       google_id: profile.googleId,
+  //     })
+  //     .then(function (response) {})
+  //     .catch(function (error) {
+  //       console.log("########", error);
+  //     });
+  // }, []);
 
   return (
     <div className="dashboard">
+      {console.log(courses)}
       <div>
         <ImageSlider />
       </div>
 
       <div className="middle_row">
-        <div className="dashboardGridCard">
+        {/* <div className="dashboardGridCard">
           <div>
             <AiOutlineReload className="dashBoardCardIcons" />
           </div>
           <div className="dssh_cardheading">Nothing to resume yet</div>
           <div></div>
-        </div>
+        </div> */}
         <div className="dashboardGridCard">
           <div>
             <BsCalculatorFill className="dashBoardCardIcons" />
@@ -146,371 +149,46 @@ const Dashboard = () => {
       </div>
       <div style={{ margin: "10px 30px", fontSize: "2rem" }}>Our Courses</div>
       <div className="dash_course">
-        {/* Dashboard cards  main  */}
 
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_10-Ways-2.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
+        {courses?.map((ele, id) => {
+          return (
+            <>
+              <div className="dash_courseCard" key={id.courseId}>
+                <div
+                  className="overflow1"
+                  style={{ borderBottom: "7px solid grey" }}
+                >
+                  <img
+                    className="imageArea"
+                    src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_10-Ways-2.png"
+                    alt="..."
+                  />
+                </div>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                  }}
+                >
+                  <h6 style={{ fontWeight: 600 }}>{ele.courseName}</h6>
+                  <p className="dash_cardInfo">{ele.courseCode}</p>
 
-        {/* dashboard card repeat */}
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_8-Ways.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Absorb-Infuse-26.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_eCommerce-2.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Absorb-Leaderboards.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Reporting-2.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Case-Studies-2.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Global-eTraining.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Talent-Development.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_10-Ways-2.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Branding.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_8-Ways.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Reporting-2.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-        <div className="dash_courseCard">
-          <div className="overflow1" style={{ borderBottom: "7px solid grey" }}>
-            <img
-              className="imageArea"
-              src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_Absorb-Leaderboards.png"
-              alt="..."
-            />
-          </div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-            }}
-          >
-            <h6 style={{ fontWeight: 600 }}>Start Learning</h6>
-            <p className="dash_cardInfo">Online Course</p>
-            {/* <button class="btn btn-primary" href="#">
-              View More
-            </button> */}
-            <button className="enrollButtonNow" onClick={handleClickButtonRoll} disabled={isLoading}>
-              {isLoading ? <div className="loader" /> : "View More"}
-            </button>
-          </div>
-        </div>
-
-        {/* repeat end */}
+                  <button
+                    className="enrollButtonNow"
+                    onClick={() => handleClickButtonRoll(ele.courseId)}
+                    disabled={isLoading}
+                  >
+                    {isLoading ? <div className="loader" /> : "View More"}
+                  </button>
+                </div>
+              </div>
+            </>
+          );
+        })}
       </div>
-      {/* <footer className={hideFooter}>
-        <BsGlobe className="dashFooterIcon" />{" "}
-        <p style={{ color: "white", margin: "0 5px" }}>English</p>
-        <p>Sign Out</p>
-      </footer> */}
     </div>
   );
-
-    }
+};
 
 export default Dashboard;

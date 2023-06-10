@@ -14,10 +14,13 @@ import { courseCreate } from "../../redux/slices/authentication/courseCreateSlic
 import { readSubjectsData } from "../../redux/slices/subjects/subjectSliceAction";
 import "./MiniHeader.css";
 import { readDiscData } from "../../redux/slices/subjects/disciplineSliceAction";
-import {createCourse} from "../../redux/slices/courses/coursesActions"
+import { createCourse } from "../../redux/slices/courses/coursesActions"
 import FormFieldPictureUpload from "./FormFieldFivePictureUpload";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { AiOutlineBars } from 'react-icons/ai';
+import Sidebar from "./Sidebar";
+import BaseHeader from "./BaseHeader";
 
 const MiniHeader = () => {
   const [options] = useState([
@@ -36,8 +39,25 @@ const MiniHeader = () => {
   const data = useSelector((state) => state?.subjectsState);
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   const discData = useSelector((state) => state?.disciplineState?.discData);
+  
+  const [formData, setFormData] = useState({
+    courseName: "",
+    authorName: "",
+    subject: "",
+    discipline: "",
+    courseCode: "",
+    semester: "",
+    availability: "",
+    duration: "",
+    courseView: "",
+    contentView: "",
+    dStartTime: "",
+    dEndTime: "",
+    bannerImage: null
+  });
   console.log(discData);
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(readSubjectsData());
@@ -56,6 +76,11 @@ const MiniHeader = () => {
     }
   };
 
+   // handle file upload 
+   const handleFileUpload = (e) => {
+    let banner = e.target.files[0];
+    setFormData({ ...formData, bannerImage: banner })
+  }
   // Scroll to the bottom when footer is clicked
   const scrollToBottom = () => {
     scroller.scrollTo("footer", {
@@ -95,9 +120,8 @@ const MiniHeader = () => {
 
   const [durationType, setDurationType] = useState();
 
-  const handleAddCourseData = (courseData) => {
-    console.log(courseData);
-    dispatch(createCourse(courseData))
+  const handleAddCourseData = () => {    
+    dispatch(createCourse(formData))
   };
 
   const handleDuration = (e) => {
@@ -110,12 +134,10 @@ const MiniHeader = () => {
 
   return (
     <>
+
       {/* <div className="background-picture"></div> */}
       <div className="body-nav">
-        <div className="base-header">
-          <p className="base-heading"> Course Creation </p>
-          {/* <p className="close"> close administrator pannel</p> */}
-        </div>
+        <BaseHeader/>
 
         <div className="body-scroll">
           <div className="base-header2">
@@ -157,7 +179,8 @@ const MiniHeader = () => {
                   type="text"
                   placeholder="Enter Course Name"
                   className="input-text1"
-                  {...register("courseName")}
+                  name="courseName"
+                  onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}
                 />
               </div>
             </div>
@@ -171,7 +194,8 @@ const MiniHeader = () => {
                   type="text"
                   placeholder="Enter Author Name"
                   className="input-text1"
-                  {...register("autherName")}
+                  name="authorName"
+                  onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
                 />
               </div>
             </div>
@@ -185,20 +209,19 @@ const MiniHeader = () => {
                   className="input-text1"
                   name="staticSubjectArea"
                   id="subjects"
-                  {...register("subjectId")}
-                  // placeholder="Select Subject"
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                 >
                   <option>Select Subject</option>
                   {subjectData?.length > 0 && subjectData
                     ? subjectData?.map((ele) => {
-                        return (
-                          <>
-                            <option value={ele?.subjectId}>
-                              {ele?.subjectName}
-                            </option>
-                          </>
-                        );
-                      })
+                      return (
+                        <>
+                          <option value={ele?.subjectId}>
+                            {ele?.subjectName}
+                          </option>
+                        </>
+                      );
+                    })
                     : null}
                 </select>
               </div>
@@ -213,19 +236,19 @@ const MiniHeader = () => {
                   className="input-text1"
                   name="discipline"
                   id="discipline"
-                  {...register("disciplineId")}
+                  onChange={(e) => setFormData({ ...formData, discipline: e.target.value })}
                 >
                   <option>Select discipline</option>
                   {discData?.length > 0 && discData
                     ? discData?.map((ele) => {
-                        return (
-                          <>
-                            <option value={ele?.disciplineId}>
-                              {ele?.disciplineName}
-                            </option>
-                          </>
-                        );
-                      })
+                      return (
+                        <>
+                          <option value={ele?.disciplineId}>
+                            {ele?.disciplineName}
+                          </option>
+                        </>
+                      );
+                    })
                     : null}
                 </select>
               </div>
@@ -243,7 +266,7 @@ const MiniHeader = () => {
                   name="w3review"
                   rows="4"
                   cols="50"
-                  {...register("courseCode")}
+                  onChange={(e) => setFormData({ ...formData, courseCode: e.target.value })}
                 ></textarea>
               </div>
             </div>
@@ -254,10 +277,10 @@ const MiniHeader = () => {
               </div>
               <div className="form-field1">
                 <select
-                  {...register("semester")}
                   className="input-text3"
                   name="subjects"
                   id="subjects"
+                  onChange={(e) => setFormData({ ...formData, semester: e.target.value })}
                 >
                   <option value="1">Semester I</option>
                   <option value="2">Semester II</option>
@@ -284,21 +307,23 @@ const MiniHeader = () => {
                   <p className="avai">Available</p>
                   <input
                     type="radio"
-                    id="available"
-                    name="available"
-                    value={true}
-                    {...register("availble")}
+                    id="available-yes"
+                    name="available-yes"
+                    value="true"
+                    checked={formData.availability === "true"}
+                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
                   />
-                   <label for="yes">Yes</label>
+                  <label htmlFor="available-yes">Yes</label>
                   <br />
                   <input
                     type="radio"
-                    id="available"
+                    id="available-no"
                     name="available"
-                    value={false}
-                    {...register("availble")}
+                    value="false"
+                    checked={formData.availability === "false"}
+                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
                   />
-                    <label for="no">No</label>
+                  <label htmlFor="available-no" >No</label>
                   <br />
                 </div>
 
@@ -308,25 +333,23 @@ const MiniHeader = () => {
                   <p className="avai">Duration</p>
                   <input
                     type="radio"
-                    id="available"
-                    name="available"
-                    checked={durationType === "continuous"}
-                    {...register("durationConfigurationId")} 
-                    value="1"
-                    onChange={handleDuration}
+                    id="duration-1"
+                    name="continuous"
+                    checked={formData.duration === "continuous"}
+                    value="continuous"
+                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                   />
-                   <label for="yes">Continuous</label>
+                  <label htmlFor="duration-1">Continuous</label>
                   <br />
                   <input
                     type="radio"
-                    id="available"
-                    name="Continuous"
-                    checked={durationType === "selectDate"}
-                    value="2"
-                    {...register("durationConfigurationId")} 
-                    onChange={handleDuration}
+                    id="duration-2"
+                    name="Select-dates"
+                    checked={formData.duration === "selectDate"}
+                    value="selectDate"
+                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
                   />
-                    <label for="no">Select Dates</label>
+                  <label htmlFor="duration-2" >Select Dates</label>
                   <br />
                   {/* <input
                     type="radio"
@@ -334,11 +357,11 @@ const MiniHeader = () => {
                     name="Select Dates"
                   
                   /> */}
-                  {durationType === "selectDate" ? <>
-                  <label>Start Date</label>
-                  <input {...register("dStartDate")} type="date"></input>
-                  <label>End Date</label>
-                  <input  {...register("dEndDate")}  type="date"></input>
+                  {formData.duration === "selectDate" ? <>
+                    <label className="duration-1">Start Date</label>
+                    <input onChange={(e) => setFormData({ ...formData, dStartTime: e.target.value })} type="date"></input>
+                    <label className="duration-2">End Date</label>
+                    <input onChange={(e) => setFormData({ ...formData, dEndTime: e.target.value })} type="date"></input>
                   </> : null}
                   {/*   <label for="no">Days from the Date of Enrollment</label>{" "}
                   {"   "}
@@ -372,11 +395,11 @@ const MiniHeader = () => {
                     type="radio"
                     id="available"
                     name="available"
-                
+
                     value="1"
-                    {...register("courseViewConfigurationId")} 
+                    onChange={(e) => setFormData({ ...formData, courseView: e.target.value })}
                   />
-                   <label for="yes"> Default Course View</label>
+                  <label for="yes"> Default Course View</label>
                   <br />
                   <p className="que1">
                     This course uses the Original Course View. Instructors can't
@@ -388,9 +411,9 @@ const MiniHeader = () => {
                     id="available"
                     name="available"
                     value="2"
-                    {...register("courseViewConfigurationId")} 
+                    onChange={(e) => setFormData({ ...formData, courseView: e.target.value })}
                   />
-                    <label for="no">Restricted Course View</label>
+                  <label for="no">Restricted Course View</label>
                   <br />
                   <p className="que1">
                     This course uses the Ultra Course View. Instructors can't
@@ -430,7 +453,9 @@ const MiniHeader = () => {
                 </div>
 
                 <hr />
-                <FormFieldPictureUpload />
+                <div style={{ display: 'flex', alignItems: 'center' }}>
+                  <input type="file" style={{ marginRight: '20px' }} onChange={handleFileUpload} />
+                </div>
               </div>
             </div>
 
@@ -446,27 +471,27 @@ const MiniHeader = () => {
                     id="available"
                     name="available"
                     value="1"
-                    {...register("contentViewConfigurationId")} 
+                    onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}
                   />
-                   <label for="yes">Icon Only</label>
+                  <label for="yes">Icon Only</label>
                   <br />
                   <input
                     type="radio"
                     id="available"
                     name="available"
                     value="2"
-                    {...register("contentViewConfigurationId")} 
+                    onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}
                   />
-                   <label for="yes">Text Only</label>
+                  <label for="yes">Text Only</label>
                   <br />
                   <input
                     type="radio"
                     id="available"
                     name="available"
                     value="3"
-                    {...register("contentViewConfigurationId")} 
+                    onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}
                   />
-                    <label for="no">Icon And text</label>
+                  <label for="no">Icon And text</label>
                   <br />
                 </div>
               </div>
@@ -478,7 +503,7 @@ const MiniHeader = () => {
               <div className="rightFooter">
                 <button className="cancel">Cancel</button>
                 <button
-                  onClick={handleSubmit(handleAddCourseData)}
+                  onClick={handleAddCourseData}
                   className="submit"
                 >
                   Submit
