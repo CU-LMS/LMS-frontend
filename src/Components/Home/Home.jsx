@@ -13,6 +13,8 @@ import { Link } from "react-router-dom";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import "../../home.css";
+import { Carousel } from "react-responsive-carousel";
+
 
 const Home = () => {
   const [slideImage, setSlideImage] = useState(slide1);
@@ -30,7 +32,7 @@ const Home = () => {
               <h3 className="mb-4 typewrite-text">
                 <Typewriter
                   options={{
-                    strings: ["Nothing Impossible", "Follow Your Dream"],
+                    strings: ["Nothing Is Impossible", "Follow Your Dreams"],
                     autoStart: true,
                     loop: true,
                   }}
@@ -50,7 +52,7 @@ const Home = () => {
             </div>
             <div className="col-md-6 py-4">
               <div className="image-wrapper">
-                {/* <Carousel
+                <Carousel
                   showIndicators={false}
                   showStatus={false}
                   showThumbs={false}
@@ -60,21 +62,8 @@ const Home = () => {
                   <img src={slide1} alt="slide-1" className="showcase-image" />
                   <img src={slide3} alt="slide-1" className="showcase-image" />
                   <img src={slide4} alt="slide-1" className="showcase-image" />
-                </Carousel> */}
-                    <Carousel afterChange={onChange}>
-      <div>
-        <h3 style={contentStyle}>1</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>2</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>3</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>4</h3>
-      </div>
-    </Carousel>
+                </Carousel>
+
               </div>
             </div>
           </div>

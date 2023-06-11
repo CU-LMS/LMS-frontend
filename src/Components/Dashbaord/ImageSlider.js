@@ -33,7 +33,7 @@ const ImageSlider = () => {
   return (
     <div className="carousel">
       <button onClick={prevSlide}><FiArrowLeft sx={30} /></button>
-      <div className="slider">
+      <div className="sliderr">
         <div className="slide-wrapper" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
           {images.map((image, index) => (
             <div className="slidee" key={index}>
