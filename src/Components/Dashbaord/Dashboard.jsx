@@ -151,6 +151,7 @@ const Dashboard = () => {
       <div className="dash_course">
 
         {courses?.map((ele, id) => {
+          // console.log("GGGGGGGGGGGG", courses)
           return (
             <>
               <div className="dash_courseCard" key={id.courseId}>
@@ -160,7 +161,8 @@ const Dashboard = () => {
                 >
                   <img
                     className="imageArea"
-                    src="https://d1vy0qa05cdjr5.cloudfront.net/521066e7-5d91-4b95-a6df-8088206f6d1c/Course%20Thumbnails/Course-Thumbnail_10-Ways-2.png"
+                    src={`https://culmsimages.s3.ap-south-1.amazonaws.com/course-${ele.courseId}/${ele.bannerImageName}`}
+              
                     alt="..."
                   />
                 </div>

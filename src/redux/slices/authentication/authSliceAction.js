@@ -30,7 +30,7 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
       console.log(response, "aaaaa")
       if(response.data.statusCode === 200){
         toast.success("Logged In Success", {
-          autoClose: "6000",
+          autoClose: "5000",
         });
         let localStorageObj = {
           accessToken: apiResponse?.data?.data?.token,

@@ -3,6 +3,7 @@ import './AddDocs.css';
 import BaseHeader from './BaseHeader';
 import { sidebarContext } from '../../context/SidebarContext';
 import { toast } from "react-toastify";
+import swal from "sweetalert";
 
 const AddDocs = () => {
 
@@ -35,7 +36,13 @@ const AddDocs = () => {
                 });
     
                 const data = await response.json(); 
-                toast.success("Upload Successfully", { autoClose: 6000 });
+                // toast.success("Upload Successfully", { autoClose: 6000 });
+                swal({
+                    title: "Doc Uploaded Successfully!",
+                    text: "The document has been added to dashboard!.",
+                    icon: "success",
+                    button: "Done",
+                  });
             }
            
         }catch(e) {

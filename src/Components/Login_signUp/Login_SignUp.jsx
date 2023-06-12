@@ -12,8 +12,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { gmailSignUp } from "../../redux/slices/authentication/authSliceAction";
-
 import { manualSignIn } from "../../redux/slices/authentication/authSliceAction";
+import frontImage from "../../asset/loginpage.jpeg"
+import frontImage2 from "../../asset/frontPageCU.jpeg"
+import frontImage3 from "../../asset/frontPageCU3.jpg"
 import "./login_signUp.css";
 
 export default function LoginSignUp() {
@@ -49,22 +51,13 @@ export default function LoginSignUp() {
 
   const users = [{ username: "", password: "" }];
 
-  // useEffect(() => {
-  //   function start() {
-  //     gapi.client.init({
-  //       clientId: clientId,
-  //       scope: "email",
-  //     });
-  //   }
-
-  //   gapi.load("client:auth2", start);
-  // }, []);
 
   const clientId =
     "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
 
   const onLoginSuccess = (res) => {
     dispatch(gmailSignUp(res.profileObj));
+    
   };
 
   const onLoginFailure = (res) => {
@@ -107,7 +100,8 @@ export default function LoginSignUp() {
                 <img
                   className="frontImg"
                   id="frontImg"
-                  src="https://images.shiksha.com/mediadata/images/1642580468phpQDgPNe.jpeg"
+                  // src="https://images.shiksha.com/mediadata/images/1642580468phpQDgPNe.jpeg"
+                  src={frontImage3}
                   alt=""
                 />
               </div>

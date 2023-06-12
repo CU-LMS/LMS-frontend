@@ -3,6 +3,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import "./WatchCourse.css";
 import PdfViewerComponent from "./PdfViewerComponent";
+import MainFooter from "./MainFooter";
 
 const WatchCourseWhenEnrolled = () => {
   const queryParameters = new URLSearchParams(window.location.search);
@@ -62,6 +63,7 @@ const WatchCourseWhenEnrolled = () => {
 
   return (
     <>
+    {console.log(documentData, "DDDDDDDDDDDDDDDDDDDDDDD")}
       <div class="video-player">
         <div class="video-container">
           {activeFileType === "mp4" ? (
@@ -74,17 +76,23 @@ const WatchCourseWhenEnrolled = () => {
           <h2 className="head1">Documents</h2>
           {documentData && documentData.map((ele) => {
                 return (
+                  <>
+                  <div className="videoIsHere">
+                    <p></p>
                   <div
                     onClick={() => handleDocClick(ele.fileName, ele.fileUrl)}
                     class="video-thumbnail"
 
                   ><p className="">{ele.fileName}</p></div>
+                  </div>
+                  
+                  </>
                 );
               })
           }
         </div>
       </div>
-      <div className="footer-social">
+      {/* <div className="footer-social">
         <p className="heading-view-books3">
           For more Information, say Hello CU!, we will get back to you.
         </p>
@@ -112,6 +120,9 @@ const WatchCourseWhenEnrolled = () => {
           <a href="#" class="fa fa-youtube"></a>
           <a href="#" class="fa fa-instagram"></a>
         </div>
+      </div> */}
+      <div>
+        <MainFooter />
       </div>
     </>
   );

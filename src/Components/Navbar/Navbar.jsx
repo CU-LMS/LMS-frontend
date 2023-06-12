@@ -3,6 +3,7 @@ import { useContext } from "react";
 import "./nav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { toast } from "react-toastify";
 import {
   BrowserRouter as Router,
   Switch,
@@ -40,6 +41,9 @@ export default function Navbar() {
     localStorage.clear("cuchd-accessToken");
     localStorage.removeItem("cuchdCsrf")
     navigate("/");
+    toast.success("Logged Out Successfully", {autoClose: 3000})
+    
+    
   };
 
 

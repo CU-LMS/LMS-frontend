@@ -48,7 +48,7 @@ export const createCourse = (courseData) => async (dispatch) => {
       subjectId: parseInt(courseData.subject),
       semester: parseInt(courseData.semester),
     };
-    
+    console.log("courseDataPayload", courseDataPayload);
     let localStorageData = JSON.parse(
       localStorage.getItem("cuchdCsrf")
     );
@@ -63,29 +63,50 @@ export const createCourse = (courseData) => async (dispatch) => {
     };
     let response = await http(config);
     console.log(response);
-    if(response.data.data!=null){
-      console.log("ddddddddd",response.data.courseId);
+
+
+    if(response.data.statusCode === 200){
+
       localStorage.setItem('courseId', response.data.data.courseId);
       const newFormData = new FormData();
       newFormData.append('file', courseData.bannerImage, courseData.bannerImage.name);
+      newFormData.append('file', courseData.courseDoc, courseData.courseDoc.name);
+      newFormData.append('file', courseData.courseVideo, courseData.courseVideo.name);
       newFormData.append("courseId", response.data.data.courseId)
-    
+
+      const newFormData1 = new FormData();
+      newFormData1.append('file', courseData.courseDoc, courseData.courseDoc.name);
+      newFormData1.append('file', courseData.courseVideo, courseData.courseVideo.name);
+      newFormData1.append("courseId", response.data.data.courseId)
+      
       try {
         const response = await fetch('http://43.240.66.78:7263/api/aws/UploadDocument', {
+        // const response = await fetch(`${process.env.DEV_URL}aws/UploadDocument`, {
           method: "POST",
           body: newFormData
         });
-        const data = response.json();
-        console.log(data);
+        const data = await response.json();
+        if(data==201)
+            {
+              const response = await fetch('http://43.240.66.78:7263/api/course/AddCourseFilesDoc', {
+              // const response = await fetch(`${process.env.DEV_URL}course/AddCourseFilesDoc`, {
+                    method: "POST",
+                    body: newFormData1
+                });
+    
+                const data = await response.json(); 
+                //toast.success("Upload Successfully", { autoClose: 6000 });
+            }
       } catch (e) {
         console.log(e);
       }
-    
+      
       swal({
         title: "Course Created!",
-        text: "The course has been added to dashboard!.",
+        text: "Course Created Successfully.",
         icon: "success",
         button: "Done",
+        
       });
     }
     dispatch(handleLoding("idle"));

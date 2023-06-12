@@ -1,17 +1,19 @@
 import React, { useState } from "react";
 import { GoSearch } from "react-icons/go";
-
+// import {Carousel} from "react-responsive-carousel";
 import Typewriter from "typewriter-effect";
 import slide1 from "../../asset/slide-1.jpg";
 import slide2 from "../../asset/slide-2.png";
 import slide3 from "../../asset/slide-3.jpg";
 import slide4 from "../../asset/slide-4.jpg";
-
+import ReactPlayer from "react-player";
 import { BsFillChatLeftTextFill, BsQuestionDiamondFill } from "react-icons/bs";
 import { FaPhoneAlt, FaGraduationCap, FaUserFriends } from "react-icons/fa";
 import { Link } from "react-router-dom";
 // import "react-responsive-carousel/lib/styles/carousel.min.css";
-import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import VideoShow from "../../asset/annual-convocation-2023.mp4"
 import "../../home.css";
 
 const Home = () => {
@@ -50,7 +52,7 @@ const Home = () => {
             </div>
             <div className="col-md-6 py-4">
               <div className="image-wrapper">
-                {/* <Carousel
+                <Carousel
                   showIndicators={false}
                   showStatus={false}
                   showThumbs={false}
@@ -60,21 +62,8 @@ const Home = () => {
                   <img src={slide1} alt="slide-1" className="showcase-image" />
                   <img src={slide3} alt="slide-1" className="showcase-image" />
                   <img src={slide4} alt="slide-1" className="showcase-image" />
-                </Carousel> */}
-                    <Carousel afterChange={onChange}>
-      <div>
-        <h3 style={contentStyle}>1</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>2</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>3</h3>
-      </div>
-      <div>
-        <h3 style={contentStyle}>4</h3>
-      </div>
-    </Carousel>
+                </Carousel>
+             
               </div>
             </div>
           </div>
@@ -241,7 +230,7 @@ const Home = () => {
 
                 <button className="training-btn">Find Out More</button>
               </div>
-              <div className="col-md-6">
+              {/* <div className="col-md-6">
                 <div id="carouselExample" class="carousel slide">
                   <div class="carousel-inner">
                     <div class="carousel-item active">
@@ -291,6 +280,15 @@ const Home = () => {
                     <span class="visually-hidden">Next</span>
                   </button>
                 </div>
+              </div> */}
+              <div className="col-md-6">
+              <ReactPlayer
+                  className="show-video"
+                  url={VideoShow}
+                  controls={true}
+                  sx={{ width: "100%" }}
+                />
+
               </div>
             </div>
           </div>

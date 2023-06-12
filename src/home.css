@@ -92,6 +92,7 @@
 .image-wrapper {
     width: 100%;
     height: 450px;
+    /* height: 100%; */
     background: #002244;
     border-radius: 25px 0 0 25px;
     padding: 10px 30px;
@@ -109,6 +110,7 @@
 .showcase-container {
     padding-top: 60px;
     height: 60vh;
+    width: 90vw;
     
 }
 
@@ -117,10 +119,19 @@
 }
 
 .showcase-image {
-    width: 80% !important;
+    width: 100% !important;
     border-radius: 10px !important;
-}
+    /* height: 100% !important; */
+    height: 380px !important;
+    /* width: 493px !important; */
+    /* border-radius: 10px !important; */
+    opacity: 0.9;
 
+
+}
+.show-video{
+    box-shadow: 0px 17px 12px -15px #111;
+}
 .cu-logo {
     width: 100px;
 }
@@ -143,9 +154,9 @@
     border: none
 }
 .showcase-image {
-    width: 100%;
-    height: 100%;
-    opacity: 0.9;
+    /* width: 100%;
+    height: 100%; */
+    
 }
 
 .card {
