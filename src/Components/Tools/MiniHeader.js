@@ -53,7 +53,9 @@ const MiniHeader = () => {
     contentView: "",
     dStartTime: "",
     dEndTime: "",
-    bannerImage: null
+    bannerImage: null,
+    courseVideo: null,
+    courseDoc: null
   });
   console.log(discData);
   const dispatch = useDispatch();
@@ -81,6 +83,19 @@ const MiniHeader = () => {
     let banner = e.target.files[0];
     setFormData({ ...formData, bannerImage: banner })
   }
+
+  // handle upload docs
+  const handleUploadDocs = (e) => {
+    let doc = e.target.files[0];
+    setFormData({ ...formData, courseDoc: doc });
+  }
+
+  // handle upload videos
+  const handleUploadVideos = (e)  => {
+    let videos = e.target.files[0];
+    setFormData({  ...formData, videos });
+  }
+
   // Scroll to the bottom when footer is clicked
   const scrollToBottom = () => {
     scroller.scrollTo("footer", {
@@ -153,13 +168,15 @@ const MiniHeader = () => {
               {/* course name */}
               <div className="col-md-6">
                 <div className="form-group">
-                  <input type="text" name="courseName" id="courseName" placeholder="Enter Course Name" className="form-control" required />
+                  <input type="text" name="courseName" id="courseName" placeholder="Enter Course Name" className="form-control" required 
+                  onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}/>
                 </div>
               </div>
               {/* author name */}
               <div className="col-md-6">
                 <div className="form-group">
-                  <input type="text" name="authorName" id="authorName" placeholder="Enter Author Name" className="form-control" required />
+                  <input type="text" name="authorName" id="authorName" placeholder="Enter Author Name" className="form-control" required 
+                   onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}/>
                 </div>
               </div>
             </div>
@@ -168,7 +185,8 @@ const MiniHeader = () => {
               {/* subject area */}
               <div className="col-md-6">
                 <div className="form-group">
-                  <select id="subject" name="subject" className="form-control" required>
+                  <select id="subject" name="subject" className="form-control" required 
+                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}>
                     <option disabled selected value>Select Subject</option>
                     {subjectData?.length > 0 && subjectData
                       ? subjectData?.map((ele) => {
@@ -187,7 +205,8 @@ const MiniHeader = () => {
               {/* discipline */}
               <div className="col-md-6">
                 <div className="form-group">
-                  <select id="discipline" name="discipline" className="form-control" required>
+                  <select id="discipline" name="discipline" className="form-control" required
+                  onChange={(e) => setFormData({ ...formData, discipline: e.target.value })}>
                     <option disabled selected value>Select Discipline</option>
                     {discData?.length > 0 && discData
                       ? discData?.map((ele) => {
@@ -209,13 +228,15 @@ const MiniHeader = () => {
               {/* course code */}
               <div className="col-md-6">
                 <div className="form-group">
-                  <input type="text" name="courseCode" id="courseCode" placeholder="Enter Course Code" className="form-control" required />
+                  <input type="text" name="courseCode" id="courseCode" placeholder="Enter Course Code" className="form-control" required 
+                  onChange={(e) => setFormData({ ...formData, courseCode: e.target.value })}/>
                 </div>
               </div>
               {/* semester */}
               <div className="col-md-6">
                 <div className="form-group">
-                  <select id="semester" name="semester" className="form-control" required>
+                  <select id="semester" name="semester" className="form-control" required
+                  onChange={(e) => setFormData({ ...formData, semester: e.target.value })}>
                     <option disabled selected value>Select Semester</option>
                     <option value="1">Semester I</option>
                     <option value="2">Semester II</option>
@@ -233,11 +254,13 @@ const MiniHeader = () => {
                   <label>Availability</label>
                   <hr />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="radio" id="availability-true" value="true" name="availability" className="custom-control-input me-2" />
+                    <input type="radio" id="availability-true" value="true" name="availability" checked={formData.availability === "true"} className="custom-control-input me-2" 
+                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}/>
                     <label className="custom-control-label" for="availability-true"> True</label>
                   </div>
                   <div className="custom-control custom-radio custom-control-inline ">
-                    <input type="radio" id="availability-true" value="false" name="availability" className="custom-control-input me-2" />
+                    <input type="radio" id="availability-true" value="false" name="availability" checked={formData.availability === "false"} className="custom-control-input me-2" 
+                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}/>
                     <label className="custom-control-label" for="availability-true"> False</label>
                   </div>
                 </div>
@@ -248,18 +271,20 @@ const MiniHeader = () => {
                   <label>Duration</label>
                   <hr />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="radio" id="duration-continuous" value="continuous" name="duration" className="custom-control-input me-2" />
+                    <input type="radio" id="duration-continuous" value="continuous" name="duration" checked={formData.duration === "continuous"} className="custom-control-input me-2" 
+                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}/>
                     <label className="custom-control-label" for="duration-continuous"> Continuous</label>
                   </div>
                   <div className="custom-control custom-radio custom-control-inline ">
-                    <input type="radio" id="duration-selectDates" value="selectDates" name="duration" className="custom-control-input me-2" />
+                    <input type="radio" id="duration-selectDates" value="selectDates" name="duration" checked={formData.duration === "selectDate"} className="custom-control-input me-2" 
+                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}/>
                     <label className="custom-control-label" for="duration-selectDates"> Select Dates</label>
                   </div>
                 </div>
               </div>
             </div>
 
-            {formData.duration === "selectDates" && <div className="row mb-4" style={{ backgroundColor: '#f1f1f1', padding: '20px 0' }}>
+            {formData?.duration === "selectDates" && <div className="row mb-4" style={{ backgroundColor: '#f1f1f1', padding: '20px 0' }}>
               <div className="col-md-6">
                 <label className="duration-1">Start Date</label>
                 <input className="custom-control-input" onChange={(e) => setFormData({ ...formData, dStartTime: e.target.value })} type="date" />
@@ -279,15 +304,15 @@ const MiniHeader = () => {
                   <label>Default Content View</label>
                   <hr />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="radio" id="default-content-view-icon" value="icon-only" name="default-content-view" className="custom-control-input me-2" />
+                    <input type="radio" id="default-content-view-icon" value="icon-only" name="default-content-view" className="custom-control-input me-2" onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}/>
                     <label className="custom-control-label" for="default-content-view-icon"> Icon Only</label>
                   </div>
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="radio" id="default-content-view-text" value="text-only" name="default-content-view" className="custom-control-input me-2" />
+                    <input type="radio" id="default-content-view-text" value="text-only" name="default-content-view" className="custom-control-input me-2" onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}/>
                     <label className="custom-control-label" for="default-content-view-text"> Text Only</label>
                   </div>
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="radio" id="default-content-view-iconNtext" value="text-and-icon" name="default-content-view" className="custom-control-input me-2" />
+                    <input type="radio" id="default-content-view-iconNtext" value="text-and-icon" name="default-content-view" className="custom-control-input me-2" onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}/>
                     <label className="custom-control-label" for="default-content-view-iconNtext"> Icon and Text</label>
                   </div>
                 </div>
@@ -298,24 +323,26 @@ const MiniHeader = () => {
                   <label>Course View Option</label>
                   <hr />
                   <div className="custom-control custom-radio custom-control-inline mb-2" >
-                    <input type="radio" id="course-view-default" value="default" name="course-view" className="custom-control-input me-2" />
+                    <input type="radio" id="course-view-default" value="default" name="course-view" className="custom-control-input me-2" 
+                    onChange={(e) => setFormData({ ...formData, courseView: e.target.value })}/>
                     <label className="custom-control-label" for="course-view-default"> Default Course View</label>
                   </div>
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="radio" id="course-view-restricted" value="restricted" name="course-view" className="custom-control-input me-2" />
+                    <input type="radio" id="course-view-restricted" value="restricted" name="course-view" className="custom-control-input me-2"
+                    onChange={(e) => setFormData({ ...formData, courseView: e.target.value })} />
                     <label className="custom-control-label" for="course-view-restricted"> Restricted Course View</label>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="row">
+            {/* <div className="row">
               <div className="col-md-12">
                 <div className="form-group">
                       
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="row">
               {/* upload banner image  */}
@@ -323,7 +350,7 @@ const MiniHeader = () => {
                 <div className="form-group">
                   <label className="mb-3">Banner Image</label>
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="file" id="banner-image" name="banner-image" className="custom-control-input" />
+                    <input type="file" id="banner-image" name="banner-image" className="custom-control-input" onChange={handleFileUpload}/>
                   </div>
                 </div>
               </div>
@@ -332,7 +359,7 @@ const MiniHeader = () => {
                 <div className="form-group">
                   <label className="mb-3">Upload Docs</label>
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="file" id="upload-docs" name="upload-docs" className="custom-control-input" accept='.doc, .pdf, .pptx, .txt, .ppt, .xlsx'/>
+                    <input type="file" id="upload-docs" name="upload-docs" className="custom-control-input" accept='.doc, .pdf, .pptx, .txt, .ppt, .xlsx' onClick={handleUploadDocs}/>
                   </div>
                 </div>
               </div>
@@ -343,7 +370,9 @@ const MiniHeader = () => {
                 <div className="form-group">
                   <label className="mb-3">Upload Videos</label>
                   <div className="custom-control custom-radio custom-control-inline mb-2">
-                    <input type="file" id="upload-videos" name="upload-videos" className="custom-control-input" />
+                    <input type="file" id="upload-videos" name="upload-videos" className="custom-control-input"
+                    accept=".mp4, .3gp, .mkv, .webm, .mov, .flv"
+                     onClick={handleUploadVideos}/>
                   </div>
                 </div>
               </div>
