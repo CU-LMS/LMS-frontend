@@ -47,7 +47,7 @@
 
     background: hsla(355, 77%, 52%, 1);
 
-    background: radial-gradient(circle, hsla(355, 77%, 52%, 1) 0%, hsla(210, 100%, 13%, 1) 85%);
+    background: radial-gradient(circle, hsla(355, 77%, 52%, 1) 0%, #002142 85%);
     
     background: -moz-radial-gradient(circle, hsla(355, 77%, 52%, 1) 0%, hsla(210, 100%, 13%, 1) 85%);
     

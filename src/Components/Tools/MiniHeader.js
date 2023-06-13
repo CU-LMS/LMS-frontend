@@ -39,7 +39,7 @@ const MiniHeader = () => {
   const data = useSelector((state) => state?.subjectsState);
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   const discData = useSelector((state) => state?.disciplineState?.discData);
-  
+
   const [formData, setFormData] = useState({
     courseName: "",
     authorName: "",
@@ -76,8 +76,8 @@ const MiniHeader = () => {
     }
   };
 
-   // handle file upload 
-   const handleFileUpload = (e) => {
+  // handle file upload 
+  const handleFileUpload = (e) => {
     let banner = e.target.files[0];
     setFormData({ ...formData, bannerImage: banner })
   }
@@ -120,7 +120,7 @@ const MiniHeader = () => {
 
   const [durationType, setDurationType] = useState();
 
-  const handleAddCourseData = () => {    
+  const handleAddCourseData = () => {
     dispatch(createCourse(formData))
   };
 
@@ -136,383 +136,232 @@ const MiniHeader = () => {
     <>
 
       {/* <div className="background-picture"></div> */}
-      <div className="body-nav">
-        <BaseHeader/>
+      <div className="main">
+        {/* <BaseHeader/> */}
 
-        <div className="body-scroll">
-          <div className="base-header2">
-            <div className="base-header-1">
-              <p className="base-heading2">Administrator Panel </p>
-              <p className="base-heading2-1">Courses</p>
-              <p className="base-heading2-2">Create Courses</p>
-            </div>
-            <div className="base-header-2">
-              <div className="tooltip">
-                <p className="base-heading3">
-                  <BsFillPatchQuestionFill size={20} />{" "}
-                </p>
-                <span class="tooltiptext">Help is ON: Click to hide page.</span>
-              </div>
-            </div>
+        <div className="form-container">
+
+
+          <div className="section-heading mb-5">
+            <h3 className="mt-0">Create New Course</h3>
+            <hr />
           </div>
 
-          <div className="create-courses">
-            <p className="courses"> Create Courses</p>
-          </div>
-          <div className="box1">
-            <span>
-              {" "}
-              <p className="warning">{star} Indicates a required field.</p>{" "}
-            </span>
-            <div className="general">
-              <span>
-                {" "}
-                <p className="base-heading2">General Information</p>
-              </span>
-            </div>
-            <div className="real-form">
-              <div className="form-field1">
-                <p className="name-course">{star} Course Name :</p>{" "}
-              </div>
-              <div className="form-field2">
-                <input
-                  type="text"
-                  placeholder="Enter Course Name"
-                  className="input-text1"
-                  name="courseName"
-                  onChange={(e) => setFormData({ ...formData, courseName: e.target.value })}
-                />
-              </div>
-            </div>
 
-            <div className="real-form">
-              <div className="form-field1">
-                <p className="name-course">{star} Author :</p>{" "}
-              </div>
-              <div className="form-field2">
-                <input
-                  type="text"
-                  placeholder="Enter Author Name"
-                  className="input-text1"
-                  name="authorName"
-                  onChange={(e) => setFormData({ ...formData, authorName: e.target.value })}
-                />
-              </div>
-            </div>
-
-            <div className="real-form">
-              <div className="form-field1">
-                <p className="name-course">Subject Area:</p>{" "}
-              </div>
-              <div className="form-field1">
-                <select
-                  className="input-text1"
-                  name="staticSubjectArea"
-                  id="subjects"
-                  onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                >
-                  <option>Select Subject</option>
-                  {subjectData?.length > 0 && subjectData
-                    ? subjectData?.map((ele) => {
-                      return (
-                        <>
-                          <option value={ele?.subjectId}>
-                            {ele?.subjectName}
-                          </option>
-                        </>
-                      );
-                    })
-                    : null}
-                </select>
-              </div>
-            </div>
-
-            <div className="real-form">
-              <div className="form-field1">
-                <p className="name-course">Discipline:</p>{" "}
-              </div>
-              <div className="form-field1">
-                <select
-                  className="input-text1"
-                  name="discipline"
-                  id="discipline"
-                  onChange={(e) => setFormData({ ...formData, discipline: e.target.value })}
-                >
-                  <option>Select discipline</option>
-                  {discData?.length > 0 && discData
-                    ? discData?.map((ele) => {
-                      return (
-                        <>
-                          <option value={ele?.disciplineId}>
-                            {ele?.disciplineName}
-                          </option>
-                        </>
-                      );
-                    })
-                    : null}
-                </select>
-              </div>
-            </div>
-
-            <div className="real-form">
-              <div className="form-field1">
-                <p className="name-course"> Course Code :</p>{" "}
-              </div>
-              <div className="form-field2">
-                <textarea
-                  className="input-desc"
-                  placeholder="Start Typing Here..."
-                  id="w3review"
-                  name="w3review"
-                  rows="4"
-                  cols="50"
-                  onChange={(e) => setFormData({ ...formData, courseCode: e.target.value })}
-                ></textarea>
-              </div>
-            </div>
-
-            <div className="real-form">
-              <div className="form-field1">
-                <p className="name-course">Semester:</p>{" "}
-              </div>
-              <div className="form-field1">
-                <select
-                  className="input-text3"
-                  name="subjects"
-                  id="subjects"
-                  onChange={(e) => setFormData({ ...formData, semester: e.target.value })}
-                >
-                  <option value="1">Semester I</option>
-                  <option value="2">Semester II</option>
-                  <option value="3">Semester III</option>
-                  <option value="4">Semester IV</option>
-                </select>
-              </div>
-            </div>
-            <div className="tab2">
-              <hr />
-              <form className="available">
-                <strong>
-                  <p className="headingtwo">Availability</p>
-                </strong>
-                {/* <hr
-            className="line"
-            style={{
-              color: "black",
-              height: 1,
-            }}
-          /> */}
-
-                <div className="available2">
-                  <p className="avai">Available</p>
-                  <input
-                    type="radio"
-                    id="available-yes"
-                    name="available-yes"
-                    value="true"
-                    checked={formData.availability === "true"}
-                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                  />
-                  <label htmlFor="available-yes">Yes</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="available-no"
-                    name="available"
-                    value="false"
-                    checked={formData.availability === "false"}
-                    onChange={(e) => setFormData({ ...formData, availability: e.target.value })}
-                  />
-                  <label htmlFor="available-no" >No</label>
-                  <br />
+          <form id="course-creation-form">
+            <div className="row">
+              {/* course name */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="text" name="courseName" id="courseName" placeholder="Enter Course Name" className="form-control" required />
                 </div>
-
-                <hr />
-
-                <div className="available2">
-                  <p className="avai">Duration</p>
-                  <input
-                    type="radio"
-                    id="duration-1"
-                    name="continuous"
-                    checked={formData.duration === "continuous"}
-                    value="continuous"
-                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                  />
-                  <label htmlFor="duration-1">Continuous</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="duration-2"
-                    name="Select-dates"
-                    checked={formData.duration === "selectDate"}
-                    value="selectDate"
-                    onChange={(e) => setFormData({ ...formData, duration: e.target.value })}
-                  />
-                  <label htmlFor="duration-2" >Select Dates</label>
-                  <br />
-                  {/* <input
-                    type="radio"
-                    id="available"
-                    name="Select Dates"
-                  
-                  /> */}
-                  {formData.duration === "selectDate" ? <>
-                    <label className="duration-1">Start Date</label>
-                    <input onChange={(e) => setFormData({ ...formData, dStartTime: e.target.value })} type="date"></input>
-                    <label className="duration-2">End Date</label>
-                    <input onChange={(e) => setFormData({ ...formData, dEndTime: e.target.value })} type="date"></input>
-                  </> : null}
-                  {/*   <label for="no">Days from the Date of Enrollment</label>{" "}
-                  {"   "}
-                  <span>
-                    <input
-                      className="input-text3"
-                      type="text"
-                      id="days"
-                      name="enrollment"
-                    />
-                  </span> */}
+              </div>
+              {/* author name */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="text" name="authorName" id="authorName" placeholder="Enter Author Name" className="form-control" required />
                 </div>
-              </form>
+              </div>
             </div>
 
-            <div className="tab2">
-              <hr />
-              <div className="course-view-option">
-                <strong>
-                  <p className="headingtwo">Course View option</p>
-                </strong>
+            <div className="row">
+              {/* subject area */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <select id="subject" name="subject" className="form-control" required>
+                    <option disabled selected value>Select Subject</option>
+                    {subjectData?.length > 0 && subjectData
+                      ? subjectData?.map((ele) => {
+                        return (
+                          <>
+                            <option value={ele?.subjectId}>
+                              {ele?.subjectName}
+                            </option>
+                          </>
+                        );
+                      })
+                      : null}
+                  </select>
+                </div>
+              </div>
+              {/* discipline */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <select id="discipline" name="discipline" className="form-control" required>
+                    <option disabled selected value>Select Discipline</option>
+                    {discData?.length > 0 && discData
+                      ? discData?.map((ele) => {
+                        return (
+                          <>
+                            <option value={ele?.disciplineId}>
+                              {ele?.disciplineName}
+                            </option>
+                          </>
+                        );
+                      })
+                      : null}
+                  </select>
+                </div>
+              </div>
+            </div>
 
-                <div className="available2">
-                  <div className="threeLine">
-                    <p className="three">Choose a course view</p>
-                    <p className="three">Option</p>
-                    <u className="que">what's the difference?</u>
-                    <br />
+            <div className="row">
+              {/* course code */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <input type="text" name="courseCode" id="courseCode" placeholder="Enter Course Code" className="form-control" required />
+                </div>
+              </div>
+              {/* semester */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <select id="semester" name="semester" className="form-control" required>
+                    <option disabled selected value>Select Semester</option>
+                    <option value="1">Semester I</option>
+                    <option value="2">Semester II</option>
+                    <option value="3">Semester III</option>
+                    <option value="4">Semester IV</option>
+                  </select>
+                </div>
+              </div>
+            </div>
+
+            <div className="row">
+              {/* availability */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Availability</label>
+                  <hr />
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="radio" id="availability-true" value="true" name="availability" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="availability-true"> True</label>
                   </div>
-                  <input
-                    type="radio"
-                    id="available"
-                    name="available"
-
-                    value="1"
-                    onChange={(e) => setFormData({ ...formData, courseView: e.target.value })}
-                  />
-                  <label for="yes"> Default Course View</label>
-                  <br />
-                  <p className="que1">
-                    This course uses the Original Course View. Instructors can't
-                    change the course view.
-                  </p>
-                  <br />
-                  <input
-                    type="radio"
-                    id="available"
-                    name="available"
-                    value="2"
-                    onChange={(e) => setFormData({ ...formData, courseView: e.target.value })}
-                  />
-                  <label for="no">Restricted Course View</label>
-                  <br />
-                  <p className="que1">
-                    This course uses the Ultra Course View. Instructors can't
-                    change the course view.
-                  </p>
-                  <br />
+                  <div className="custom-control custom-radio custom-control-inline ">
+                    <input type="radio" id="availability-true" value="false" name="availability" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="availability-true"> False</label>
+                  </div>
+                </div>
+              </div>
+              {/* duration */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Duration</label>
+                  <hr />
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="radio" id="duration-continuous" value="continuous" name="duration" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="duration-continuous"> Continuous</label>
+                  </div>
+                  <div className="custom-control custom-radio custom-control-inline ">
+                    <input type="radio" id="duration-selectDates" value="selectDates" name="duration" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="duration-selectDates"> Select Dates</label>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="tab2">
-              <hr />
-              <div className="guest">
-                <strong>
-                  <p className="headingtwo">Categories</p>
-                </strong>
+            {formData.duration === "selectDates" && <div className="row mb-4" style={{ backgroundColor: '#f1f1f1', padding: '20px 0' }}>
+              <div className="col-md-6">
+                <label className="duration-1">Start Date</label>
+                <input className="custom-control-input" onChange={(e) => setFormData({ ...formData, dStartTime: e.target.value })} type="date" />
+              </div>
+              <div className="col-md-6">
+                <label className="duration-2">End Date</label>
+                <input className="custom-control-input" onChange={(e) => setFormData({ ...formData, dEndTime: e.target.value })} type="date" />
+              </div>
+            </div>}
 
-                <div className="no-cato">
-                  <p> No categories are found. </p>
+
+
+            <div className="row">
+              {/* default content view */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Default Content View</label>
+                  <hr />
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="radio" id="default-content-view-icon" value="icon-only" name="default-content-view" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="default-content-view-icon"> Icon Only</label>
+                  </div>
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="radio" id="default-content-view-text" value="text-only" name="default-content-view" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="default-content-view-text"> Text Only</label>
+                  </div>
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="radio" id="default-content-view-iconNtext" value="text-and-icon" name="default-content-view" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="default-content-view-iconNtext"> Icon and Text</label>
+                  </div>
+                </div>
+              </div>
+              {/* course view option */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label>Course View Option</label>
+                  <hr />
+                  <div className="custom-control custom-radio custom-control-inline mb-2" >
+                    <input type="radio" id="course-view-default" value="default" name="course-view" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="course-view-default"> Default Course View</label>
+                  </div>
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="radio" id="course-view-restricted" value="restricted" name="course-view" className="custom-control-input me-2" />
+                    <label className="custom-control-label" for="course-view-restricted"> Restricted Course View</label>
+                  </div>
                 </div>
               </div>
             </div>
 
-            <div className="tab2">
-              <hr />
-              <div className="banner">
-                <strong>
-                  <p className="headingtwo">Banner</p>
-                </strong>
-                <p className="bannerpara">
-                  In Original Course View courses, the banner displays at the
-                  top of the course's entry point page. In Ultra Course View
-                  courses, it displays at the top of the Course Content Page.
-                </p>
-                <div className="banner-image">
-                  <strong>Current Banner Image</strong>
-                </div>
-
-                <hr />
-                <div style={{ display: 'flex', alignItems: 'center' }}>
-                  <input type="file" style={{ marginRight: '20px' }} onChange={handleFileUpload} />
+            <div className="row">
+              <div className="col-md-12">
+                <div className="form-group">
+                      
                 </div>
               </div>
             </div>
 
-            <div className="tab2">
-              <hr />
-              <div className="available2">
-                <div className="available">
-                  <strong>
-                    <p className="content-view-only"> Default Content View</p>
-                  </strong>
-                  <input
-                    type="radio"
-                    id="available"
-                    name="available"
-                    value="1"
-                    onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}
-                  />
-                  <label for="yes">Icon Only</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="available"
-                    name="available"
-                    value="2"
-                    onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}
-                  />
-                  <label for="yes">Text Only</label>
-                  <br />
-                  <input
-                    type="radio"
-                    id="available"
-                    name="available"
-                    value="3"
-                    onChange={(e) => setFormData({ ...formData, contentView: e.target.value })}
-                  />
-                  <label for="no">Icon And text</label>
-                  <br />
+            <div className="row">
+              {/* upload banner image  */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label className="mb-3">Banner Image</label>
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="file" id="banner-image" name="banner-image" className="custom-control-input" />
+                  </div>
+                </div>
+              </div>
+              {/* upload docs  */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label className="mb-3">Upload Docs</label>
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="file" id="upload-docs" name="upload-docs" className="custom-control-input" accept='.doc, .pdf, .pptx, .txt, .ppt, .xlsx'/>
+                  </div>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="tab2">
-            <div className="footerTool">
-              <div className="leftFooter">Click Submit to proceed</div>
-              <div className="rightFooter">
-                <button className="cancel">Cancel</button>
-                <button
-                  onClick={handleAddCourseData}
-                  className="submit"
-                >
-                  Submit
-                </button>
+            <div className="row mb-3">
+              {/* upload video */}
+              <div className="col-md-6">
+                <div className="form-group">
+                  <label className="mb-3">Upload Videos</label>
+                  <div className="custom-control custom-radio custom-control-inline mb-2">
+                    <input type="file" id="upload-videos" name="upload-videos" className="custom-control-input" />
+                  </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
+
+
+
+            <div className="row">
+              <div className="col-md-12">
+                <button type="submit" id="submit" className="btn btn-primary btn-block w-100">Submit Course</button>
+              </div>
+            </div>
+
+          </form>
+
+
+        </div >
+      </div >
     </>
   );
 };
