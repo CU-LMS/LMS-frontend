@@ -48,22 +48,22 @@ const ViewContent = () => {
     }
   }, [state.courseId]);
 
-  const handleScroll = () => {
-    const scrollTop =
-      window.pageYOffset || document.documentcurrentCoursement?.scrollTop;
-    setIsFixed(scrollTop > 0); // Set a condition based on scroll position
-  };
+  // const handleScroll = () => {
+  //   const scrollTop =
+  //     window.pageYOffset || document.documentcurrentCoursement?.scrollTop;
+  //   setIsFixed(scrollTop > 0); // Set a condition based on scroll position
+  // };
 
   const enrollTheUser = () => {
     dispatch(enrollCourse(currentCourse.courseId));
   };
 
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  // useEffect(() => {
+  //   window.addEventListener("scroll", handleScroll);
+  //   return () => {
+  //     window.removeEventListener("scroll", handleScroll);
+  //   };
+  // }, []);
 
   useEffect(() => {
     dispatch(readCourseData());
@@ -84,7 +84,7 @@ const ViewContent = () => {
               Course Name : {currentCourse.courseName}{" "}
             </p>
             <p className="teacher-name">
-              Author Name : {currentCourse.autherName}
+              Course coordinator : {currentCourse.autherName}
             </p>
             <p className="teacher-background">
               {" "}

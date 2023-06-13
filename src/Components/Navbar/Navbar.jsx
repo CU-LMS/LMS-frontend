@@ -12,8 +12,10 @@ import {
 } from "react-router-dom";
 import { AuthContext } from "../../AuthManagement/AuthContext";
 import { useNavigate } from "react-router-dom";
+import Cookies from 'js-cookie';
 
 export default function Navbar() {
+  
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { authenticated, logout } = useContext(AuthContext);
@@ -32,6 +34,7 @@ export default function Navbar() {
     if (localStorage.getItem("accessToken")) {
       setIsLoggedIn(true);
       localStorage.clear();
+      
     }
   }, []);
 
@@ -41,15 +44,16 @@ export default function Navbar() {
     localStorage.clear("cuchd-accessToken");
     localStorage.removeItem("cuchdCsrf")
     navigate("/");
-    toast.success("Logged Out Successfully", {autoClose: 3000})
-    
-    
-  };
+    toast.success("Logged Out Successfully", {autoClose: 1000})
+    Cookies.remove();
 
+        
+  };
 
   const loginUserClear =() => {
     setGoogleAuth(false);
-    localStorage.removeItem("cuchdCsrf")
+    localStorage.removeItem("cuchdCsrf");
+   
   }
 
 

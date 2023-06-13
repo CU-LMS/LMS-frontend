@@ -45,7 +45,7 @@ const WatchCourseWhenEnrolled = () => {
       setActiveFileType("mp4");
     } else {
       setActiveFileType("txt");
-      window.open(fileUrl)
+      window.open(fileUrl);
     }
 
     setActiveFileUrl(fileUrl);
@@ -63,64 +63,41 @@ const WatchCourseWhenEnrolled = () => {
 
   return (
     <>
-    {console.log(documentData, "DDDDDDDDDDDDDDDDDDDDDDD")}
+      {console.log(documentData, "DDDDDDDDDDDDDDDDDDDDDDD")}
       <div class="video-player">
         <div class="video-container">
+         
           {activeFileType === "mp4" ? (
+            
             <video id="main-video" controls>
               <source src={activeFileUrl} type="video/mp4" />
             </video>
           ) : null}
         </div>
         <div class="recommended-videos">
-          <h2 className="head1">Documents</h2>
-          {documentData && documentData.map((ele) => {
-                return (
-                  <>
+          <h2 className="head1">Content</h2>
+          <hr className="lineHR" />
+          {documentData &&
+            documentData.map((ele) => {
+              return (
+                <>
                   <div className="videoIsHere">
-                    <p></p>
-                  <div
-                    onClick={() => handleDocClick(ele.fileName, ele.fileUrl)}
-                    class="video-thumbnail"
-
-                  ><p className="">{ele.fileName}</p></div>
+                
+                    <div
+                      onClick={() => handleDocClick(ele.fileName, ele.fileUrl)}
+                      class="video-thumbnail"
+                    >
+                      <p className="pdf">{ele.fileName}</p>
+                    
+                    </div>
+                    <hr className="lineHR" />
                   </div>
-                  
-                  </>
-                );
-              })
-          }
+                </>
+              );
+            })}
         </div>
       </div>
-      {/* <div className="footer-social">
-        <p className="heading-view-books3">
-          For more Information, say Hello CU!, we will get back to you.
-        </p>
-        <div className="iconsSocial">
-          <a
-            href="https://www.facebook.com/chandigarhuniversitygharuan/"
-            target="_blanl"
-            class="fa fa-facebook"
-          ></a>
-          <a
-            href="https://twitter.com/Chandigarh_uni?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"
-            target="_blanl"
-            class="fa fa-twitter"
-          ></a>
-          <a
-            href="https://cucet.cuchd.in/?type=gsn-cucet&gad=1&gclid=CjwKCAjw-IWkBhBTEiwA2exyO8vjl4ggGZZwFMLyaRfDicPQ909Wh8XuGfohw2Bw8KB_D9hoJsUxYhoCdw4QAvD_BwE"
-            target="_blanl"
-            class="fa fa-google"
-          ></a>
-          <a
-            href="https://www.linkedin.com/school/chandigarh-university/?originalSubdomain=in"
-            target="_blanl"
-            class="fa fa-linkedin"
-          ></a>
-          <a href="#" class="fa fa-youtube"></a>
-          <a href="#" class="fa fa-instagram"></a>
-        </div>
-      </div> */}
+    
       <div>
         <MainFooter />
       </div>

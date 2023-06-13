@@ -16,6 +16,7 @@ import { manualSignIn } from "../../redux/slices/authentication/authSliceAction"
 import frontImage from "../../asset/loginpage.jpeg"
 import frontImage2 from "../../asset/frontPageCU.jpeg"
 import frontImage3 from "../../asset/frontPageCU3.jpg"
+import building from "../../asset/Building.png"
 import "./login_signUp.css";
 
 export default function LoginSignUp() {
@@ -47,13 +48,15 @@ export default function LoginSignUp() {
   const onSubmit = (data) => {
     console.log("dddddddddddddd", data);
     dispatch(manualSignIn(data.userEmail, data.userPassword));
+    // cookies.clear();
   };
 
   const users = [{ username: "", password: "" }];
 
 
   const clientId =
-    "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
+    // "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
+    "1094053124167-fr69k3addid69dikrvnreleq1es47u9j.apps.googleusercontent.com";
 
   const onLoginSuccess = (res) => {
     dispatch(gmailSignUp(res.profileObj));
@@ -101,7 +104,8 @@ export default function LoginSignUp() {
                   className="frontImg"
                   id="frontImg"
                   // src="https://images.shiksha.com/mediadata/images/1642580468phpQDgPNe.jpeg"
-                  src={frontImage3}
+                  // src={frontImage3}
+                  src={building}
                   alt=""
                 />
               </div>

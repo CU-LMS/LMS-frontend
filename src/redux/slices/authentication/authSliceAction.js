@@ -49,14 +49,7 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
         if(response.data.data.roleId === 5){
           window.location.href = "/dashboard";
         }
-      }
-    
-     
-     
-      
-      // let authResponse = await http(authConfig);
-
-      
+      } 
       disaptch(handleLoding("idle"));
       
     } else {

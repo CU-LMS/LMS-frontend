@@ -24,7 +24,7 @@
 
 .recommended-videos {
   flex: 0 0 300px;
-  background-color: #f1f1f1;
+  background-color: black;
   padding: 20px;
   overflow-y: auto;
 }
@@ -53,4 +53,21 @@
 .head1,
 .head2 {
   color: rgb(0, 0, 0);
+}
+.pdf{
+  color:rgb(255, 255, 255);
+  font-size: 20px;
+}
+.pdf:hover{
+  color: green;
+  transition: all 0.4s ease;
+}
+.head1{
+  font-weight: 600;
+  color: white;
+  
+}
+.lineHR{
+  /* box-shadow: 0px 17px 12px -15px #111; */
+  color: white;
 }

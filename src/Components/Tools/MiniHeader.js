@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import FormFieldTwo from "./FormFieldTwo";
 import FormFieldThree from "./FormFieldThree";
@@ -22,6 +23,12 @@ import { AiOutlineBars } from "react-icons/ai";
 import Sidebar from "./Sidebar";
 import BaseHeader from "./BaseHeader";
 import Modal from "react-modal";
+import Cookies from 'js-cookie';
+import LoadingPage from "../../hoc/LoadingPage";
+
+
+
+    
 
 const MiniHeader = () => {
   const [options] = useState([
@@ -40,7 +47,8 @@ const MiniHeader = () => {
   const data = useSelector((state) => state?.subjectsState);
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   const discData = useSelector((state) => state?.disciplineState?.discData);
-  const [errors, setErrors] = useState({});
+  const loadingApi = useSelector((state) => state?.courseState?.lodingApi);
+  const [ lodingModal, setLoadingModal ] = useState();
   //for form Validation
 
   const [formData, setFormData] = useState({
@@ -61,26 +69,6 @@ const MiniHeader = () => {
     courseVideo: null,
   });
 
-  const handleChange1 = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevFormData) => ({
-      ...prevFormData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const validationErrors = {};
-    if (!formData.courseName) {
-      validationErrors.courseName = "Course Name is required";
-    }
-
-    if (!formData.authorName) {
-      validationErrors.authorName = "Author Name is required";
-    }
-  };
 
   console.log(discData);
   const dispatch = useDispatch();
@@ -145,8 +133,11 @@ const MiniHeader = () => {
   const [durationType, setDurationType] = useState();
 
   const handleAddCourseData = () => {
+    
     dispatch(createCourse(formData));
     setModalIsOpen(false);
+    Cookies.remove();
+
   };
 
   const handleDuration = (e) => {
@@ -167,29 +158,16 @@ const MiniHeader = () => {
 
   return (
     <>
+    {console.log(loadingApi, "LLLLLLLLLL")}
       <div className="body-nav">
         <BaseHeader />
 
         <div className="body-scroll">
-          <div className="base-header2">
-            <div className="base-header-1">
-              <p className="base-heading2">Administrator Panel </p>
-              <p className="base-heading2-1">Courses</p>
-              <p className="base-heading2-2">Create Courses</p>
-            </div>
-            <div className="base-header-2">
-              <div className="tooltip">
-                <p className="base-heading3">
-                  <BsFillPatchQuestionFill size={20} />{" "}
-                </p>
-                <span class="tooltiptext">Help is ON: Click to hide page.</span>
-              </div>
-            </div>
-          </div>
+          
 
-          <div className="create-courses">
+          {/* <div className="create-courses">
             <p className="courses"> Create Courses</p>
-          </div>
+          </div> */}
           <div className="box1">
             <span>
               {" "}
@@ -201,10 +179,12 @@ const MiniHeader = () => {
                 <p className="base-heading2">General Information</p>
               </span>
             </div>
-            
+        
               <div className="real-form">
                 <div className="form-field1">
-                  <p className="name-course">{star} Course Name :</p>{" "}
+                  <p for="validationCustom01" className="name-course ">
+                    {star} Course Name :
+                  </p>{" "}
                 </div>
                 <div className="form-field2">
                   <input
@@ -215,26 +195,13 @@ const MiniHeader = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, courseName: e.target.value })
                     }
-                  />
+                  required/>
                 </div>
-
-                {/* <div className="form-field2">
-                <input
-                  type="text"
-                  placeholder="Enter Course Name"
-                  className={`input-text1 ${errors.courseName ? "error" : ""}`}
-                  name="courseName"
-                  {...register("courseName")}
-                />
-                {errors.courseName && (
-                  <p className="error-message">{errors.courseName.message}</p>
-                )}
-              </div> */}
               </div>
 
               <div className="real-form">
                 <div className="form-field1">
-                  <p className="name-course">{star} Author :</p>{" "}
+                  <p className="name-course">{star} Course coordinator :</p>{" "}
                 </div>
                 <div className="form-field2">
                   <input
@@ -245,7 +212,7 @@ const MiniHeader = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, authorName: e.target.value })
                     }
-                  />
+                  required/>
                 </div>
               </div>
 
@@ -261,7 +228,7 @@ const MiniHeader = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
                     }
-                  >
+                    required>
                     <option>Select Subject</option>
                     {subjectData?.length > 0 && subjectData
                       ? subjectData?.map((ele) => {
@@ -290,7 +257,7 @@ const MiniHeader = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, discipline: e.target.value })
                     }
-                  >
+                    required>
                     <option>Select discipline</option>
                     {discData?.length > 0 && discData
                       ? discData?.map((ele) => {
@@ -322,7 +289,7 @@ const MiniHeader = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, courseCode: e.target.value })
                     }
-                  ></textarea>
+                    required></textarea>
                 </div>
               </div>
 
@@ -338,11 +305,14 @@ const MiniHeader = () => {
                     onChange={(e) =>
                       setFormData({ ...formData, semester: e.target.value })
                     }
-                  >
+                    required>
+                     <option>Select Semester</option>
                     <option value="1">Semester I</option>
                     <option value="2">Semester II</option>
                     <option value="3">Semester III</option>
                     <option value="4">Semester IV</option>
+                    <option value="5">Semester V</option>
+                    <option value="6">Semester VI</option>
                   </select>
                 </div>
               </div>
@@ -367,7 +337,7 @@ const MiniHeader = () => {
                           availability: e.target.value,
                         })
                       }
-                    />
+                      required/>
                     <label htmlFor="available-yes">Yes</label>
                     <br />
                     <input
@@ -382,7 +352,7 @@ const MiniHeader = () => {
                           availability: e.target.value,
                         })
                       }
-                    />
+                      required/>
                     <label htmlFor="available-no">No</label>
                     <br />
                   </div>
@@ -400,7 +370,7 @@ const MiniHeader = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, duration: e.target.value })
                       }
-                    />
+                      required/>
                     <label htmlFor="duration-1">Continuous</label>
                     <br />
                     <input
@@ -412,7 +382,7 @@ const MiniHeader = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, duration: e.target.value })
                       }
-                    />
+                      required/>
                     <label htmlFor="duration-2">Select Dates</label>
                     <br />
 
@@ -427,7 +397,7 @@ const MiniHeader = () => {
                             })
                           }
                           type="date"
-                        ></input>
+                          required></input>
                         <label className="duration-2">End Date</label>
                         <input
                           onChange={(e) =>
@@ -437,7 +407,7 @@ const MiniHeader = () => {
                             })
                           }
                           type="date"
-                        ></input>
+                          required></input>
                       </>
                     ) : null}
                   </div>
@@ -466,7 +436,7 @@ const MiniHeader = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, courseView: e.target.value })
                       }
-                    />
+                      />
                     <label for="yes"> Default Course View</label>
                     <br />
                     <p className="que1">
@@ -482,7 +452,7 @@ const MiniHeader = () => {
                       onChange={(e) =>
                         setFormData({ ...formData, courseView: e.target.value })
                       }
-                    />
+                      required/>
                     <label for="no">Restricted Course View</label>
                     <br />
                     <p className="que1">
@@ -528,7 +498,7 @@ const MiniHeader = () => {
                       type="file"
                       style={{ marginRight: "20px" }}
                       onChange={handleFileUpload}
-                    />
+                      required />
                   </div>
                 </div>
               </div>
@@ -548,7 +518,7 @@ const MiniHeader = () => {
                       type="file"
                       style={{ marginRight: "20px" }}
                       onChange={handleDocFileUpload}
-                    />
+                      required/>
                   </div>
 
                   <div className="banner-image">
@@ -561,7 +531,7 @@ const MiniHeader = () => {
                       type="file"
                       style={{ marginRight: "20px" }}
                       onChange={handleVideoFileUpload}
-                    />
+                      required/>
                   </div>
                 </div>
               </div>
@@ -648,7 +618,7 @@ const MiniHeader = () => {
                 >
                   {/* <h2 className="modal=heading"></h2> */}
                   <p className="warning-shine">
-                    Do you really want to add this course
+                    Do you want to add this course?
                   </p>
                   <div className="modal-butoons">
                     <button className="cancel" onClick={closeModal}>
@@ -662,8 +632,38 @@ const MiniHeader = () => {
                     </button>
                   </div>
                 </Modal>
+
+                <Modal
+                  isOpen={loadingApi === "loading" ? true : false}
+                  // onRequestClose={closeModal}
+                  shouldCloseOnOverlayClick={false}
+                  style={{
+                    content: {
+                      top: "50%",
+                      left: "50%",
+                      right: "auto",
+                      bottom: "auto",
+                      marginRight: "-50%",
+                      transform: "translate(-50%, -50%)",
+                      maxHeight: "90vh",
+                      overflow: "auto",
+                      backgroundColor:"transparent",
+                      borderRadius: "13px",
+                      border: "none",
+                     
+                    },
+                    overlay: {
+                      backgroundColor: "rgba(0, 0, 0, 0.5)",
+                    },
+                    
+                  }}
+                >
+                  {/* <h2 className="modal=heading"></h2> */}
+                  <LoadingPage />
+                
+                </Modal>
               </div>
-            
+         
           </div>
         </div>
       </div>

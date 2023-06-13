@@ -7,28 +7,7 @@ import swal from "sweetalert";
 export const createCourse = (courseData) => async (dispatch) => {
   try {
     dispatch(handleLoding("loading"));
-    // let courseDataPayload = {
-    //   courseName: courseData.courseName,
-    //   courseCode: courseData.courseCode,
-    //   availble: courseData.availble === "true" ? true : false,
-    //   durationConfigurationId: parseInt(courseData.durationConfigurationId),
-    //   enrolledCount: 0,
-    //   dStartDate: courseData.dStartDate,
-    //   dEndDate: courseData.dEndDate,
-    //   dStartTime: "courseData.dStartTime",
-    //   dEndTime: "courseData.dEndTime",
-    //   guestsPermitted: true,
-    //   bannerImageName: "courseData.bannerImageName",
-    //   contentViewConfigurationId: parseInt(
-    //     courseData.contentViewConfigurationId
-    //   ),
-    //   courseViewConfigurationId: parseInt(courseData.courseViewConfigurationId),
-    //   autherName: courseData.autherName,
-    //   disciplineId: parseInt(courseData.disciplineId),
-    //   subjectId: parseInt(courseData.subjectId),
-    //   semester: parseInt(courseData.semester),
-    // };
-
+   
     let courseDataPayload = {
       courseName: courseData.courseName,
       courseCode: courseData.courseCode,
@@ -73,7 +52,6 @@ export const createCourse = (courseData) => async (dispatch) => {
       newFormData.append('file', courseData.courseDoc, courseData.courseDoc.name);
       newFormData.append('file', courseData.courseVideo, courseData.courseVideo.name);
       newFormData.append("courseId", response.data.data.courseId)
-
       const newFormData1 = new FormData();
       newFormData1.append('file', courseData.courseDoc, courseData.courseDoc.name);
       newFormData1.append('file', courseData.courseVideo, courseData.courseVideo.name);
@@ -97,10 +75,14 @@ export const createCourse = (courseData) => async (dispatch) => {
                 const data = await response.json(); 
                 //toast.success("Upload Successfully", { autoClose: 6000 });
             }
+            console.log("D2")
+           
+            console.log("D1")
+            
       } catch (e) {
         console.log(e);
       }
-      
+      dispatch(handleLoding("idle"));
       swal({
         title: "Course Created!",
         text: "Course Created Successfully.",
@@ -109,10 +91,12 @@ export const createCourse = (courseData) => async (dispatch) => {
         
       });
     }
-    dispatch(handleLoding("idle"));
+   
   } catch (err) {
     console.log(err);
+    dispatch(handleLoding("idle"));
   }
+
 };
 
 export const readCourseData = () => async (dispatch) => {
@@ -132,7 +116,6 @@ export const readCourseData = () => async (dispatch) => {
     console.log(error);
   }
 };
-
 export const enrollCourse = (courseId) => async (dispatch) => {
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
