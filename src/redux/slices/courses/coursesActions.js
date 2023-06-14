@@ -41,10 +41,11 @@ export const createCourse = (courseData) => async (dispatch) => {
       data: courseDataPayload,
     };
     let response = await http(config);
-    console.log(response);
+    console.log(response, "RRRRRRRRR");
 
+    console.log("DATA",response.data.data);
 
-    if(response.data.statusCode === 200){
+    if(response.data.data!=null){
 
       localStorage.setItem('courseId', response.data.data.courseId);
       const newFormData = new FormData();
@@ -91,7 +92,8 @@ export const createCourse = (courseData) => async (dispatch) => {
         
       });
     }
-   
+    dispatch(handleLoding("idle"));
+  
   } catch (err) {
     console.log(err);
     dispatch(handleLoding("idle"));

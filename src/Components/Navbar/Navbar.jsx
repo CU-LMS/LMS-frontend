@@ -44,7 +44,7 @@ export default function Navbar() {
     localStorage.clear("cuchd-accessToken");
     localStorage.removeItem("cuchdCsrf")
     navigate("/");
-    toast.success("Logged Out Successfully", {autoClose: 1000})
+    // toast.success("Logged Out Successfully", {autoClose: 1000})
     Cookies.remove();
 
         
@@ -154,6 +154,10 @@ export default function Navbar() {
             <NavLink to="/about">About</NavLink>
           </li>
           <li onClick={hidemenu}>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+          
+          <li onClick={hidemenu}>
             <NavLink to="/services">Services</NavLink>
           </li>
           <li onClick={hidemenu}>
@@ -163,6 +167,7 @@ export default function Navbar() {
             <NavLink to="/tool">Admin</NavLink>
           </li>
           <li onClick={hidemenu}>
+            
             {" "}
             {/* <NavLink to="/login">
               <button className="action_btn">Login</button>

@@ -14,8 +14,8 @@ import { Link } from "react-router-dom";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { Carousel } from "react-responsive-carousel";
 import VideoShow from "../../asset/annual-convocation-2023.mp4"
+import introVideo from "../../asset/introVideo.mp4";
 import "../../home.css";
-import { Carousel } from "react-responsive-carousel";
 
 
 const Home = () => {
@@ -28,7 +28,7 @@ const Home = () => {
           <div className="row showcase-container">
             <div className="col-md-6 py-4">
               <h1 className="showcase-heading mb-4">
-                Learning Management <br /> System
+                CU-DigiClass
               </h1>
 
               <h3 className="mb-4 typewrite-text">
@@ -42,7 +42,7 @@ const Home = () => {
               </h3>
 
               <p className="showcase-para text-white mb-2">
-                These resources will take you from getting started with the LMS
+                These resources will take you from getting started with the CU-DigiClass
                 and setting up your subjects, through to communicating with
                 students and providing assessment tasks and feedback.
               </p>
@@ -76,7 +76,7 @@ const Home = () => {
             <div className="row">
               <div className="col-md-6">
                 <div className="section-heading mb-5">
-                  <h3>Who Can I Contact ?</h3>
+                  <h3>To Whom I Can Contact ?</h3>
                   <hr />
                 </div>
 
@@ -88,7 +88,7 @@ const Home = () => {
 
                 <p className="mb-3">
                   Learning Environments can assist you with further enquiries
-                  regarding the LMS and other supported learning technologies.
+                  regarding the CU-DigiClass and other supported learning technologies.
                   Simply submit a ServiceNow ticket and we will help you as soon
                   as possible
                 </p>
@@ -113,7 +113,7 @@ const Home = () => {
                 <div className="contact-item mb-4">
                   <Link className="contact-list-item d-flex align-items-center mt-4">
                     <FaUserFriends className="icon mt-1 me-3" />
-                    <p className="mb-0">Find your LMS Faculty Representative</p>
+                    <p className="mb-0">Meet your CU-DigiClass Faculty Coordinator</p>
                   </Link>
 
                   <hr className="contact-hr-line" />
@@ -137,12 +137,12 @@ const Home = () => {
         <div id="guide" className="py-4">
           <div className="container">
             <div className="section-heading-center mb-5 text-center">
-              <h3>Guides And Support Resources</h3>
+              <h3>Guide And Support Resources</h3>
               <hr />
             </div>
 
             <p className="mb-4 guide-para">
-              These resources will take you from getting started with the LMS
+              These resources will take you from getting started with the CU-DigiClass
               and setting up your subjects, through to communicating with
               students and providing assessment tasks and feedback.
             </p>
@@ -151,7 +151,7 @@ const Home = () => {
               <input
                 type="text"
                 className="guide-input"
-                placeholder="Search all LMS and learning technologies support"
+                placeholder="Search all CU-DigiClass and learning technologies support"
               />
               <div className="search-icon">
                 <GoSearch className="icon" />
@@ -163,9 +163,9 @@ const Home = () => {
                 <div class="card">
                   <div class="card-body">
                     <i class="fa-solid fa-gear card-icon"></i>
-                    <h5 class="card-title">Lms Guide</h5>
+                    <h5 class="card-title">CU-DigiClass Guide</h5>
                     <p class="card-text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
                     </p>
                   </div>
                 </div>
@@ -176,7 +176,7 @@ const Home = () => {
                     <i class="fa-solid fa-file card-icon"></i>
                     <h5 class="card-title">Lecture Content</h5>
                     <p class="card-text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
                     </p>
                   </div>
                 </div>
@@ -187,7 +187,7 @@ const Home = () => {
                     <i class="fa-brands fa-slideshare card-icon"></i>
                     <h5 class="card-title">Live Classes</h5>
                     <p class="card-text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
                     </p>
                   </div>
                 </div>
@@ -198,7 +198,7 @@ const Home = () => {
                     <i class="fa-solid fa-book card-icon"></i>
                     <h5 class="card-title">All Staff Guide</h5>
                     <p class="card-text">
-                      Lorem ipsum dolor sit amet consectetur adipisicing elit.
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
                     </p>
                   </div>
                 </div>
@@ -220,7 +220,7 @@ const Home = () => {
                 <p className="mb-3">
                   Learning Environments are providing an extensive set of
                   workshops and resources to support staff teaching with the
-                  LMS.
+                  CU-DigiClass.
                 </p>
 
                 <p className="mb-4">
@@ -229,7 +229,7 @@ const Home = () => {
                   needs.
                 </p>
 
-                <button className="training-btn">Find Out More</button>
+                {/* <button className="training-btn">Find Out More</button> */}
               </div>
               {/* <div className="col-md-6">
                 <div id="carouselExample" class="carousel slide">
@@ -245,7 +245,7 @@ const Home = () => {
                     </div>
                     <div class="carousel-item">
                       <div className="training-card">
-                        <p>Watch a recording from our LMS or TEL workshops</p>
+                        <p>Watch a recording from our CU-DigiClass or TEL workshops</p>
                         <i class="fa-regular fa-circle-play training-icon"></i>
                       </div>
                     </div>
@@ -285,7 +285,7 @@ const Home = () => {
               <div className="col-md-6">
               <ReactPlayer
                   className="show-video"
-                  url={VideoShow}
+                  url={introVideo}
                   controls={true}
                   sx={{ width: "100%" }}
                 />
@@ -305,7 +305,7 @@ const Home = () => {
 
             <p className="mb-4 guide-para">
               You may request a new learning technology to be integrated with
-              the LMS, or that a new tool be considered for central deployment.
+              the CU-DigiClass, or that a new tool be considered for central deployment.
             </p>
 
             <p className="mb-4 guide-para">

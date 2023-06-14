@@ -6,7 +6,7 @@ import "./ImageSlider.css";
 const ImageSlider = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
-    'https://www.cuchd.in/includes/assets/images/ranking-banner-2.webp',
+    // 'https://www.cuchd.in/includes/assets/images/ranking-banner-2.webp',
     'https://www.cuchd.in/includes/assets/images/highest-patents-banner.webp',
     'https://www.cuchd.in/includes/assets/images/qs-subject-banner-updated.webp',
     'https://www.cuchd.in/includes/assets/images/hero-slide-1.webp'
