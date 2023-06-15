@@ -7,92 +7,66 @@ import swal from "sweetalert";
 export const createCourse = (courseData) => async (dispatch) => {
   try {
     dispatch(handleLoding("loading"));
-   
-    let courseDataPayload = {
-      courseName: courseData.courseName,
-      courseCode: courseData.courseCode,
-      availble: courseData.availability === "true" ? true : false,
-      durationConfigurationId: parseInt(courseData.duration),
-      enrolledCount: 0,
-      dStartDate: courseData.dStartDate,
-      dEndDate: courseData.dEndDate,
-      dStartTime: courseData?.dStartTime,
-      dEndTime: courseData?.dEndTime,
-      guestsPermitted: true,
-      bannerImageName: courseData?.bannerImage?.name,
-      contentViewConfigurationId: parseInt(courseData.contentView),
-      courseViewConfigurationId: parseInt(courseData.courseView),
-      autherName: courseData.authorName,
-      disciplineId: parseInt(courseData.discipline),
-      subjectId: parseInt(courseData.subject),
-      semester: parseInt(courseData.semester),
-    };
-    console.log("courseDataPayload", courseDataPayload);
+  
     let localStorageData = JSON.parse(
       localStorage.getItem("cuchdCsrf")
     );
     let accessToken = localStorageData.accessToken;
-    let config = {
-      method: "post",
-      url: "Course/AddCourse",
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-      data: courseDataPayload,
-    };
-    let response = await http(config);
-    console.log(response, "RRRRRRRRR");
-
-    console.log("DATA",response.data.data);
-
-    if(response.data.data!=null){
-
-      localStorage.setItem('courseId', response.data.data.courseId);
-      const newFormData = new FormData();
+      const newFormData = new FormData();      
+      newFormData.append('courseName', courseData.courseName);
+      newFormData.append('courseCode', courseData.courseCode);
+      newFormData.append('availble', courseData.availability);
+      newFormData.append('durationConfigurationId', courseData.duration);
+      newFormData.append('dStartDate', courseData.dStartDate);
+      newFormData.append('dEndDate', courseData.dEndDate);
+      newFormData.append('dStartTime', courseData.dStartTime);
+      newFormData.append('dEndTime', courseData.dEndTime);
+      newFormData.append('guestsPermitted', true);
+      newFormData.append('bannerImageName', courseData?.bannerImage?.name);
+      newFormData.append('contentViewConfigurationId', parseInt(courseData.contentView));
+      newFormData.append('courseViewConfigurationId', parseInt(courseData.courseView));
+      newFormData.append('disciplineId', courseData.discipline);
+      newFormData.append('subjectId', courseData.subject);
+      newFormData.append('semester', courseData.semester);
       newFormData.append('file', courseData.bannerImage, courseData.bannerImage.name);
       newFormData.append('file', courseData.courseDoc, courseData.courseDoc.name);
       newFormData.append('file', courseData.courseVideo, courseData.courseVideo.name);
-      newFormData.append("courseId", response.data.data.courseId)
-      const newFormData1 = new FormData();
-      newFormData1.append('file', courseData.courseDoc, courseData.courseDoc.name);
-      newFormData1.append('file', courseData.courseVideo, courseData.courseVideo.name);
-      newFormData1.append("courseId", response.data.data.courseId)
+     
       
-      try {
-        const response = await fetch('http://43.240.66.78:7263/api/aws/UploadDocument', {
-        // const response = await fetch(`${process.env.DEV_URL}aws/UploadDocument`, {
-          method: "POST",
-          body: newFormData
+      let config = {
+        method: "post",
+        url: "course/AddCourseFilesDoc",
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+        data: newFormData,
+      };
+      let result = await http(config);
+      console.log("check duplicate",result.data);
+      if(result.data.data!=null)
+      {
+        swal({
+          title: "Course Created!",
+          text: "Course Created Successfully.",
+          icon: "success",
+          button: "Close",
+          
         });
-        const data = await response.json();
-        if(data==201)
-            {
-              const response = await fetch('http://43.240.66.78:7263/api/course/AddCourseFilesDoc', {
-              // const response = await fetch(`${process.env.DEV_URL}course/AddCourseFilesDoc`, {
-                    method: "POST",
-                    body: newFormData1
-                });
-    
-                const data = await response.json(); 
-                //toast.success("Upload Successfully", { autoClose: 6000 });
-            }
-            console.log("D2")
-           
-            console.log("D1")
-            
-      } catch (e) {
-        console.log(e);
+      }
+      else
+      {
+        swal({
+          title: "Warning",
+          text: result.data.message,
+          icon: "warning",
+          button: "Close",
+          
+        });
       }
       dispatch(handleLoding("idle"));
-      swal({
-        title: "Course Created!",
-        text: "Course Created Successfully.",
-        icon: "success",
-        button: "Done",
-        
-      });
-    }
-    dispatch(handleLoding("idle"));
+      
+    
+  
   
   } catch (err) {
     console.log(err);
@@ -103,6 +77,7 @@ export const createCourse = (courseData) => async (dispatch) => {
 
 export const readCourseData = () => async (dispatch) => {
   try {
+    console.log('Abhaycccccc',"kkkkkkkk")
     let config = {
       method: "post",
       url: "Course/GetCourseList",

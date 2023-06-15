@@ -487,7 +487,7 @@ const MiniHeader = () => {
                     <input
                       type="radio"
                       id="default-content-view-icon"
-                      value="icon-only"
+                      value="1"
                       name="default-content-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -509,7 +509,7 @@ const MiniHeader = () => {
                     <input
                       type="radio"
                       id="default-content-view-text"
-                      value="text-only"
+                      value="2"
                       name="default-content-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -531,7 +531,7 @@ const MiniHeader = () => {
                     <input
                       type="radio"
                       id="default-content-view-iconNtext"
-                      value="text-and-icon"
+                      value="3"
                       name="default-content-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -559,8 +559,8 @@ const MiniHeader = () => {
                   <div className="custom-control custom-radio custom-control-inline mb-2">
                     <input
                       type="radio"
-                      id="course-view-default"
-                      value="default"
+                      id="ourse-view-default"
+                      value="1"
                       name="course-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -579,7 +579,7 @@ const MiniHeader = () => {
                     <input
                       type="radio"
                       id="course-view-restricted"
-                      value="restricted"
+                      value="2"
                       name="course-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
