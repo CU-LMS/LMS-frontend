@@ -14,7 +14,7 @@ const LoginProtectedRoute = ({ children }) => {
     try {
       let config = {
         method: "get",
-        url: `http://43.240.66.78:7263/api/Login/UserValidate?token=${credentials.accessToken}`
+        url: `Login/UserValidate?token=${credentials.accessToken}`
       }
 
       let response = await axios(config);

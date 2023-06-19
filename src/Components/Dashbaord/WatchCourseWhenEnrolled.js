@@ -20,7 +20,7 @@ const WatchCourseWhenEnrolled = () => {
     };
     let config = {
       method: "post",
-      url: "http://43.240.66.78:7263/api/Course/GetEnrollCourseFileList",
+      url: "http://43.240.66.78:7265/api/Course/GetEnrollCourseFileList",
       data,
     };
     const response = await axios(config);

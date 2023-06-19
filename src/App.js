@@ -20,6 +20,7 @@ import AddVideo from "./Components/Tools/AddVideo";
 import AddDocs from "./Components/Tools/AddDocs";
 import Dashboard from "./Components/Dashbaord/Dashboard";
 import WatchCourseWhenEnrolled from "./Components/Dashbaord/WatchCourseWhenEnrolled";
+import AddUserByAdmin from "./Components/Tools/AddUserByAdmin";
 
 function App() {
   return (
@@ -55,6 +56,7 @@ function App() {
             <Route path="/addDocs" element={<AddDocs />} />
             <Route path="/view-content" element={<ViewContent />} />
             <Route path="/watch-course" element={<WatchCourseWhenEnrolled />} />
+            <Route path="/add-user" element={<AddUserByAdmin />} />
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
           </Routes>

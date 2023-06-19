@@ -24,7 +24,8 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
     if (apiResponse?.data?.statusCode === 200) {
       let config = {
         method: "get",
-        url: `http://43.240.66.78:7263/api/Login/UserValidate?token=${apiResponse?.data?.data?.token}`
+        url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${apiResponse?.data?.data?.token}`
+        // url: `Login/UserValidate?token=${apiResponse?.data?.data?.token}`
       }
       let response = await http(config);
       console.log(response, "aaaaa")

@@ -1,26 +1,10 @@
+
 import React, { useEffect, useState } from "react";
-import FormFieldTwo from "./FormFieldTwo";
-import FormFieldThree from "./FormFieldThree";
-import FormFieldFour from "./FormFieldFour";
-import FormFieldFive from "./FormFieldFive";
-import FormFieldSix from "./FormFieldSix";
-import { BsFillPatchQuestionFill } from "react-icons/bs";
-import { useSpring, animated } from "react-spring";
-import { Element, scroller } from "react-scroll";
-import FormFooter from "./FormFooter";
-import Multiselect from "multiselect-react-dropdown";
 import { useDispatch, useSelector } from "react-redux";
-import { courseCreate } from "../../redux/slices/authentication/courseCreateSlice";
 import { readSubjectsData } from "../../redux/slices/subjects/subjectSliceAction";
 import "./MiniHeader.css";
 import { readDiscData } from "../../redux/slices/subjects/disciplineSliceAction";
 import { createCourse } from "../../redux/slices/courses/coursesActions";
-import FormFieldPictureUpload from "./FormFieldFivePictureUpload";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { AiOutlineBars } from "react-icons/ai";
-import Sidebar from "./Sidebar";
-import BaseHeader from "./BaseHeader";
 import Modal from "react-modal";
 import Cookies from "js-cookie";
 import LoadingPage from "../../hoc/LoadingPage";
@@ -59,7 +43,7 @@ const MiniHeader = () => {
     dEndTime: "",
     bannerImage: null,
     courseDoc: null,
-    courseVideo: null
+    courseVideo: null,
   });
 
   console.log(discData);
@@ -89,40 +73,16 @@ const MiniHeader = () => {
   };
 
   // handle upload docs
-  // const handleUploadDocs = (e) => {
-  //   let doc = e.target.files[0];
-  //   setFormData({ ...formData, courseDoc: doc });
-  // }
 
   const handleDocFileUpload = (e) => {
     setFormData({ ...formData, courseDoc: e.target.files[0] });
   };
 
   // handle upload videos
-  // const handleUploadVideos = (e)  => {
-  //   let videos = e.target.files[0];
-  //   setFormData({  ...formData, videos });
-  // }
 
   const handleVideoFileUpload = (e) => {
     setFormData({ ...formData, courseVideo: e.target.files[0] });
   };
-
-  // Scroll to the bottom when footer is clicked
-  // const scrollToBottom = () => {
-  //   scroller.scrollTo("footer", {
-  //     duration: 500,
-  //     smooth: true,
-  //   });
-  // };
-
-  // const animationProps = useSpring({
-  //   bottom: showFooter ? "0px" : "-100px",
-  //   config: {
-  //     tension: 300,
-  //     friction: 30,
-  //   },
-  // });
 
   React.useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -137,10 +97,6 @@ const MiniHeader = () => {
   );
 
   const [durationType, setDurationType] = useState();
-
-  // const handleAddCourseData = () => {
-  //   dispatch(createCourse(formData))
-  // };
 
   const handleAddCourseData = () => {
     dispatch(createCourse(formData));
@@ -160,21 +116,18 @@ const MiniHeader = () => {
     setModalIsOpen(false);
   };
 
-  const openModal = () => {
+  const openModal = (e) => {
+    e.preventDefault();
     setModalIsOpen(true);
   };
 
   return (
     <>
-
-      {/* <div className="background-picture"></div> */}
       <div className="main">
-        {/* <BaseHeader/> */}
-
-        <div className="form-container">
+        <form className="form-container" onSubmit={openModal}>
           <div className="section-heading mb-5">
             <h3 className="mt-0">Create New Course</h3>
-            <hr />
+            <hr  />
           </div>
 
           <div id="course-creation-form">
@@ -188,7 +141,7 @@ const MiniHeader = () => {
                     id="courseName"
                     placeholder="Enter Course Name"
                     className="form-control"
-                    
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, courseName: e.target.value })
                     }
@@ -204,7 +157,7 @@ const MiniHeader = () => {
                     id="authorName"
                     placeholder="Enter Author Name"
                     className="form-control"
-                    
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, authorName: e.target.value })
                     }
@@ -221,12 +174,12 @@ const MiniHeader = () => {
                     id="subject"
                     name="subject"
                     className="form-control"
-                    
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
                     }
                   >
-                    <option disabled selected value>
+                    <option disabled selected value="">
                       Select Subject
                     </option>
                     {subjectData?.length > 0 && subjectData
@@ -250,12 +203,12 @@ const MiniHeader = () => {
                     id="discipline"
                     name="discipline"
                     className="form-control"
-                    
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, discipline: e.target.value })
                     }
                   >
-                    <option disabled selected value>
+                    <option disabled selected value="">
                       Select Discipline
                     </option>
                     {discData?.length > 0 && discData
@@ -284,7 +237,7 @@ const MiniHeader = () => {
                     id="courseCode"
                     placeholder="Description :"
                     className="form-control"
-                    
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, courseCode: e.target.value })
                     }
@@ -298,12 +251,12 @@ const MiniHeader = () => {
                     id="semester"
                     name="semester"
                     className="form-control"
-                    
+                    required
                     onChange={(e) =>
                       setFormData({ ...formData, semester: e.target.value })
                     }
                   >
-                    <option disabled selected value>
+                    <option disabled selected value="">
                       Select Semester
                     </option>
                     <option value="1">Semester I</option>
@@ -329,6 +282,7 @@ const MiniHeader = () => {
                       id="availability-true"
                       value="true"
                       name="availability"
+                      required
                       checked={formData.availability === "true"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -343,13 +297,13 @@ const MiniHeader = () => {
                       for="availability-true"
                     >
                       {" "}
-                      True
+                      Yes
                     </label>
                   </div>
                   <div className="custom-control custom-radio custom-control-inline ">
                     <input
                       type="radio"
-                      id="availability-true"
+                      id="availability-false"
                       value="false"
                       name="availability"
                       checked={formData.availability === "false"}
@@ -363,10 +317,10 @@ const MiniHeader = () => {
                     />
                     <label
                       className="custom-control-label"
-                      for="availability-true"
+                      for="availability-false"
                     >
                       {" "}
-                      False
+                      No
                     </label>
                   </div>
                 </div>
@@ -382,6 +336,7 @@ const MiniHeader = () => {
                       id="duration-continuous"
                       value="1"
                       name="duration"
+                      required
                       checked={formData.duration === "1"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -419,38 +374,8 @@ const MiniHeader = () => {
                 </div>
               </div>
             </div>
-            {/* {formData?.duration === "2" && (
-              <div
-                className="row mb-4"
-                style={{ backgroundColor: "#f1f1f1", padding: "20px 0" }}
-              >
-                <div className="col-md-6">
-                  <label className="duration-1">Start Date</label>
-                  <input
-                    className="custom-control-input"
-                    onChange={(e) =>
-                      setFormData({
-                        ...formData,
-                        dStartDate: e.target.value,
-                      })
-                    }
-                    type="date"
-                  />
-                </div>
-                <div className="col-md-6">
-                  <label className="duration-2">End Date</label>
-                  <input
-                    className="custom-control-input"
-                    onChange={(e) =>
-                      setFormData({ ...formData, dEndTime: e.target.value })
-                    }
-                    type="date"
-                  />
-                </div>
-              </div>
-            )} */}
 
-            {formData.duration === "2" ? (
+            {formData?.duration === "2" ? (
               <>
                 <label className="duration-1">Start Date</label>
                 <input
@@ -461,7 +386,8 @@ const MiniHeader = () => {
                     })
                   }
                   type="date"
-                  
+                  required={formData?.duration === "2"}
+                  className="mb-4"
                 ></input>
                 <label className="duration-2">End Date</label>
                 <input
@@ -472,7 +398,8 @@ const MiniHeader = () => {
                     })
                   }
                   type="date"
-                  
+                  required={formData?.duration === "2"}
+                  className="mb-4"
                 ></input>
               </>
             ) : null}
@@ -490,6 +417,7 @@ const MiniHeader = () => {
                       value="1"
                       name="default-content-view"
                       className="custom-control-input me-2"
+                      required
                       onChange={(e) =>
                         setFormData({
                           ...formData,
@@ -562,6 +490,7 @@ const MiniHeader = () => {
                       id="ourse-view-default"
                       value="1"
                       name="course-view"
+                      required
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({ ...formData, courseView: e.target.value })
@@ -617,7 +546,9 @@ const MiniHeader = () => {
                       id="banner-image"
                       name="banner-image"
                       className="custom-control-input"
+                      accept=".png, .jpg, .jpeg"
                       onChange={handleFileUpload}
+                      required
                     />
                   </div>
                 </div>
@@ -634,6 +565,7 @@ const MiniHeader = () => {
                       className="custom-control-input"
                       accept=".doc, .pdf, .pptx, .txt, .ppt, .xlsx"
                       onChange={handleDocFileUpload}
+                      required
                     />
                   </div>
                 </div>
@@ -650,8 +582,9 @@ const MiniHeader = () => {
                       id="upload-videos"
                       name="upload-videos"
                       className="custom-control-input"
-                      // accept=".mp4, .3gp, .mkv, .webm, .mov, .flv"
+                      accept=".mp4, .3gp, .mkv, .webm, .mov, .flv"
                       onChange={handleVideoFileUpload}
+                      required
                     />
                   </div>
                 </div>
@@ -660,7 +593,7 @@ const MiniHeader = () => {
 
             <div className="row">
               <div className="col-md-12">
-                <button  onClick={openModal}
+                <button
                   type="submit"
                   id="submit"
                   className="btn btn-primary btn-block w-100"
@@ -670,77 +603,69 @@ const MiniHeader = () => {
               </div>
             </div>
             <Modal
-                  isOpen={modalIsOpen}
-                  onRequestClose={closeModal}
-                  shouldCloseOnOverlayClick={false}
-                  style={{
-                    content: {
-                      top: "50%",
-                      left: "50%",
-                      right: "auto",
-                      bottom: "auto",
-                      marginRight: "-50%",
-                      transform: "translate(-50%, -50%)",
-                      maxHeight: "90vh",
-                      overflow: "auto",
-                      backgroundColor: "black",
-                      borderRadius: "13px",
-                      border: "none",
-                      boxShadow: "0px 17px 12px -15px #111",
-                    },
-                    overlay: {
-                      backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    },
-                  }}
-                >
-                  {/* <h2 className="modal=heading"></h2> */}
-                  <p className="warning-shine">
-                    Do you want to add this course!
-                  </p>
-                  <div className="modal-butoons">
-                    <button className="cancel" onClick={closeModal}>
-                      Cancel
-                    </button>
-                    <button
-                      className="sure-button"
-                      onClick={handleAddCourseData}
-                    >
-                      Submit
-                    </button>
-                  </div>
-                </Modal>
+              isOpen={modalIsOpen}
+              onRequestClose={closeModal}
+              shouldCloseOnOverlayClick={false}
+              style={{
+                content: {
+                  top: "50%",
+                  left: "50%",
+                  right: "auto",
+                  bottom: "auto",
+                  marginRight: "-50%",
+                  transform: "translate(-50%, -50%)",
+                  maxHeight: "90vh",
+                  overflow: "auto",
+                  backgroundColor: "black",
+                  borderRadius: "13px",
+                  border: "none",
+                  boxShadow: "0px 17px 12px -15px #111",
+                },
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                },
+              }}
+            >
+              {/* <h2 className="modal=heading"></h2> */}
+              <p className="warning-shine">Do you want to add this course!</p>
+              <div className="modal-butoons">
+                <button className="cancel" onClick={closeModal}>
+                  Cancel
+                </button>
+                <button className="sure-button" onClick={handleAddCourseData}>
+                  Submit
+                </button>
+              </div>
+            </Modal>
 
-                <Modal
-                  isOpen={loadingApi === "loading" ? true : false}
-                  // onRequestClose={closeModal}
-                  shouldCloseOnOverlayClick={false}
-                  style={{
-                    content: {
-                      top: "50%",
-                      left: "50%",
-                      right: "auto",
-                      bottom: "auto",
-                      marginRight: "-50%",
-                      transform: "translate(-50%, -50%)",
-                      maxHeight: "90vh",
-                      overflow: "auto",
-                      backgroundColor:"transparent",
-                      borderRadius: "13px",
-                      border: "none",
-                     
-                    },
-                    overlay: {
-                      backgroundColor: "rgba(0, 0, 0, 0.5)",
-                    },
-                    
-                  }}
-                >
-                  {/* <h2 className="modal=heading"></h2> */}
-                  <LoadingPage />
-                
-                </Modal>
+            <Modal
+              isOpen={loadingApi === "loading" ? true : false}
+              // onRequestClose={closeModal}
+              shouldCloseOnOverlayClick={false}
+              style={{
+                content: {
+                  top: "50%",
+                  left: "50%",
+                  right: "auto",
+                  bottom: "auto",
+                  marginRight: "-50%",
+                  transform: "translate(-50%, -50%)",
+                  maxHeight: "90vh",
+                  overflow: "auto",
+                  backgroundColor: "transparent",
+                  borderRadius: "13px",
+                  border: "none",
+                },
+                overlay: {
+                  backgroundColor: "rgba(0, 0, 0, 0.5)",
+                },
+              }}
+            >
+              {/* <h2 className="modal=heading"></h2> */}
+              <LoadingPage />
+            </Modal>
           </div>
-        </div>
+        </form>
       </div>
     </>
   );

@@ -145,7 +145,7 @@ header {
   display: flex;
   justify-content: center;
 }
-@media (max-width: 693px) {
+@media (max-width: 1000px) {
   .navbar .link,
   .navbar .action_btn {
     display: none;
