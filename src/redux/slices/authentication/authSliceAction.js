@@ -4,6 +4,7 @@ import axios from "axios";
 import http from "../../../hoc/axiosClient";
 import { responsiveFontSizes } from "@mui/material";
 // import { handleIsAuth } from "./authSlice";
+import swal from "sweetalert";
 
 export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
   try {
@@ -24,8 +25,8 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
     if (apiResponse?.data?.statusCode === 200) {
       let config = {
         method: "get",
-        url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${apiResponse?.data?.data?.token}`
-        // url: `Login/UserValidate?token=${apiResponse?.data?.data?.token}`
+       // url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${apiResponse?.data?.data?.token}`
+         url: `Login/UserValidate?token=${apiResponse?.data?.data?.token}`
       }
       let response = await http(config);
       console.log(response, "aaaaa")
@@ -92,5 +93,54 @@ export const gmailSignUp = (userData) => async (dispatch) => {
     console.log(response);
   } catch (err) {
     console.log(err);
+  }
+};
+
+
+export const createPassword = (userName, password) => async (dispatch) => {
+  try {
+    dispatch(handleLoding("loading"));
+    let data = {
+      userId: userName,
+      password: password,
+    };
+    let config = {
+      method: "post",
+      url: "login/CreatePassword",
+      data,
+    };
+
+    let apiResponse = await http(config);
+    console.log("response", apiResponse);
+
+    if(apiResponse.data.data!=null)
+      {
+        swal({
+          title: "Password Created!",
+          text: "Password Created Successfully.",
+          icon: "success",
+          button: "Close",
+          
+        });
+
+        window.location.href = "/login";
+      }
+      else
+      {
+        swal({
+          title: "Warning",
+          text: apiResponse.data.message,
+          icon: "warning",
+          button: "Close",
+          
+        });
+      }
+      
+      dispatch(handleLoding("idle"));      
+     
+  } catch (err) {
+    toast.error("Error While Logging In", { autoClose: 2000 });
+    dispatch(handleLoding("idle"));
+      
   }
 };

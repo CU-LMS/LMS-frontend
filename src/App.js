@@ -21,6 +21,8 @@ import AddDocs from "./Components/Tools/AddDocs";
 import Dashboard from "./Components/Dashbaord/Dashboard";
 import WatchCourseWhenEnrolled from "./Components/Dashbaord/WatchCourseWhenEnrolled";
 import AddUserByAdmin from "./Components/Tools/AddUserByAdmin";
+// import CreatePassword from "./Components/CreatePassword";
+import CreatePassword from "./Components/CreatePassword/CreatePassword";
 
 function App() {
   return (
@@ -57,6 +59,7 @@ function App() {
             <Route path="/view-content" element={<ViewContent />} />
             <Route path="/watch-course" element={<WatchCourseWhenEnrolled />} />
             <Route path="/add-user" element={<AddUserByAdmin />} />
+            <Route path="/create-password" element={<CreatePassword />} />
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
           </Routes>
