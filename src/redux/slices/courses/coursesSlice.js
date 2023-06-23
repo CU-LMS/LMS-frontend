@@ -4,7 +4,8 @@ const initialState = {
   lodingApi: "idle",
   apiError: "",
   courses: [],
-  enrollCourse: []
+  enrollCourse: [],
+  FAQList:[]
   
 };
 
@@ -24,8 +25,11 @@ const course = createSlice({
     },
     handleEnrollCourses : (state, {payload}) => {
       state.enrollCourse = payload
-    }
-
+    },
+    
+    handleFAQs: (state, {payload}) => {
+      state.FAQList = payload
+    },
 
   },
 });
@@ -35,6 +39,7 @@ export const {
   handleApiError,
   handleCourses,
   handleEnrollCourses,
+  handleFAQs,
   
 } = course.actions;
 

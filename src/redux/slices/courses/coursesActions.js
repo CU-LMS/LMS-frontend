@@ -1,4 +1,4 @@
-import { handleLoding, handleCourses } from "./coursesSlice";
+import { handleLoding, handleCourses, handleFAQs} from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
 import { useState } from "react";
@@ -118,6 +118,23 @@ export const enrollCourse = (courseId) => async (dispatch) => {
   }
 };
 
+export const readFAQData = () => async (dispatch) => {
+  try {   
+    let config = {
+      method: "post",
+      url: "/FAQ/GetFAQWithAnswerList",
+      data: {
+        pageNo: 0,
+        pageSize: 0,
+      },
+    };
+    const response = await http(config);
+    dispatch(handleFAQs(response?.data?.data));
+    console.log("FAQ data",response);
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 

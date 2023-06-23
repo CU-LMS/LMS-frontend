@@ -8,6 +8,7 @@ import { createPassword } from "../../redux/slices/authentication/authSliceActio
 // const CreatePassword = () => {
     export default function CreatePassword() {
     const [username, setUsername] = useState("")
+    const [otp, setOTP] = useState("")
     const [errorMsg, setRrrorMsg] = useState("")
     const [confirmpassword, setConfirmpassword] = useState("")
     const [password, setPassword] = useState("")
@@ -30,7 +31,7 @@ import { createPassword } from "../../redux/slices/authentication/authSliceActio
         const errorMsg=strCompare(data.password,data.confirmPassword);
         console.log("ErrorLog",errorMsg);
         setRrrorMsg(errorMsg);
-        dispatch(createPassword(data.userName, data.password));
+        dispatch(createPassword(data.userName, data.password,data.otp));
         // cookies.clear();
       };
       const  strCompare=(pass,confpass)=>{
@@ -63,6 +64,12 @@ import { createPassword } from "../../redux/slices/authentication/authSliceActio
                         Confirm Password:
                         <input type="text" required
                         {...register("confirmPassword")} value={confirmpassword} onChange={e => setConfirmpassword(e.target.value)} />
+                    </label>
+                    <label>
+                        OTP:
+                        <input type="text" placeholder="Enter OTP"
+                        required
+                        {...register("otp")} value={otp} onChange={e => setOTP(e.target.value)} />
                     </label>
                     <p className="text-danger">{errorMsg}</p>
                     <button  onClick={handleSubmit(onSubmit)}> Create</button>

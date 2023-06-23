@@ -97,12 +97,13 @@ export const gmailSignUp = (userData) => async (dispatch) => {
 };
 
 
-export const createPassword = (userName, password) => async (dispatch) => {
+export const createPassword = (userName, password,otp) => async (dispatch) => {
   try {
     dispatch(handleLoding("loading"));
     let data = {
       userId: userName,
       password: password,
+      otp:otp
     };
     let config = {
       method: "post",
