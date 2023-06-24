@@ -1,0 +1,40 @@
+.base-header {
+    position: relative;
+    z-index: inherit;
+    width: auto;
+    height: 6.6875rem;
+    background-color: #dbd8d8;
+    padding: 0 1.875rem;
+    text-align: left;
+    border-bottom: 1px solid #cdcdcd;
+    display: flex;
+    align-items: center;
+    /* margin-top: 2%; */
+    /* box-shadow: 10px 1px 1px rgb(94, 93, 93); */
+    box-shadow: 0px 17px 12px -15px #111;
+}
+
+.base-header-icon {
+    margin-top: 15px;
+    font-size: 22px;
+    margin-right: 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.base-header-icon:hover {
+    color: #690000;
+}
+
+.base-heading {
+    /* max-width: none;
+      margin: 0 !important;
+      color: #262626;
+      font-family:sans-serif;
+      font-size: 1.875rem;
+      font-weight: 400; */
+    font-weight: 400;
+    font-size: 25px;
+    margin-top: 2.5%;
+}

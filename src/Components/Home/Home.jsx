@@ -1,335 +1,326 @@
 import React, { useState } from "react";
-import "./home.css";
-import { BsFillChatLeftTextFill, BsQuestionDiamondFill } from "react-icons/bs";
 import { GoSearch } from "react-icons/go";
-import { AiOutlineRight } from "react-icons/ai";
+// import {Carousel} from "react-responsive-carousel";
+import Typewriter from "typewriter-effect";
+import slide1 from "../../asset/slide-1.jpg";
+import slide2 from "../../asset/slide-2.png";
+import slide3 from "../../asset/slide-3.jpg";
+import slide4 from "../../asset/slide-4.jpg";
+import ReactPlayer from "react-player";
+import { BsFillChatLeftTextFill, BsQuestionDiamondFill } from "react-icons/bs";
 import { FaPhoneAlt, FaGraduationCap, FaUserFriends } from "react-icons/fa";
+import { Link } from "react-router-dom";
+// import "react-responsive-carousel/lib/styles/carousel.min.css";
+import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { Carousel } from "react-responsive-carousel";
+import VideoShow from "../../asset/annual-convocation-2023.mp4"
+import introVideo from "../../asset/introVideo.mp4";
+import "../../home.css";
 
-import { Routes, Route, Link } from "react-router-dom";
-import HomeFooter from "./HomeFooter";
 
-export default function Home() {
-  const [secondNavActive, setSecondNavActive] = useState("homeSecondNav_btn");
-  const [active, setActive] = useState(1);
-
-  function activate1(e) {
-    setActive(1);
-  }
-  function activate2(e) {
-    setActive(2);
-  }
-  function activate3(e) {
-    setActive(3);
-  }
+const Home = () => {
+  const [slideImage, setSlideImage] = useState(slide1);
 
   return (
-    // <h1 style={{ color: "white" }}>Home</h1>
     <>
-      <div className="homeContainer">
-        <div className="homeWrapper">
-          <h1 className="lms">Learning Management System</h1>
-          <p className="smallPara">
-            Information and support for the University's centrally-supported
-          </p>
-          {/* <p className="smallPara">Learning Management System (LMS)</p> */}
-        </div>
-      </div>
+      <div id="showcase">
+        <div className="container">
+          <div className="row showcase-container">
+            <div className="col-md-6 py-4">
+              <h1 className="showcase-heading mb-4">
+                CU-DigiClass
+              </h1>
 
-      {/* Seconf Navigation */}
-      <div className="homeSecondNav">
-        <button
-          onClick={activate1}
-          value={1}
-          className={
-            active == 1 ? "homeSecondNav_btn afterwidth" : "homeSecondNav_btn"
-          }
-        >
-          {" "}
-          LMS Support for Staff{" "}
-        </button>
-        <button
-          onClick={activate2}
-          value={2}
-          className={
-            active == 2 ? "homeSecondNav_btn afterwidth" : "homeSecondNav_btn"
-          }
-        >
-          LMS Support for Student
-        </button>
-        <button
-          onClick={activate3}
-          value={3}
-          className={
-            active == 3 ? "homeSecondNav_btn afterwidth" : "homeSecondNav_btn"
-          }
-        >
-          Other learning technologies
-        </button>
-      </div>
+              <h3 className="mb-4 typewrite-text">
+                <Typewriter
+                  options={{
+                    strings: ["Nothing Is Impossible", "Follow Your Dreams"],
+                    autoStart: true,
+                    loop: true,
+                  }}
+                />
+              </h3>
 
-      {active == 1 ? (
-        <>
-          {/* for the staff Support  */}
-
-          <div className="homeContact">
-            <div className="homeContact_child">
-              <h1 className="lms">Who can I contact?</h1>
-              <p>
+              <p className="showcase-para text-white mb-2">
+                These resources will take you from getting started with the CU-DigiClass
+                and setting up your subjects, through to communicating with
+                students and providing assessment tasks and feedback.
+              </p>
+              <p className="showcase-para text-white mb-4">
                 Canvas help is available any time with dedicated University of
                 India 24/7 helpdesk support channels, including online chat and
                 phone.
               </p>
-              <p>
-                Learning Environments can assist you with further enquiries
-                regarding the LMS and other supported learning technologies.
-                Simply submit a ServiceNow ticket and we will help you as soon
-                as possible
-              </p>
             </div>
-            <div className="homeContact_child col">
-              <div className="iconsContent">
-                <BsFillChatLeftTextFill className="icon" /> Online chat with
-                Helpdesk{" "}
-              </div>
-              <div className="iconsContent">
-                <FaPhoneAlt className="icon" /> Call Helpdesk
-              </div>
-              <div className="iconsContent">
-                <FaUserFriends className="icon" /> Find your LMS Faculty
-                Representative
-              </div>
-              <div className="iconsContent">
-                <FaGraduationCap className="icon" /> Request support from
-                Learning Environments{" "}
+            <div className="col-md-6 py-4">
+              <div className="image-wrapper">
+                <Carousel
+                  showIndicators={false}
+                  showStatus={false}
+                  showThumbs={false}
+                  autoPlay
+                  infiniteLoop
+                >
+                  <img src={slide1} alt="slide-1" className="showcase-image" />
+                  <img src={slide3} alt="slide-1" className="showcase-image" />
+                  <img src={slide4} alt="slide-1" className="showcase-image" />
+                </Carousel>
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div>
+        <div id="contact" className="py-4">
+          <div className="container contact">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="section-heading mb-5">
+                  <h3>To Whom I Can Contact ?</h3>
+                  <hr />
+                </div>
 
-          <div className="guideSupport">
-            {/* <div> */}
-            <h1 className="lms">Guides and support resources</h1>
-            <p className="guideSupport_p">
-              These resources will take you from getting started with the LMS
+                <p className="mb-3">
+                  Canvas help is available any time with dedicated University of
+                  India 24/7 helpdesk support channels, including online chat
+                  and phone.
+                </p>
+
+                <p className="mb-3">
+                  Learning Environments can assist you with further enquiries
+                  regarding the CU-DigiClass and other supported learning technologies.
+                  Simply submit a ServiceNow ticket and we will help you as soon
+                  as possible
+                </p>
+              </div>
+              <div className="col-md-6 px-3">
+                <div className="contact-item mb-4">
+                  <Link className="contact-list-item d-flex align-items-center mt-4">
+                    <BsFillChatLeftTextFill className="icon mt-1 me-3" />
+                    <p className="mb-0">Online chat with Helpdesk</p>
+                  </Link>
+
+                  <hr className="contact-hr-line" />
+                </div>
+                <div className="contact-item mb-4">
+                  <Link className="contact-list-item d-flex align-items-center mt-4">
+                    <FaPhoneAlt className="icon mt-1 me-3" />
+                    <p className="mb-0">Call Helpdesk</p>
+                  </Link>
+
+                  <hr className="contact-hr-line" />
+                </div>
+                <div className="contact-item mb-4">
+                  <Link className="contact-list-item d-flex align-items-center mt-4">
+                    <FaUserFriends className="icon mt-1 me-3" />
+                    <p className="mb-0">Meet your CU-DigiClass Faculty Coordinator</p>
+                  </Link>
+
+                  <hr className="contact-hr-line" />
+                </div>
+                <div className="contact-item mb-4">
+                  <Link className="contact-list-item d-flex align-items-center mt-4">
+                    <FaGraduationCap className="icon mt-1 me-3" />
+                    <p className="mb-0">
+                      Request support from Learning Environments
+                    </p>
+                  </Link>
+
+                  <hr className="contact-hr-line" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div id="guide" className="py-4">
+          <div className="container">
+            <div className="section-heading-center mb-5 text-center">
+              <h3>Guide And Support Resources</h3>
+              <hr />
+            </div>
+
+            <p className="mb-4 guide-para">
+              These resources will take you from getting started with the CU-DigiClass
               and setting up your subjects, through to communicating with
               students and providing assessment tasks and feedback.
             </p>
 
-            <div className="search">
+            <div className="guide-search-wrapper mb-5">
               <input
-                type="search"
-                id="gsearch"
-                name="gsearch"
-                className="searchInput"
-                placeholder="Search all LMS and learning technologies support"
+                type="text"
+                className="guide-input"
+                placeholder="Search all CU-DigiClass and learning technologies support"
               />
-              <button type="submit" className="searchBtn">
-                <GoSearch />
-              </button>
+              <div className="search-icon">
+                <GoSearch className="icon" />
+              </div>
             </div>
-            <div className="media">
-              <div
-                className="media_box"
-                style={{ borderBottom: "7px solid #99A2AA" }}
-              >
-                {" "}
-                <div>
-                  LMS Guide{" "}
-                  <span className="mediaSpan">
-                    <AiOutlineRight />
-                  </span>
-                </div>{" "}
+
+            <div className="cards row">
+              <div className="col-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <i class="fa-solid fa-gear card-icon"></i>
+                    <h5 class="card-title">CU-DigiClass Guide</h5>
+                    <p class="card-text">
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div
-                className="media_box"
-                style={{ borderBottom: "7px solid #3FA7C2" }}
-              >
-                {" "}
-                <div>
-                  Lecture Content
-                  <span className="mediaSpan">
-                    <AiOutlineRight />
-                  </span>
-                </div>{" "}
+              <div className="col-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <i class="fa-solid fa-file card-icon"></i>
+                    <h5 class="card-title">Lecture Content</h5>
+                    <p class="card-text">
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div
-                className="media_box"
-                style={{ borderBottom: "7px solid #ECAE65" }}
-              >
-                {" "}
-                <div>
-                  Live Classes
-                  <span className="mediaSpan">
-                    <AiOutlineRight />
-                  </span>
-                </div>{" "}
+              <div className="col-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <i class="fa-brands fa-slideshare card-icon"></i>
+                    <h5 class="card-title">Live Classes</h5>
+                    <p class="card-text">
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
+                    </p>
+                  </div>
+                </div>
               </div>
-              <div
-                className="media_box"
-                style={{ borderBottom: "7px solid #59B17F" }}
-              >
-                {" "}
-                <div>
-                  All staff guides
-                  <span className="mediaSpan">
-                    {" "}
-                    <AiOutlineRight />
-                  </span>
+              <div className="col-md-3">
+                <div class="card">
+                  <div class="card-body">
+                    <i class="fa-solid fa-book card-icon"></i>
+                    <h5 class="card-title">All Staff Guide</h5>
+                    <p class="card-text">
+                      {/* Lorem ipsum dolor sit amet consectetur adipisicing elit. */}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
-            {/* </div> */}
-            {/* <div></div> */}
           </div>
-          <div className="homeContact">
-            <div className="homeContact_child">
-              <h1 className="lms">Training and workshops</h1>
-              <p>
-                Learning Environments are providing an extensive set of
-                workshops and resources to support staff teaching with the LMS.
-                These are available to both teaching and professional staff and
-                are designed to be practical and linked to your teaching needs.
-              </p>
-
-              <button className="findMore">
-                Find out more
-                <span style={{ marginLeft: "5px" }}>
-                  <AiOutlineRight />
-                </span>
-              </button>
-            </div>
-            <div className="homeContact_child col flex">
-              <div className="card flex">
-                <div>Register for a scheduled session</div>{" "}
-                <button className="roundArrow">
-                  <span className="arrow">
-                    <AiOutlineRight />
-                  </span>
-                </button>
-              </div>
-              <div className="card flex">
-                <div>Watch a recording from our LMS or TEL workshops </div>
-                <button className="roundArrow">
-                  <span className="arrow">
-                    <AiOutlineRight />
-                  </span>
-                </button>
-              </div>
-              <div className="card flex">
-                <div>
-                  Explore and learn at your own pace with online learning
-                  modules{" "}
+        </div>
+      </div>
+      <div>
+        <div id="training" className="py-4">
+          <div className="container">
+            <div className="row">
+              <div className="col-md-6">
+                <div className="section-heading mb-5">
+                  <h3>Training And Workshop</h3>
+                  <hr />
                 </div>
-                <button className="roundArrow">
-                  <span className="arrow">
-                    <AiOutlineRight />
-                  </span>
-                </button>
-              </div>
-            </div>
-          </div>
-          <div className="guideSupport" style={{ padding: "100px 0 100px 0" }}>
-            {/* <div> */}
-            <h1 className="lms">Request a new learning technology</h1>
-            <p className="guideSupport_p">
-              You may request a new learning technology to be integrated with
-              the LMS, or that a new tool be considered for central deployment.
-              This is a two step process, and is outlined on the Privacy Impact
-              Assessments for learning technologies page.
-            </p>
 
-            <button id="findMore">Find out more</button>
-          </div>
-        </>
-      ) : active == 2 ? (
-        <>
-          {/* for the Student Support */}
+                <p className="mb-3">
+                  Learning Environments are providing an extensive set of
+                  workshops and resources to support staff teaching with the
+                  CU-DigiClass.
+                </p>
 
-          <div className="homeContact">
-            <div className="homeContact_child">
-              <h1 className="lms">Where can I get LMS help?</h1>
-              <p>
-                Help is available any time with the Chandigarh University 24/7
-                helpdesk support channels, including online chat and phone.
-              </p>
-              <p>
-                For all other student queries please contact Stop 1. Stop 1 can
-                help you with admissions, enrolment, course planning,
-                administration, support services, and skills and development.
-              </p>
-            </div>
-            <div className="homeContact_child col">
-              <div className="iconsContent">
-                <BsFillChatLeftTextFill className="icon" /> Online chat with
-                Helpdesk{" "}
+                <p className="mb-4">
+                  These are available to both teaching and professional staff
+                  and are designed to be practical and linked to your teaching
+                  needs.
+                </p>
+
+                {/* <button className="training-btn">Find Out More</button> */}
               </div>
-              <div className="iconsContent">
-                <FaPhoneAlt className="icon" /> Call Helpdesk
-              </div>
-              {/* <div className="iconsContent">
-                <FaUserFriends className="icon" /> Find your LMS Faculty
-                Representative
+              {/* <div className="col-md-6">
+                <div id="carouselExample" class="carousel slide">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div className="training-card">
+                        <p>
+                          Explore and learn at your own pace with online
+                          learning modules
+                        </p>
+                        <i class="fa-regular fa-circle-play training-icon"></i>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div className="training-card">
+                        <p>Watch a recording from our CU-DigiClass or TEL workshops</p>
+                        <i class="fa-regular fa-circle-play training-icon"></i>
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <div className="training-card">
+                        <p>Register for a scheduled session</p>
+                        <i class="fa-regular fa-circle-play training-icon"></i>
+                      </div>
+                    </div>
+                  </div>
+                  <button
+                    class="carousel-control-prev"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="prev"
+                  >
+                    <span
+                      class="carousel-control-prev-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Previous</span>
+                  </button>
+                  <button
+                    class="carousel-control-next"
+                    type="button"
+                    data-bs-target="#carouselExample"
+                    data-bs-slide="next"
+                  >
+                    <span
+                      class="carousel-control-next-icon"
+                      aria-hidden="true"
+                    ></span>
+                    <span class="visually-hidden">Next</span>
+                  </button>
+                </div>
               </div> */}
-              <div className="iconsContent">
-                <FaGraduationCap className="icon" /> Contact Stop 1{" "}
+              <div className="col-md-6">
+              <ReactPlayer
+                  className="show-video"
+                  url={introVideo}
+                  controls={true}
+                  sx={{ width: "100%" }}
+                />
+
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      <div>
+        <div id="request" className="py-4">
+          <div className="container">
+            <div className="section-heading-center mb-5 text-center">
+              <h3>Request New Technology</h3>
+              <hr />
+            </div>
 
-          <div className="guideSupport" style={{ padding: "100px 0 100px 0" }}>
-            {/* <div> */}
-            <h1 className="lms">I have a question about...</h1>
-            <p className="guideSupport_p">
-              Most questions about using LMS are answered in the LMS Community
-              guides. For unique Chandigarh University issues, we will answered
-              some common questions below.
+            <p className="mb-4 guide-para">
+              You may request a new learning technology to be integrated with
+              the CU-DigiClass, or that a new tool be considered for central deployment.
             </p>
 
-            <div className="">
-              <div className="iconsContent">
-                <BsQuestionDiamondFill className="icon" /> Online chat with
-                Canvas{" "}
-              </div>
-              <div className="iconsContent">
-                <BsQuestionDiamondFill className="icon" /> Call Canvas
-              </div>
-              <div className="iconsContent">
-                <BsQuestionDiamondFill className="icon" /> Find your LMS Faculty
-                Representative
-              </div>
-            </div>
-          </div>
-        </>
-      ) : (
-        <>
-          {/* for the other technologies */}
-          <div className="guideSupport" style={{ padding: "100px 0 100px 0" }}>
-            {/* <div> */}
-            <h1 className="lms">Request a new learning technology</h1>
-            <p className="guideSupport_p">
-              You may request a new learning technology to be integrated with
-              the LMS, or that a new tool be considered for central deployment.
+            <p className="mb-4 guide-para">
               This is a two step process, and is outlined on the Privacy Impact
               Assessments for learning technologies page.
             </p>
 
-            <div className="">
-              <div className="iconsContent">
-                <BsQuestionDiamondFill className="icon" /> Online chat with
-                Canvas{" "}
-              </div>
-              <div className="iconsContent">
-                <BsQuestionDiamondFill className="icon" /> Call Canvas
-              </div>
-              <div className="iconsContent">
-                <BsQuestionDiamondFill className="icon" /> Find your LMS Faculty
-                Representative
-              </div>
+            <div className="text-center">
+              <button className="request-btn">Find Out More</button>
             </div>
           </div>
-        </>
-      )}
-
-      <HomeFooter />
+        </div>
+      </div>
     </>
   );
-}
+};
+
+export default Home;

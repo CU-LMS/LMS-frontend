@@ -27,8 +27,6 @@ export const readSubjectsData = () => async (dispatch) => {
       });
     });
 
-    
-
     dispatch(handleSubjectData(subjectOptionsData));
   } catch (error) {
     dispatch(handleApiError(error));

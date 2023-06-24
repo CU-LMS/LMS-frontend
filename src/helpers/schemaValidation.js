@@ -14,3 +14,6 @@ export const loginSchema = yup.object({
   Name: yup.string().required(),
   Email: yup.string().email().required(),
 });
+
+
+
