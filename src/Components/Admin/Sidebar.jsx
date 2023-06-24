@@ -22,7 +22,7 @@ import {
 const Sidebar = ({ isSidebar, setIsSidebar }) => {
 
     let userData = JSON.parse(
-        localStorage.getItem("userData")
+        localStorage.getItem("adminData")
       );
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -91,7 +91,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
                     <FaUserCircle className="sidebar-icon me-3"/>
                     <p className='mb-0 user-title'><i>You are logged in as</i> <br/> <strong>{userData?.firstName}</strong> </p>
                 </div>
-                <Link to="/ppp" className="sidebar-item d-flex align-items-center py-3" data-value="dashboard" onClick={handleNavigate}>
+                <Link to="/admin-dashboard" className="sidebar-item d-flex align-items-center py-3" data-value="dashboard" onClick={handleNavigate}>
                     <RiDashboardFill className="sidebar-icon me-3"/>
                     <p className='mb-0 sidebar-item-title' >Dashboard</p>
                 </Link>

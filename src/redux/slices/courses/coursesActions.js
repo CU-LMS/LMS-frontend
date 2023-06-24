@@ -4,6 +4,7 @@ import {
   handleGetRoleList,
   handleAcouncCourseList,
   handleShowAnnouncement,
+  handleNonEnrollCourse,
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
@@ -81,7 +82,7 @@ export const createCourse = (courseData) => async (dispatch) => {
 
 export const readCourseData = () => async (dispatch) => {
   try {
-    console.log('Abhaycccccc', "kkkkkkkk")
+   
     let config = {
       method: "post",
       url: "Course/GetCourseList",
@@ -152,7 +153,7 @@ export const readMyCourseData = () => async (dispatch) => {
     };
     const response = await http(config);
     dispatch(handleMyCourseData(response?.data?.data));
-    console.log("FAQ data", response);
+    
   } catch (error) {
     console.log(error);
   }
@@ -350,6 +351,23 @@ export const showAnnouncement = () => async (dispatch) => {
   }
 };
 
+export const readNonErollCourseData = () => async (dispatch) => {
+  try {
+    let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
+    let config = {
+      method: "post",
+      url: "Course/GetCourseListWithoutEnrollUser",
+      data: {
+        userId: credentials.userId,
+      },
+    };
+    const response = await http(config);
+    dispatch(handleNonEnrollCourse(response?.data?.data));
+    
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 
 

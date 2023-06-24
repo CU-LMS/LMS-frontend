@@ -13,20 +13,21 @@ import "./dashboard.css";
 import axios from "axios";
 import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
-import { readCourseData } from "../../redux/slices/courses/coursesActions";
+import { readNonErollCourseData } from "../../redux/slices/courses/coursesActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const courses = useSelector((state) => state.courseState.courses);
+  const courses = useSelector((state) => state.courseState.nonEnrollCourseList);
 
   const [isLoading, setLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [hideFooter, setHideFooter] = useState("dashboardFooter");
 
+  
   useEffect(() => {
-    dispatch(readCourseData());
+    dispatch(readNonErollCourseData());
   }, []);
 
   useEffect(() => {

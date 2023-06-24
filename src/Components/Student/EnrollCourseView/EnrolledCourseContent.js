@@ -1,33 +1,23 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import headerImage from "../../asset/swayam_logo.png";
-import headerImage2 from "../../asset/NPTEL_logo_128.png";
-import booksgif from "../../asset/books2.gif";
-import cert from "../../asset/cert.gif";
-import certificate2 from "../../asset/certificate2.gif";
-import SocialMediaIcons from "./SocialMediaIcons";
-import learnImage from "../../asset/learn.jpg";
-import Book2 from "../../asset/book3.jpg";
-import { readCourseData } from "../../redux/slices/courses/coursesActions";
+import { readCourseData } from "../../../redux/slices/courses/coursesActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { enrollCourse } from "../../redux/slices/courses/coursesActions";
-import { Navigate } from "react-router-dom";
-import WatchCourseWhenEnrolled from "./WatchCourseWhenEnrolled";
+import { enrollCourse } from "../../../redux/slices/courses/coursesActions";
 import ReactPlayer from "react-player";
-import videoShow from "../../asset/annual-convocation-2023.mp4";
-import loadingBook from "../../asset/loadingBook.jpg";
-import loadingBook1 from "../../asset/Building.png";
-import top from "../../asset/top.jpg";
+import videoShow from "../../../asset/annual-convocation-2023.mp4";
+import loadingBook from "../../../asset/loadingBook.jpg";
+import loadingBook1 from "../../../asset/Building.png";
+import top from "../../../asset/top.jpg";
 import { AiFillFacebook } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import MainFooter from "./MainFooter";
+import MainFooter from "../../Dashbaord/MainFooter";
 
 
-import "./ViewContent.css";
+import "./EnrolledCourseContent.css";
 
-const ViewContent = () => {
+const EnrolledCourseContent = () => {
   const courses = useSelector((state) => state.courseState.courses);
   // const dummyVar = courses.find(x =>x.courseId==1);
   const [currentCourse, setCurrentCourse] = useState();
@@ -91,7 +81,7 @@ const ViewContent = () => {
             <div className="buttonAndEnrolled">
               
               <button className="join-button" onClick={enrollTheUser}>
-                Enroll Now
+                Start Course
               </button>{" "}
               <p>Course Code : </p>
               <p className="count-enroll"> {currentCourse.courseCode}</p>
@@ -221,11 +211,9 @@ const ViewContent = () => {
         
       </div>
 
-     <div>
-      <MainFooter />
-     </div>
+     
     </>
   );
 };
 
-export default ViewContent;
+export default EnrolledCourseContent;

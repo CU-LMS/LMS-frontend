@@ -39,7 +39,7 @@ const MyCourse = () => {
   }, []);
 
   const handleClickButtonRoll = (courseId=0) => {
-    navigate("/view-content", {state: { courseId } });
+    navigate("/enrolled-course-content", {state: { courseId } });
   }; 
   return (
     <div className="dashboard">

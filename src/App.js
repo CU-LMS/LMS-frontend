@@ -35,6 +35,8 @@ import MyCourse from "./Components/Student/MyCourse"
 import StudentProtectedRoute from "./hoc/StudentProtectRoute";
 import CreateAnnouncement from "./Components/Admin/Announcement/CreateAnnouncement";
 import AnnouncementTemplate from "./Components/Admin/Announcement/AnnouncementTemplate";
+import EnrolledCourseContent from "./Components/Student/EnrollCourseView/EnrolledCourseContent";
+import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 
 
 
@@ -45,11 +47,21 @@ function App() {
     localStorage.getItem("userData")
   );
 
+  let adminData=JSON.parse(
+    localStorage.getItem("adminData")
+  );
+   console.log("Abhayjjjjjjjj",adminData);
   const path = window.location.pathname;
   let roleId = 0;
   roleId = userData == null ? 0 : userData.roleId;
   if (path == "/" || path == "/login") {
     roleId = 0;
+  }
+
+  let adminRoleId=0;
+  adminRoleId = adminData == null ? 0 : adminData.roleId;
+  if (path == "/" || path == "/login") {
+    adminRoleId = 0;
   }
 
   console.log("userd data  iioioi", userData)
@@ -70,10 +82,10 @@ function App() {
       <AuthProvider>
         <SidebarContextProvider>
           {
-            roleId == 5 || roleId == 4 ? <><StudentHeader setIsSidebar={setIsSidebar} isSidebar={isSidebar} />,<StudentSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} /></> :
-              roleId == 1 || roleId == 2 || roleId == 3 ? <><AdminHeader setIsSidebar={setIsSidebar} isSidebar={isSidebar} />,<AdminSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} /></> : (<Navbar />)
-
+            roleId == 5 || roleId == 4 ? <><StudentHeader setIsSidebar={setIsSidebar} isSidebar={isSidebar} />,<StudentSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} /></> : 
+            adminRoleId == 1 || adminRoleId == 2 || adminRoleId == 3 ? <><AdminHeader setIsSidebar={setIsSidebar} isSidebar={isSidebar} />,<AdminSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} /></> :(<Navbar />)
           }
+          
 
 
           {/* <Navbar /> */}
@@ -86,7 +98,7 @@ function App() {
             {/* Student Route */}
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
             {/* <Route path="/mycourses" element={<MyCourse />} /> */}
-
+            <Route path="/enrolled-course-content" element={<EnrolledCourseContent />} />
             <Route
               path="/login"
               element={
@@ -140,6 +152,14 @@ function App() {
               element={
                 <AdminProtectedRoute>
                   <CreateAnnouncement />
+                </AdminProtectedRoute>
+              }
+            />
+             <Route
+              path="/admin-dashboard"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashBoard />
                 </AdminProtectedRoute>
               }
             />

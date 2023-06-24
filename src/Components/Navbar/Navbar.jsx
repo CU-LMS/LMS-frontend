@@ -124,9 +124,9 @@ export default function Navbar() {
             </li>
            
             <li className="navBtn">
-              <p onClick={faqRoute}>
+              <a className="faqbtn" onClick={faqRoute}>
                 FAQs
-              </p>
+              </a>
             </li>
           </ul>
 

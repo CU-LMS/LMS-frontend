@@ -23,9 +23,7 @@ h1{
 	font-family: 'Roboto', sans-serif;
 }
 
-.header{
-	margin-bottom: 80px;
-}
+
 #description{
 	font-size: 24px;
 }
@@ -169,14 +167,7 @@ textarea.form-control{
   height: 100%;
  
 } */
-.background-picture {
-  /* background-image: url("/src/asset/Dashboard-Background-Image-4.jpg");
-  height: 100%; */
-  /* background-repeat: no-repeat;
-  background-size: cover;
-  height: 100%;
-  margin-top: 0; */
-}
+
 
 .body-scroll {
   /* height: 34vw; */
