@@ -5,7 +5,13 @@ const initialState = {
   apiError: "",
   courses: [],
   enrollCourse: [],
-  FAQList:[]
+  FAQList:[],
+  myCourseList:[],
+  announcementList:[],
+  getRoleList:[],
+  anouncCourseList:[],
+  announceCourseWise: [],
+  announcementResponse: []
   
 };
 
@@ -30,6 +36,25 @@ const course = createSlice({
     handleFAQs: (state, {payload}) => {
       state.FAQList = payload
     },
+    handleMyCourseData: (state, {payload}) => {
+      state.myCourseList = payload
+    },
+    handleAddAnnouncement : (state, { payload}) => {
+      state.announcementList = payload
+    },
+    handleGetRoleList : (state, { payload }) => {
+      state.getRoleList = payload 
+    },
+    handleAcouncCourseList: (state, {payload}) => {
+      state.anouncCourseList = payload
+    },
+    handleAnnounceCourseWiseList: (state, {payload}) => {
+      state.announceCourseWise = payload
+    },    
+    handleShowAnnouncement: (state, {payload}) => {
+      state.announcementResponse = payload
+    },
+
 
   },
 });
@@ -40,6 +65,12 @@ export const {
   handleCourses,
   handleEnrollCourses,
   handleFAQs,
+  handleMyCourseData,
+  handleAddAnnouncement,
+  handleGetRoleList,
+  handleAcouncCourseList,
+  handleAnnounceCourseWiseList,  
+  handleShowAnnouncement,
   
 } = course.actions;
 

@@ -1,0 +1,25 @@
+.col-6-area {
+    width: 100%;
+  }
+  .multi-select {
+    background-color: #ecf0f4;
+  }
+  .openModal {
+      justify-content: center;
+    width: 400px;
+    height: 50px;
+    background: cadetblue;
+    color: white;
+    font-weight: 600;
+    border-radius: 10px;
+    outline: none;
+  
+    /* background-color: ; */
+  }
+  .modalParent{
+      display: flex;
+      justify-content: center;
+      width: 100%;
+  
+  }
+  

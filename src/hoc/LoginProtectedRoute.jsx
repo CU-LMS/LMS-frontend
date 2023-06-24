@@ -20,6 +20,7 @@ const LoginProtectedRoute = ({ children }) => {
       let response = await axios(config);
       console.log(response, "aaaaa")
       if (response.data.statusCode === 200) {
+        
         if(response.data.data.roleId === 1){
           navigate("/tool", {replace: true})
         }

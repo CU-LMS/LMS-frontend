@@ -5,7 +5,7 @@ import LoadingPage from "./LoadingPage";
 import axios from "axios";
 
 
-const AdminProtectedRoute = ({ children }) => {
+const StudentProtectedRoute = ({ children }) => {
   const navigate = useNavigate();
   let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
 
@@ -22,20 +22,20 @@ const AdminProtectedRoute = ({ children }) => {
       let response = await axios(config);
       console.log(response)
       if (response.data.statusCode === 200) {
-        if(response.data.data.roleId === 1){
+        if(response.data.data.roleId === 5 ||response.data.data.roleId === 4){
           setIsAuthenticate(true);
         }else{
           localStorage.clear("cuchdCsrf")
-          window.location.href=("/login");
           //navigate("/login")
+          window.location.href=("/login");
         }
        
       } else {
-        //navigate("/login", { replace: true });
         window.location.href=("/login");
+        //navigate("/login", { replace: true });
       }
     } catch (err) {
-      window.location.href=("/login");
+        window.location.href=("/login");
       //navigate("/login", { replace: true });
     }
   };
@@ -51,4 +51,4 @@ const AdminProtectedRoute = ({ children }) => {
   return <>{isAuthenticate ? children : <LoadingPage />}</>;
 };
 
-export default AdminProtectedRoute;
+export default StudentProtectedRoute;

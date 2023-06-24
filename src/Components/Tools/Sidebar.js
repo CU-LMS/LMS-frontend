@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react';
-import './Sidebar.css';
 import { RxCross1 } from 'react-icons/rx';
 import { sidebarContext } from '../../context/SidebarContext';
 import { Link } from 'react-router-dom';

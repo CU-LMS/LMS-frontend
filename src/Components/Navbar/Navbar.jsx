@@ -15,7 +15,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from 'js-cookie';
 
 export default function Navbar() {
-  
+
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { authenticated, logout } = useContext(AuthContext);
@@ -34,12 +34,12 @@ export default function Navbar() {
     if (localStorage.getItem("accessToken")) {
       setIsLoggedIn(true);
       localStorage.clear();
-      
+
     }
   }, []);
 
   const logUserOut = () => {
-    
+
     setGoogleAuth(false);
     localStorage.clear("cuchd-accessToken");
     localStorage.removeItem("cuchdCsrf")
@@ -47,15 +47,21 @@ export default function Navbar() {
     // toast.success("Logged Out Successfully", {autoClose: 1000})
     Cookies.remove();
 
-        
+
   };
 
-  const loginUserClear =() => {
+  const loginUserClear = () => {
     setGoogleAuth(false);
     localStorage.removeItem("cuchdCsrf");
-   
-  }
 
+  }
+  const faqRoute = (event) => {
+
+    navigate("/FAQ")
+
+
+
+  };
 
   function hidemenu() {
     setIcon(!icon);
@@ -102,6 +108,7 @@ export default function Navbar() {
                 About
               </a>
             </li>
+
             <li className="navBtn">
               <a href="https://www.cuchd.in/academics/" target="_blank">
                 Academics
@@ -115,27 +122,19 @@ export default function Navbar() {
                 Contact
               </a>
             </li>
-
-            {credentials?.accessToken ? (
-              <>
-                <li >
-                  <NavLink to="/tool">Admin</NavLink>
-                </li>
-              </>
-            ) : null}
+           
+            <li className="navBtn">
+              <p onClick={faqRoute}>
+                FAQs
+              </p>
+            </li>
           </ul>
 
-          {credentials?.isAdmin ? (
-            <NavLink to="/">
-              <button onClick={logUserOut} className="action_btn">
-                Logout
-              </button>
-            </NavLink>
-          ) : (
-            <NavLink to="/login">
-              <button onClick={loginUserClear} className="action_btn">Login</button>
-            </NavLink>
-          )}
+
+          <NavLink to="/login">
+            <button onClick={loginUserClear} className="action_btn">Login</button>
+          </NavLink>
+
 
           <div className="toggle_btn">
             {icon ? (
@@ -156,7 +155,7 @@ export default function Navbar() {
           <li onClick={hidemenu}>
             <NavLink to="/dashboard">Dashboard</NavLink>
           </li>
-          
+
           <li onClick={hidemenu}>
             <NavLink to="/services">Services</NavLink>
           </li>
@@ -167,7 +166,7 @@ export default function Navbar() {
             <NavLink to="/tool">Admin</NavLink>
           </li>
           <li onClick={hidemenu}>
-            
+
             {" "}
             {/* <NavLink to="/login">
               <button className="action_btn">Login</button>

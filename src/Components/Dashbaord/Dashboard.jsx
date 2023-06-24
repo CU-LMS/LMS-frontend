@@ -74,19 +74,10 @@ const Dashboard = () => {
 
   return (
     <div className="dashboard">
-      {console.log(courses)}
-      <div>
-        <ImageSlider />
-      </div>
+      
 
-      <div className="middle_row">
-        {/* <div className="dashboardGridCard">
-          <div>
-            <AiOutlineReload className="dashBoardCardIcons" />
-          </div>
-          <div className="dssh_cardheading">Nothing to resume yet</div>
-          <div></div>
-        </div> */}
+      {/* <div className="middle_row">
+        
         <div className="dashboardGridCard">
           <div>
             <BsCalculatorFill className="dashBoardCardIcons" />
@@ -117,7 +108,7 @@ const Dashboard = () => {
           <div className="dssh_cardheading">Calender</div>
           <div className="dash_cardInfo">see your scheduled uvent</div>
         </div>
-      </div>
+      </div> */}
       <div className="middle_row2">
         <div className="dashboardGridCard_2 " id="dashboardGridCard_2_1">
           <div>
@@ -161,7 +152,7 @@ const Dashboard = () => {
                 >
                   <img
                     className="imageArea"
-                    src={`https://culmsimages.s3.ap-south-1.amazonaws.com/course-${ele.courseId}/${ele.bannerImageName}`}
+                    src={ele.bannerImageName}
               
                     alt="..."
                   />

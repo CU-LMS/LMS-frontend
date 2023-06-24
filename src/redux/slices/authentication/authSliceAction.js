@@ -45,6 +45,10 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
           "cuchdCsrf",
           JSON.stringify(localStorageObj)
         );
+        localStorage.setItem(
+          "userData",
+          JSON.stringify(response.data.data)
+        );
         if(response.data.data.roleId === 1){
           window.location.href = "/tool";
         }

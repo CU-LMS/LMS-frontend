@@ -36,17 +36,17 @@ const ViewContent = () => {
   const navigate = useNavigate();
 
   const { state } = useLocation();
-  console.log(state.courseId);
+ 
 
   useEffect(() => {
-    if (state.courseId) {
+    if (state?.courseId) {
       courses?.map((course) => {
-        if (course.courseId === state.courseId) {
+        if (course?.courseId === state?.courseId) {
           setCurrentCourse(course);
         }
       });
     }
-  }, [state.courseId]);
+  }, [state?.courseId]);
 
   // const handleScroll = () => {
   //   const scrollTop =
@@ -55,7 +55,7 @@ const ViewContent = () => {
   // };
 
   const enrollTheUser = () => {
-    dispatch(enrollCourse(currentCourse.courseId));
+    dispatch(enrollCourse(currentCourse?.courseId));
   };
 
   // useEffect(() => {
@@ -71,14 +71,14 @@ const ViewContent = () => {
 
   return (
     <>
-      {console.log(currentCourse)}
+      
       <marquee className="linecolor" direction="left">
         For more Information, say Hello CU! to any social media platform mention
         below, we will get back to you...
       </marquee>
       {currentCourse && (
         <div>
-          <div className="main-header-view" key={currentCourse.courseId}>
+          <div className="main-header-view" key={currentCourse?.courseId}>
             <p className="mini-header-view-heading">Welcome</p>
             <p className="heading-view">
               Course Name : {currentCourse.courseName}{" "}
