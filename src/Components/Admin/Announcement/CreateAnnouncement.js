@@ -56,6 +56,11 @@ const CreateAnnouncement = () => {
     setConfigraData(e.target.value);
   };
 
+  const onBindAccessIdChange = (e) => {    
+    setAccessId(e.target.value);
+    console.log("Access Id----",e.target.value);
+  };
+
   const handleInputChange = (event) => {
     setAnnouncementtext(event.target.value);
   };
@@ -67,15 +72,7 @@ const CreateAnnouncement = () => {
       announcementText,
       accessId,
     };
-    if (dropdownType == "6") {
-      //announcData.accessId = anouncCourseId;
-      setAccessId(anouncCourseId);
-    }
-
-    if (dropDownSubjectType == "5") {
-      //announcData.accessId = anounceSubjectId;
-      setAccessId(anounceSubjectId);
-    }
+    
 
     dispatch(AddAnnouncementButton(announcData));
     setModalIsOpen(false);
@@ -167,7 +164,7 @@ const CreateAnnouncement = () => {
                   id="accessType"
                   name="accessType"
                   className="form-control"
-                  onChange={(e) => setAnouncCourseId(e.target.value)}
+                  onChange={onBindAccessIdChange}
                   required
                 >
                   <option disabled selected value="">
@@ -199,7 +196,7 @@ const CreateAnnouncement = () => {
                   id="accessType"
                   name="accessType"
                   className="form-control"
-                  onChange={(e) => setAnounceSubjectId(e.target.value)}
+                  onChange={onBindAccessIdChange}
                   required
                 >
                   <option disabled selected value="">

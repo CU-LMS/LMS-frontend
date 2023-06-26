@@ -336,8 +336,8 @@ export const showAnnouncement = () => async (dispatch) => {
         Authorization: `Bearer ${accessToken}`,
       },
       data: {
-        announcementId: 4,
-        visibleRole: userData?.roleId.toString()
+        userId: userData?.userId,
+        roleId: userData?.roleId.toString()
         
       },
     };
