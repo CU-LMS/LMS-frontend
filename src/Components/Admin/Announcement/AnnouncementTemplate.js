@@ -41,7 +41,7 @@ const AnnouncementTemplate = ({ data }) => {
             <div className="container-right">
               <div className="container-right-inner">
                 {/* <p className="announcement-headline">Hello Everyone Big Announcement Here... The 17th International Conference on Information Technology. We Welcome you here Hello Everyone Big Announcement Here Hello Everyone Big Announcement Here </p> */}
-                <p>{announceData?.announcements}</p>
+                <p className="dynamic-heading">{announceData?.announcements}</p>
               </div>
             </div>
           </div>

@@ -15,7 +15,8 @@ const AdminProtectedRoute = ({ children }) => {
     try {
       let config = {
         method: "get",
-        url: `https://localhost:7263/api/Login/UserValidate?token=${credentials.accessToken}`
+    
+        url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${credentials.accessToken}`
          //url: `Login/UserValidate?token=${credentials.accessToken}`
       }
 
