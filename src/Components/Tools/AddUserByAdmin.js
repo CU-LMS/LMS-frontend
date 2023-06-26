@@ -92,19 +92,7 @@ const AddUserByAdmin = () => {
                 Female
               </label>
             </div>
-            {/* <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="exampleRadios"
-                id="exampleRadios1"
-                value="option1"
-                checked
-              />
-              <label class="form-check-label" for="exampleRadios1">
-                Dont't want to disclose
-              </label>
-            </div> */}
+
             <div className="invalid-feedback">Password Didn't Match.</div>
           </div>
 

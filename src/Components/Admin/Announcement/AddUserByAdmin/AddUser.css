@@ -1,0 +1,15 @@
+.name-flex{
+    display: flex;
+    justify-content: space-between
+}
+.marginToRight{
+    margin-right: 10px;
+}
+.add-user-heading{
+    font-size: 27px;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif !important;
+    color: white;
+    margin-bottom: 10px;
+
+}

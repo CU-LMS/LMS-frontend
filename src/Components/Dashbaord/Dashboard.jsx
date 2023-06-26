@@ -53,63 +53,9 @@ const Dashboard = () => {
     lastScrollTop = scrollTop;
   });
 
-  // useEffect(() => {
-  //   let profile = JSON.parse(localStorage.getItem("profile"));
-  //   let accessToken = JSON.parse(localStorage.getItem("accessToken"));
-
-  //   axios
-  //     .post("http://172.17.18.255:8000/user_profile/", {
-  //       username: profile.email,
-  //       email: profile.email,
-  //       first_name: profile.givenName,
-  //       last_name: profile.familyName,
-  //       profile_pic: profile.imageUrl,
-  //       access_token: accessToken,
-  //       google_id: profile.googleId,
-  //     })
-  //     .then(function (response) {})
-  //     .catch(function (error) {
-  //       console.log("########", error);
-  //     });
-  // }, []);
-
   return (
     <div className="dashboard">
-      
 
-      {/* <div className="middle_row">
-        
-        <div className="dashboardGridCard">
-          <div>
-            <BsCalculatorFill className="dashBoardCardIcons" />
-          </div>
-          <div className="dssh_cardheading">My Courses</div>
-          <div className="dash_cardInfo">See courses you are enrolled in</div>
-        </div>
-        <div className="dashboardGridCard">
-          <div>
-            <ImBooks className="dashBoardCardIcons" />
-          </div>
-          <div className="dssh_cardheading">Catalog</div>
-          <div className="dash_cardInfo">
-            See a complete list of available courses
-          </div>
-        </div>
-        <div className="dashboardGridCard">
-          <div>
-            <BsBriefcase className="dashBoardCardIcons" />
-          </div>
-          <div className="dssh_cardheading">Resources</div>
-          <div className="dash_cardInfo">Browse or download resource</div>
-        </div>
-        <div className="dashboardGridCard">
-          <div>
-            <BsCalendar2Check className="dashBoardCardIcons" />
-          </div>
-          <div className="dssh_cardheading">Calender</div>
-          <div className="dash_cardInfo">see your scheduled uvent</div>
-        </div>
-      </div> */}
       <div className="middle_row2">
         <div className="dashboardGridCard_2 " id="dashboardGridCard_2_1">
           <div>

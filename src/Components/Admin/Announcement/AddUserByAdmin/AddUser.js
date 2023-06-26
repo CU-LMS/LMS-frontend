@@ -6,14 +6,14 @@ import { useDispatch } from "react-redux";
 import {
   AddAnnouncementButton,
   readCourseDataAnounc,
-  readCourseData, 
+  readCourseData,
   addAnnouncement,
-  getRoleListData
-} from "../../../redux/slices/courses/coursesActions";
-import "./CreateAnnouncement.css";
-import { readSubjectsData } from "../../../redux/slices/subjects/subjectSliceAction";
+  getRoleListData,
+} from "../../../../redux/slices/courses/coursesActions";
+import "./AddUser.css";
+import { readSubjectsData } from "../../../../redux/slices/subjects/subjectSliceAction";
 
-const CreateAnnouncement = () => {
+const AddUser = () => {
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [announcementText, setAnnouncementtext] = useState();
@@ -38,7 +38,7 @@ const CreateAnnouncement = () => {
   );
 
   const listData = useSelector((state) => state?.courseState?.getRoleList);
-  
+
   const onSelect = (selectList, selectedItem) => {
     console.log(selectList);
     let tsl = [];
@@ -103,7 +103,7 @@ const CreateAnnouncement = () => {
       {console.log(roleList)}
       <div className="modalParent">
         <button className="openModal" onClick={openModal}>
-          Create Announcement
+          Add User
         </button>
       </div>
 
@@ -131,97 +131,79 @@ const CreateAnnouncement = () => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
         }}
-      > <div className="add-user-heading">Add Announcement</div>
-        <div className="col-6-area">
-          <div className="form-group">
-            <select
-              id="accessType"
-              name="accessType"
-              className="form-control"
-              onChange={onConfigrationChange}
-              required
-            >
-              <option disabled selected value="">
-                Access Type
-              </option>
+      >
+        <div className="add-user-heading">Add User</div>
+        <div className="name-flex">
+          <div className="col-md-6 ">
+            <div className="form-group marginToRight">
+              <input
+                type="text"
+                name="userFirstName"
+                id="userFirstName"
+                placeholder="First Name"
+                className="form-control"
+                required
+              />
+            </div>
+          </div>
 
-              {anouncCourseList?.length > 0
-                ? announcementData[1]?.configurations?.map((ele) => {
-                    return (
-                      <>
-                        <option value={ele?.configurationId}>
-                          {ele?.value}
-                        </option>
-                      </>
-                    );
-                  })
-                : null}
-            </select>
+          <div className="col-md-6">
+            <div className="form-group">
+              <input
+                type="text"
+                name="userLastName"
+                id="UserLastName"
+                placeholder="Last Name"
+                className="form-control"
+                required
+              />
+            </div>
           </div>
         </div>
-        {dropdownType == "6" ? (
-          <>
-            <div className="col-6-area">
-              <div className="form-group">
-                <select
-                  id="accessType"
-                  name="accessType"
-                  className="form-control"
-                  onChange={(e) => setAnouncCourseId(e.target.value)}
-                  required
-                >
-                  <option disabled selected value="">
-                    Course List
-                  </option>
 
-                  {anouncCourseList?.length > 0
-                    ? anouncCourseList?.map((ele) => {
-                        return (
-                          <>
-                            <option value={ele?.courseId}>
-                              {ele?.courseName}
-                            </option>
-                          </>
-                        );
-                      })
-                    : null}
-                </select>
-              </div>
+        <div className="col-6-area">
+          <div className="form-group">
+            <input
+              type="email"
+              name="userEmail"
+              id="UserEmail"
+              placeholder="User Email"
+              className="form-control"
+              required
+            />
+          </div>
+        </div>
+
+        <div className="name-flex">
+          <div className="col-md-6 ">
+            <div className="form-group marginToRight">
+              <input
+                type="text"
+                name="phoneCode"
+                id="phoneCode"
+                placeholder="Phone Code"
+                className="form-control"
+                required
+              />
             </div>
-          </>
-        ) : null}
+          </div>
 
-        {dropDownSubjectType == "5" ? (
-          <>
-            <div className="col-6-area">
-              <div className="form-group">
-                <select
-                  id="accessType"
-                  name="accessType"
-                  className="form-control"
-                  onChange={(e) => setAnounceSubjectId(e.target.value)}
-                  required
-                >
-                  <option disabled selected value="">
-                    Subject Area
-                  </option>
-
-                  {subjectData?.length > 0
-                    ? subjectData?.map((ele) => {
-                        return (
-                          <>
-                            <option value={ele?.subjectId}>
-                              {ele?.subjectName}
-                            </option>
-                          </>
-                        );
-                      })
-                    : null}
-                </select>
-              </div>
+          <div className="col-md-6">
+            <div className="form-group">
+              <input
+                type="text"
+                name="phoneNumber"
+                id="phoneNumber"
+                placeholder="Phone Number"
+                className="form-control"
+                required
+              />
             </div>
-          </>
-        ) : null}
+          </div>
+        </div>
+
+        <div className="name-flex"></div>
+
         {listData?.length > 0 ? (
           <>
             <Multiselect
@@ -245,27 +227,12 @@ const CreateAnnouncement = () => {
           </>
         ) : null}
 
-        <div className="mb-3">
-          <label for="validationTextarea" className="form-label"></label>
-          <textarea
-            type="text"
-            value={announcementText}
-            onChange={handleInputChange}
-            className="form-control"
-            id="validationTextarea"
-            placeholder="Max Limit 200 Characters "
-          >
-            {announcementText}
-          </textarea>
-          <div className="invalid-feedback"></div>
-        </div>
-
         <div className="modal-butoons">
           <button className="cancel" onClick={closeModal}>
             Cancel
           </button>
           <button onClick={handleAddAnnouncementData} className="sure-button">
-            Create {" "}
+            Create{" "}
           </button>
         </div>
       </Modal>
@@ -273,4 +240,4 @@ const CreateAnnouncement = () => {
   );
 };
 
-export default CreateAnnouncement;
+export default AddUser;

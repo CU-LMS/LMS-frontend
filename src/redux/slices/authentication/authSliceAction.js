@@ -63,7 +63,7 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
 
 
         if(response.data.data.roleId === 1){
-          window.location.href = "/admin-dashboard";
+          window.location.href = "/tool";
         }
         if(response.data.data.roleId === 5){
           window.location.href = "/dashboard";

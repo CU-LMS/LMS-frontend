@@ -527,14 +527,6 @@ const MiniHeader = () => {
               </div>
             </div>
 
-            {/* <div className="row">
-              <div className="col-md-12">
-                <div className="form-group">
-                      
-                </div>
-              </div>
-            </div> */}
-
             <div className="row">
               {/* upload banner image  */}
               <div className="col-md-6">
