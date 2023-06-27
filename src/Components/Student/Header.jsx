@@ -2,6 +2,7 @@ import React from 'react';
 
 import { BsSearch, BsFillEnvelopeFill } from 'react-icons/bs';
 import { FaBars, FaUserCircle } from 'react-icons/fa';
+import { AiOutlineClose } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 
 const Header = ({ setIsSidebar, isSidebar }) => {
@@ -10,7 +11,9 @@ const Header = ({ setIsSidebar, isSidebar }) => {
             <div className="container-fluid">
                 <nav class="navbar navbar-expand-lg bg-body-tertiary d-flex justify-content-between align-items-center">
                     <div className="navbar-brand d-flex align-items-center">
-                        <Link className='nav-link' onClick={() => setIsSidebar(!isSidebar)} title='menu'><FaBars className='navbar-item' /></Link>
+                        <Link className='nav-link' onClick={() => setIsSidebar(!isSidebar)} title='menu'>
+                            {!isSidebar ? <FaBars className='navbar-item' />  : <AiOutlineClose className='navbar-item'/>}
+                        </Link>
                         <Link to="/">
                             <img src="https://www.cuchd.in/includes/assets/images/header-footer/cu-logo-white.webp" alt="logo" className='navbar-img' />
                         </Link>
@@ -24,7 +27,6 @@ const Header = ({ setIsSidebar, isSidebar }) => {
                     </div>
                 </nav>
             </div>
-
         </div>
     )
 }
