@@ -163,7 +163,7 @@ export const readMyCourseData = () => async (dispatch) => {
 
 // action calling for addAnnouncement
 
-export const addAnnouncement = () => async (dispatch) => {
+export const GetConfigureData = () => async (dispatch) => {
   dispatch(handleLoding("loading"));
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
