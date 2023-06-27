@@ -37,12 +37,29 @@ import CreateAnnouncement from "./Components/Admin/Announcement/CreateAnnounceme
 import AnnouncementTemplate from "./Components/Admin/Announcement/AnnouncementTemplate";
 import EnrolledCourseContent from "./Components/Student/EnrollCourseView/EnrolledCourseContent";
 import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
+<<<<<<< Updated upstream
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
+=======
+import Profile from "./Components/Admin/Profile";
+
+
+>>>>>>> Stashed changes
 
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
+<<<<<<< Updated upstream
   let adminData = JSON.parse(localStorage.getItem("adminData"));
+=======
+
+  let userData = JSON.parse(
+    localStorage.getItem("userData")
+  );
+
+  let adminData = JSON.parse(
+    localStorage.getItem("adminData")
+  );
+>>>>>>> Stashed changes
   console.log("Abhayjjjjjjjj", adminData);
   const path = window.location.pathname;
   let roleId = 0;
@@ -63,9 +80,15 @@ function App() {
 
   useEffect(() => {
     if (isSidebar) {
+<<<<<<< Updated upstream
       document.body.classList.add("body-sidebar");
     } else {
       document.body.classList.remove("body-sidebar");
+=======
+      document.body.classList.add('sidebar-open-body');
+    } else {
+      document.body.classList.remove('sidebar-open-body');
+>>>>>>> Stashed changes
     }
   }, [isSidebar]);
 
@@ -73,6 +96,7 @@ function App() {
     <>
       <AuthProvider>
         <SidebarContextProvider>
+<<<<<<< Updated upstream
           {roleId == 5 || roleId == 4 ? (
             <>
               <StudentHeader
@@ -93,6 +117,23 @@ function App() {
           ) : (
             <Navbar />
           )}
+=======
+          {
+            roleId == 5 || roleId == 4 ?
+              <>
+                <StudentHeader setIsSidebar={setIsSidebar} isSidebar={isSidebar} />
+                <StudentSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} />
+              </>
+              :
+              adminRoleId == 1 || adminRoleId == 2 || adminRoleId == 3 ?
+                <>
+                  <AdminHeader setIsSidebar={setIsSidebar} isSidebar={isSidebar} />
+                  <AdminSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} />
+                </> : (<Navbar />)
+          }
+
+
+>>>>>>> Stashed changes
 
           {/* <Navbar /> */}
           <Routes>
@@ -164,6 +205,7 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
+<<<<<<< Updated upstream
 
             <Route
               path="/create-user"
@@ -173,6 +215,8 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
+=======
+>>>>>>> Stashed changes
             <Route
               path="/admin-dashboard"
               element={
@@ -181,6 +225,7 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
+            <Route path="/profile" element={<AdminProtectedRoute> <Profile/> </AdminProtectedRoute>} />
 
             {/* <Route path="/create-announcement" element={<CreateAnnouncement />} /> */}
             {/* <Route path="/announcement" element={<AnnouncementTemplate />} /> */}
