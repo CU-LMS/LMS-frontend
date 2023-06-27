@@ -23,7 +23,7 @@ const AdminProtectedRoute = ({ children }) => {
       let response = await axios(config);
       console.log(response)
       if (response.data.statusCode === 200) {
-        if(response.data.data.roleId === 1){
+        if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3){
           setIsAuthenticate(true);
         }else{
           localStorage.clear("cuchdCsrf")

@@ -12,8 +12,19 @@ import {
 } from "../../../../redux/slices/courses/coursesActions";
 import "./AddUser.css";
 import { readSubjectsData } from "../../../../redux/slices/subjects/subjectSliceAction";
+import { addUserByAdmin } from "../../../../redux/slices/courses/coursesActions";
 
 const AddUser = () => {
+  const [addUserData, setAddUserData] = useState({
+    userFirstName: "",
+    UserLastName: "",
+    UserEmail: "",
+    phoneCode: "",
+    phoneNumber: "",
+    gender: "",
+    employeeId: "",
+  });
+
   const dispatch = useDispatch();
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [announcementText, setAnnouncementtext] = useState();
@@ -27,17 +38,9 @@ const AddUser = () => {
 
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   console.log("AYEGAAA", subjectData);
-  const announcementData = useSelector(
-    (state) => state?.courseState?.announcementList
-  );
-  const anouncCourseList = useSelector(
-    (state) => state?.courseState?.anouncCourseList
-  );
-  const announceCourseWise = useSelector(
-    (state) => state?.courseState?.courses
-  );
 
   const listData = useSelector((state) => state?.courseState?.getRoleList);
+  const userList = useSelector((state) => state?.courseState?.userAddedByAdmin);
 
   const onSelect = (selectList, selectedItem) => {
     console.log(selectList);
@@ -56,29 +59,9 @@ const AddUser = () => {
     setConfigraData(e.target.value);
   };
 
-  const handleInputChange = (event) => {
-    setAnnouncementtext(event.target.value);
-  };
-
-  const handleAddAnnouncementData = () => {
-    let announcData = {
-      configraData,
-      roleList,
-      announcementText,
-      accessId,
-    };
-    if (dropdownType == "6") {
-      //announcData.accessId = anouncCourseId;
-      setAccessId(anouncCourseId);
-    }
-
-    if (dropDownSubjectType == "5") {
-      //announcData.accessId = anounceSubjectId;
-      setAccessId(anounceSubjectId);
-    }
-
-    dispatch(AddAnnouncementButton(announcData));
-    setModalIsOpen(false);
+  const handleAddUserData = () => {
+    console.log(addUserData, "LIST");
+    dispatch(addUserByAdmin(addUserData));
   };
 
   const closeModal = () => {
@@ -95,7 +78,6 @@ const AddUser = () => {
     dispatch(getRoleListData());
     dispatch(readCourseDataAnounc());
     dispatch(readCourseData());
-    dispatch(readSubjectsData());
   }, []);
 
   return (
@@ -133,6 +115,34 @@ const AddUser = () => {
         }}
       >
         <div className="add-user-heading">Add User</div>
+        {listData?.length > 0 ? (
+          <>
+            <select
+              id="subject"
+              name="subject"
+              className="form-control"
+              required
+              onChange={(e) =>
+                setAddUserData({ ...addUserData, roleId: e.target.value })
+              }
+            >
+              <option disabled selected value="">
+                Select Role
+              </option>
+              {listData?.length > 0 && listData
+                ? listData?.map((ele) => {
+                    return (
+                      <>
+                        <option value={ele?.cat}>
+                          {ele?.key}
+                        </option>
+                      </>
+                    );
+                  })
+                : null}
+            </select>
+          </>
+        ) : null}
         <div className="name-flex">
           <div className="col-md-6 ">
             <div className="form-group marginToRight">
@@ -143,6 +153,12 @@ const AddUser = () => {
                 placeholder="First Name"
                 className="form-control"
                 required
+                onChange={(e) => {
+                  setAddUserData({
+                    ...addUserData,
+                    userFirstName: e.target.value,
+                  });
+                }}
               />
             </div>
           </div>
@@ -156,6 +172,12 @@ const AddUser = () => {
                 placeholder="Last Name"
                 className="form-control"
                 required
+                onChange={(e) => {
+                  setAddUserData({
+                    ...addUserData,
+                    UserLastName: e.target.value,
+                  });
+                }}
               />
             </div>
           </div>
@@ -170,6 +192,9 @@ const AddUser = () => {
               placeholder="User Email"
               className="form-control"
               required
+              onChange={(e) => {
+                setAddUserData({ ...addUserData, UserEmail: e.target.value });
+              }}
             />
           </div>
         </div>
@@ -184,6 +209,9 @@ const AddUser = () => {
                 placeholder="Phone Code"
                 className="form-control"
                 required
+                onChange={(e) => {
+                  setAddUserData({ ...addUserData, phoneCode: e.target.value });
+                }}
               />
             </div>
           </div>
@@ -191,47 +219,69 @@ const AddUser = () => {
           <div className="col-md-6">
             <div className="form-group">
               <input
-                type="text"
+                type="number"
                 name="phoneNumber"
                 id="phoneNumber"
                 placeholder="Phone Number"
                 className="form-control"
                 required
+                onChange={(e) => {
+                  setAddUserData({
+                    ...addUserData,
+                    phoneNumber: e.target.value,
+                  });
+                }}
               />
             </div>
           </div>
         </div>
 
-        <div className="name-flex"></div>
+        <div className="name-flex">
+          <div className="col-md-6">
+            <div className="form-group marginToRight">
+              <select
+                id="gender"
+                name="gender"
+                className="form-control"
+                required
+                onChange={(e) => {
+                  setAddUserData({ ...addUserData, gender: e.target.value });
+                }}
+              >
+                <option disabled selected value="">
+                  Gender
+                </option>
+                <option value="male">Male</option>
+                <option value="female">Female</option>
+              </select>
+            </div>
+          </div>
 
-        {listData?.length > 0 ? (
-          <>
-            <Multiselect
-              style={{
-                content: {
-                  backgroundColor: "#ECF0F4",
-                  borderRadius: "5px",
-                  maxHeight: "50px",
-                },
-              }}
-              displayValue="key"
-              className="multi-select"
-              isObject={true}
-              onRemove={(event) => {}}
-              onSelect={onSelect}
-              options={listData}
-              selectionType="counter"
-              selectedValues={[]}
-              placeholder="Apply For..."
-            />
-          </>
-        ) : null}
+          <div className="col-md-6 ">
+            <div className="form-group ">
+              <input
+                type="text"
+                name="employeeId"
+                id="employeeId"
+                placeholder="Employee Id"
+                className="form-control"
+                required
+                onChange={(e) => {
+                  setAddUserData({
+                    ...addUserData,
+                    employeeId: e.target.value,
+                  });
+                }}
+              />
+            </div>
+          </div>
+        </div>
 
         <div className="modal-butoons">
           <button className="cancel" onClick={closeModal}>
             Cancel
           </button>
-          <button onClick={handleAddAnnouncementData} className="sure-button">
+          <button onClick={handleAddUserData} className="sure-button">
             Create{" "}
           </button>
         </div>

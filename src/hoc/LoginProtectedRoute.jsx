@@ -21,10 +21,10 @@ const LoginProtectedRoute = ({ children }) => {
       console.log(response, "aaaaa")
       if (response.data.statusCode === 200) {
         
-        if(response.data.data.roleId === 1){
+        if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3 ){
           navigate("/tool", {replace: true})
         }
-        if(response.data.data.roleId === 5){
+        if(response.data.data.roleId === 5 || response.data.data.roleId === 4){
           navigate("/dashboard", {replace: true})
         }
         

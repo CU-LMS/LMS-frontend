@@ -10,14 +10,7 @@ import Cookies from "js-cookie";
 import LoadingPage from "../../hoc/LoadingPage";
 
 const MiniHeader = () => {
-  const [options] = useState([
-    "Hobbies",
-    "Languages",
-    "Mathematics",
-    "Medicine & Health",
-    "Physical Education",
-    "Vocational",
-  ]);
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [subjectArea, setSubjectArea] = useState([]);
