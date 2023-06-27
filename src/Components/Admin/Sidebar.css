@@ -5,13 +5,6 @@
     left: 0;
     right: -17px; 
     overflow-y: scroll;
-
-
-}
-.sidebar-open{
-    height: 86%;
-    overflow: hidden;
-    /* position: relative */
 }
 .loginUser{
     color: blue;

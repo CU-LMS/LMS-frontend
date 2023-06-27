@@ -31,12 +31,21 @@ theme="light" */
     opacity: 1 !important;
     border-radius: 10px;
   }
+
+  body {
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-open-body {
+    width: calc(100% - 250px);
+    margin-left: auto;
+  }
   
   /* Header */
   .header {
     width: 100%;
     background-color: #1e283c;
-    height: 90px;
+    padding: 8px 0;
   }
   
   .navbar {
@@ -84,15 +93,15 @@ theme="light" */
     width: 250px;
     height: 100vh;
     position: fixed;
-    margin-top: 90px;
     top: 0;
     left: 0;
     background-color: #fff;
     z-index: 100;
     box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
-    transition: all 0.3s ease;
+    /* transition: all 0.3s ease; */
     padding: 10px 0;
     transform: translateX(-260px);
+    overflow: hidden;
   }
   
   .sidebar-open {
@@ -308,3 +317,8 @@ theme="light" */
   .active-tab {
     background-color: #f1f1f1;
   }
+  .sidebar-open .dashboard{
+    width: calc(100%-250px);
+    float: right;
+  };
+  
