@@ -27,6 +27,7 @@ const CreateAnnouncement = () => {
 
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   console.log("AYEGAAA", subjectData);
+
   const announcementData = useSelector(
     (state) => state?.courseState?.announcementList
   );
@@ -66,13 +67,14 @@ const CreateAnnouncement = () => {
   };
 
   const handleAddAnnouncementData = () => {
+   
     let announcData = {
       configraData,
       roleList,
       announcementText,
       accessId,
     };
-    
+    console.log(announcData, "DDDDDDDDAAAAAAAAA")
 
     dispatch(AddAnnouncementButton(announcData));
     setModalIsOpen(false);

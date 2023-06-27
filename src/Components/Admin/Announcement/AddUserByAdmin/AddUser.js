@@ -60,8 +60,8 @@ const AddUser = () => {
   };
 
   const handleAddUserData = () => {
-    console.log(addUserData, "LIST");
     dispatch(addUserByAdmin(addUserData));
+    setModalIsOpen(false);
   };
 
   const closeModal = () => {

@@ -99,7 +99,6 @@ export const readCourseData = () => async (dispatch) => {
     };
     const response = await http(config);
     dispatch(handleCourses(response?.data?.data));
-    console.log(response);
   } catch (error) {
     console.log(error);
   }
@@ -140,7 +139,6 @@ export const readFAQData = () => async (dispatch) => {
     };
     const response = await http(config);
     dispatch(handleFAQs(response?.data?.data));
-    console.log("FAQ data", response);
   } catch (error) {
     console.log(error);
   }
@@ -182,11 +180,9 @@ export const addAnnouncement = () => async (dispatch) => {
     };
 
     let result = await http(config);
-    console.log("addAnnouncement", result);
+
     if (result.data.data != null) {
       dispatch(handleAddAnnouncement(result.data.data));
-
-      console.log(result.data.data, "ccccccc");
     } else {
       swal({
         title: "Warning",
@@ -197,7 +193,6 @@ export const addAnnouncement = () => async (dispatch) => {
     }
     dispatch(handleLoding("idle"));
   } catch (err) {
-    console.log(err);
     dispatch(handleLoding("idle"));
   }
 };
@@ -206,7 +201,7 @@ export const addAnnouncement = () => async (dispatch) => {
 
 export const AddAnnouncementButton = (courseData) => async (dispatch) => {
   dispatch(handleLoding("loading"));
-  console.log(courseData, "UUUUUUUUUUUUUU");
+
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
     let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
@@ -227,7 +222,7 @@ export const AddAnnouncementButton = (courseData) => async (dispatch) => {
     };
 
     let result = await http(config);
-    console.log("check duplicate", result);
+
     if (result.data.data != null) {
       swal({
         title: "Announcement Created!",
@@ -274,18 +269,15 @@ export const getRoleListData = () => async (dispatch) => {
     };
 
     let result = await http(config);
-    console.log("handleGetRoleList", result);
+
     if (result.data.data != null) {
       let listArray = [];
       result.data.data.forEach((ele) => {
-        console.log(ele.roleName, "ROOOOO");
         let dummyD = { cat: ele.roleId, key: ele.roleName };
         listArray.push(dummyD);
       });
-      console.log("BBBBBBBBBBBBB", listArray);
-      dispatch(handleGetRoleList(listArray));
 
-      console.log(result.data.data, "handleGetRoleListLLLLLLLLLLLLLLLLLLLL");
+      dispatch(handleGetRoleList(listArray));
     } else {
     }
     dispatch(handleLoding("idle"));
@@ -369,6 +361,7 @@ export const readNonErollCourseData = () => async (dispatch) => {
 
 export const addUserByAdmin = (userData) => async (dispatch) => {
   try {
+    dispatch(handleLoding("loading"));
     let config = {
       method: "post",
       url: "Login/CreateUser",
@@ -402,6 +395,7 @@ export const addUserByAdmin = (userData) => async (dispatch) => {
     }
     dispatch(handleLoding("idle"));
   } catch (err) {
+    dispatch(handleLoding("idle"));
     swal({
       title: "Warning",
       text: err.message,

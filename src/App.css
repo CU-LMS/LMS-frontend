@@ -308,3 +308,8 @@ theme="light" */
   .active-tab {
     background-color: #f1f1f1;
   }
+  .sidebar-open .dashboard{
+    width: calc(100%-250px);
+    float: right;
+  };
+  

@@ -39,7 +39,6 @@ const MiniHeader = () => {
     courseVideo: null,
   });
 
-  console.log(discData);
   const dispatch = useDispatch();
 
   useEffect(() => {
