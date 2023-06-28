@@ -9,6 +9,7 @@ import {
   handleShowAnnouncement,
   handleNonEnrollCourse,
   handleAddUserByAdmin,
+  handleAddUserLoading
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
@@ -361,7 +362,7 @@ export const readNonErollCourseData = () => async (dispatch) => {
 
 export const addUserByAdmin = (userData) => async (dispatch) => {
   try {
-    dispatch(handleLoding("loading"));
+    dispatch(handleAddUserLoading("loading"));
     let config = {
       method: "post",
       url: "Login/CreateUser",
@@ -393,15 +394,15 @@ export const addUserByAdmin = (userData) => async (dispatch) => {
         button: "Close",
       });
     }
-    dispatch(handleLoding("idle"));
+    dispatch(handleAddUserLoading("idle"));
   } catch (err) {
-    dispatch(handleLoding("idle"));
+    
     swal({
       title: "Warning",
       text: err.message,
       icon: "warning",
       button: "Close",
     });
-    dispatch(handleLoding("idle"));
+    dispatch(handleAddUserLoading("idle"));
   }
 };

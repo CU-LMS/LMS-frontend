@@ -13,10 +13,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { gmailSignUp } from "../../redux/slices/authentication/authSliceAction";
 import { manualSignIn } from "../../redux/slices/authentication/authSliceAction";
-import frontImage from "../../asset/loginpage.jpeg"
-import frontImage2 from "../../asset/frontPageCU.jpeg"
-import frontImage3 from "../../asset/frontPageCU3.jpg"
-import building from "../../asset/Building.png"
+import frontImage from "../../asset/loginpage.jpeg";
+import frontImage2 from "../../asset/frontPageCU.jpeg";
+import frontImage3 from "../../asset/frontPageCU3.jpg";
+import building from "../../asset/Building.png";
+import LoadingPage from "../../hoc/LoadingPage";
+import Modal from "react-modal";
 import "./login_signUp.css";
 
 export default function LoginSignUp() {
@@ -29,6 +31,9 @@ export default function LoginSignUp() {
   const [googleAuth, setGoogleAuth] = useState(false);
   const [authenticated, setAuthenticated] = useState(
     localStorage.getItem(localStorage.getItem("authenticated") || false)
+  );
+  const addUserLoading = useSelector(
+    (state) => state?.courseState?.addUserLoading
   );
 
   const {
@@ -53,14 +58,12 @@ export default function LoginSignUp() {
 
   const users = [{ username: "", password: "" }];
 
-
   const clientId =
     // "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
     "1094053124167-fr69k3addid69dikrvnreleq1es47u9j.apps.googleusercontent.com";
 
   const onLoginSuccess = (res) => {
     dispatch(gmailSignUp(res.profileObj));
-    
   };
 
   const onLoginFailure = (res) => {
@@ -242,6 +245,32 @@ export default function LoginSignUp() {
           </div>
         </div>
       )}
+      <Modal
+        isOpen={addUserLoading === "loading" ? true : false}
+    
+        shouldCloseOnOverlayClick={false}
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            maxHeight: "90vh",
+            overflow: "auto",
+            backgroundColor: "transparent",
+            borderRadius: "13px",
+            border: "none",
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        }}
+      >
+      
+        <LoadingPage />
+      </Modal>
     </>
   );
 }
