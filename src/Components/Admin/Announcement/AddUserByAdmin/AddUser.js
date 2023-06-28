@@ -77,15 +77,12 @@ const AddUser = () => {
   };
 
   useEffect(() => {
-    dispatch(addAnnouncement());
-    dispatch(getRoleListData());
-    dispatch(readCourseDataAnounc());
-    dispatch(readCourseData());
+       dispatch(getRoleListData());   
   }, []);
 
   return (
     <>
-      {console.log(roleList)}
+      
       <div className="modalParent">
         <button className="openModal" onClick={openModal}>
           Add User

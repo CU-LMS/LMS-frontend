@@ -7,9 +7,10 @@ import {
   AddAnnouncementButton,
   readCourseDataAnounc,
   readCourseData,
-  addAnnouncement,
+  
   getRoleListData,
 } from "../../../redux/slices/courses/coursesActions";
+
 import "./CreateAnnouncement.css";
 import { readSubjectsData } from "../../../redux/slices/subjects/subjectSliceAction";
 import LoadingPage from "../../../hoc/LoadingPage";
