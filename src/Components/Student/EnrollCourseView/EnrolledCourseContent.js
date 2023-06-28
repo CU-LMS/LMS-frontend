@@ -43,7 +43,8 @@ const EnrolledCourseContent = () => {
   // };
 
   const enrollTheUser = () => {
-    dispatch(enrollCourse(currentCourse?.courseId));
+    //dispatch(enrollCourse(currentCourse?.courseId));
+    window.location.href = `/watch-course?courseId=${currentCourse?.courseId}`;
   };
 
   // useEffect(() => {

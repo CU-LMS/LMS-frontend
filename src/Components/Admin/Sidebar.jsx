@@ -74,6 +74,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
 
   const handleNavigate = () => {
     setIsSidebar(false);
+    
   };
 
   return (

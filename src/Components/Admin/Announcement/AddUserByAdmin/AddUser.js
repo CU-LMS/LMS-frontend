@@ -13,7 +13,7 @@ import {
 import "./AddUser.css";
 import { readSubjectsData } from "../../../../redux/slices/subjects/subjectSliceAction";
 import { addUserByAdmin } from "../../../../redux/slices/courses/coursesActions";
-
+import LoadingPage from "../../../../hoc/LoadingPage";
 const AddUser = () => {
   const [addUserData, setAddUserData] = useState({
     userFirstName: "",
@@ -41,6 +41,9 @@ const AddUser = () => {
 
   const listData = useSelector((state) => state?.courseState?.getRoleList);
   const userList = useSelector((state) => state?.courseState?.userAddedByAdmin);
+  const addUserLoading = useSelector(
+    (state) => state?.courseState?.addUserLoading
+  );
 
   const onSelect = (selectList, selectedItem) => {
     console.log(selectList);
@@ -74,15 +77,12 @@ const AddUser = () => {
   };
 
   useEffect(() => {
-    dispatch(addAnnouncement());
-    dispatch(getRoleListData());
-    dispatch(readCourseDataAnounc());
-    dispatch(readCourseData());
+       dispatch(getRoleListData());   
   }, []);
 
   return (
     <>
-      {console.log(roleList)}
+      
       <div className="modalParent">
         <button className="openModal" onClick={openModal}>
           Add User
@@ -133,9 +133,7 @@ const AddUser = () => {
                 ? listData?.map((ele) => {
                     return (
                       <>
-                        <option value={ele?.cat}>
-                          {ele?.key}
-                        </option>
+                        <option value={ele?.cat}>{ele?.key}</option>
                       </>
                     );
                   })
@@ -285,6 +283,32 @@ const AddUser = () => {
             Create{" "}
           </button>
         </div>
+      </Modal>
+      <Modal
+        isOpen={addUserLoading === "loading" ? true : false}
+        // onRequestClose={closeModal}
+        shouldCloseOnOverlayClick={false}
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            maxHeight: "90vh",
+            overflow: "auto",
+            backgroundColor: "transparent",
+            borderRadius: "13px",
+            border: "none",
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        }}
+      >
+        {/* <h2 className="modal=heading"></h2> */}
+        <LoadingPage />
       </Modal>
     </>
   );

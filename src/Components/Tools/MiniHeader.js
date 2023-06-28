@@ -37,6 +37,7 @@ const MiniHeader = () => {
     bannerImage: null,
     courseDoc: null,
     courseVideo: null,
+    isDraft:"",
   });
 
   const dispatch = useDispatch();
@@ -95,7 +96,14 @@ const MiniHeader = () => {
     setModalIsOpen(false);
     Cookies.remove();
   };
-
+  const handleCourseDraft = () => {
+    setFormData({ ...formData, isDraft: true });
+    console.log("Draft Abhay");
+  };
+  const handleSaveCourse = () => {
+    setFormData({ ...formData, isDraft: false });
+    console.log("Draft Abhay");
+  };
   const handleDuration = (e) => {
     if (e.target.value === "2") {
       setDurationType("selectDate");
@@ -576,10 +584,22 @@ const MiniHeader = () => {
             </div>
 
             <div className="row">
-              <div className="col-md-12">
+              <div className="col-md-6">
                 <button
                   type="submit"
                   id="submit"
+                  onClick={handleCourseDraft}
+                  className="btn btn-primary btn-block w-100"
+                >
+                  Save As Draft
+                </button>
+              </div>
+
+              <div className="col-md-6">
+                <button
+                  type="submit"
+                  id="submit"
+                  onClick={handleSaveCourse}
                   className="btn btn-primary btn-block w-100"
                 >
                   Submit Course

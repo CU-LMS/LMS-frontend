@@ -9,6 +9,7 @@ import {
   handleShowAnnouncement,
   handleNonEnrollCourse,
   handleAddUserByAdmin,
+  handleAddUserLoading
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
@@ -53,8 +54,9 @@ export const createCourse = (courseData) => async (dispatch) => {
       "file",
       courseData.courseVideo,
       courseData.courseVideo.name
-    );
-
+    );    
+    newFormData.append("isDraft", courseData?.isDraft);
+    
     let config = {
       method: "post",
       url: "course/AddCourseFilesDoc",
@@ -163,7 +165,7 @@ export const readMyCourseData = () => async (dispatch) => {
 
 // action calling for addAnnouncement
 
-export const addAnnouncement = () => async (dispatch) => {
+export const GetConfigureData = () => async (dispatch) => {
   dispatch(handleLoding("loading"));
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
@@ -361,7 +363,7 @@ export const readNonErollCourseData = () => async (dispatch) => {
 
 export const addUserByAdmin = (userData) => async (dispatch) => {
   try {
-    dispatch(handleLoding("loading"));
+    dispatch(handleAddUserLoading("loading"));
     let config = {
       method: "post",
       url: "Login/CreateUser",
@@ -393,15 +395,15 @@ export const addUserByAdmin = (userData) => async (dispatch) => {
         button: "Close",
       });
     }
-    dispatch(handleLoding("idle"));
+    dispatch(handleAddUserLoading("idle"));
   } catch (err) {
-    dispatch(handleLoding("idle"));
+    
     swal({
       title: "Warning",
       text: err.message,
       icon: "warning",
       button: "Close",
     });
-    dispatch(handleLoding("idle"));
+    dispatch(handleAddUserLoading("idle"));
   }
 };
