@@ -5,13 +5,15 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   AddAnnouncementButton,
-  readCourseDataAnounc,
-  readCourseData, 
   GetConfigureData,
-  getRoleListData
+  readCourseDataAnounc,
+  readCourseData,
+  getRoleListData,
 } from "../../../redux/slices/courses/coursesActions";
+
 import "./CreateAnnouncement.css";
 import { readSubjectsData } from "../../../redux/slices/subjects/subjectSliceAction";
+import LoadingPage from "../../../hoc/LoadingPage";
 
 const CreateAnnouncement = () => {
   const dispatch = useDispatch();
@@ -39,7 +41,10 @@ const CreateAnnouncement = () => {
   );
 
   const listData = useSelector((state) => state?.courseState?.getRoleList);
-  
+  const addUserLoading = useSelector(
+    (state) => state?.courseState?.addUserLoading
+  );
+
   const onSelect = (selectList, selectedItem) => {
     console.log(selectList);
     let tsl = [];
@@ -57,9 +62,9 @@ const CreateAnnouncement = () => {
     setConfigraData(e.target.value);
   };
 
-  const onBindAccessIdChange = (e) => {    
+  const onBindAccessIdChange = (e) => {
     setAccessId(e.target.value);
-    console.log("Access Id----",e.target.value);
+    console.log("Access Id----", e.target.value);
   };
 
   const handleInputChange = (event) => {
@@ -67,14 +72,13 @@ const CreateAnnouncement = () => {
   };
 
   const handleAddAnnouncementData = () => {
-   
     let announcData = {
       configraData,
       roleList,
       announcementText,
       accessId,
     };
-    console.log(announcData, "DDDDDDDDAAAAAAAAA")
+    console.log(announcData, "DDDDDDDDAAAAAAAAA");
 
     dispatch(AddAnnouncementButton(announcData));
     setModalIsOpen(false);
@@ -91,9 +95,8 @@ const CreateAnnouncement = () => {
 
   useEffect(() => {
     dispatch(GetConfigureData());
-    dispatch(getRoleListData());    
-    dispatch(readCourseData());
-    dispatch(readSubjectsData());
+    dispatch(getRoleListData());
+   
   }, []);
 
   return (
@@ -129,7 +132,9 @@ const CreateAnnouncement = () => {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
           },
         }}
-      > <div className="add-user-heading">Add Announcement</div>
+      >
+        {" "}
+        <div className="add-user-heading">Add Announcement</div>
         <div className="col-6-area">
           <div className="form-group">
             <select
@@ -144,6 +149,8 @@ const CreateAnnouncement = () => {
               </option>
 
               {announcementData[1]?.configurations?.map((ele) => {
+
+            
                     return (
                       <>
                         <option value={ele?.configurationId}>
@@ -187,7 +194,6 @@ const CreateAnnouncement = () => {
             </div>
           </>
         ) : null}
-
         {dropDownSubjectType == "5" ? (
           <>
             <div className="col-6-area">
@@ -241,7 +247,6 @@ const CreateAnnouncement = () => {
             />
           </>
         ) : null}
-
         <div className="mb-3">
           <label for="validationTextarea" className="form-label"></label>
           <textarea
@@ -256,15 +261,40 @@ const CreateAnnouncement = () => {
           </textarea>
           <div className="invalid-feedback"></div>
         </div>
-
         <div className="modal-butoons">
           <button className="cancel" onClick={closeModal}>
             Cancel
           </button>
           <button onClick={handleAddAnnouncementData} className="sure-button">
-            Create {" "}
+            Create{" "}
           </button>
         </div>
+      </Modal>
+      <Modal
+        isOpen={addUserLoading === "loading" ? true : false}
+        // onRequestClose={closeModal}
+        shouldCloseOnOverlayClick={false}
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            maxHeight: "90vh",
+            overflow: "auto",
+            backgroundColor: "transparent",
+            borderRadius: "13px",
+            border: "none",
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        }}
+      >
+        {/* <h2 className="modal=heading"></h2> */}
+        <LoadingPage />
       </Modal>
     </>
   );

@@ -13,7 +13,8 @@ const initialState = {
   announceCourseWise: [],
   announcementResponse: [],
   nonEnrollCourseList:[],
-  userAddedByAdmin:[]
+  userAddedByAdmin:[],
+  addUserLoading: "idle",
   
 };
 
@@ -61,6 +62,9 @@ const course = createSlice({
     },
     handleAddUserByAdmin: (state, {payload}) => {
       state.userAddedByAdmin = payload
+    },
+    handleAddUserLoading: (state, {payload}) => {
+      state.addUserLoading = payload
     }
     
   },
@@ -79,7 +83,8 @@ export const {
   handleAnnounceCourseWiseList,  
   handleShowAnnouncement,
   handleNonEnrollCourse,
-  handleAddUserByAdmin
+  handleAddUserByAdmin,
+  handleAddUserLoading
   
 } = course.actions;
 
