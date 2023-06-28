@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
 import {
   AddAnnouncementButton,
+  GetConfigureData,
   readCourseDataAnounc,
   readCourseData,
-  
   getRoleListData,
 } from "../../../redux/slices/courses/coursesActions";
 
@@ -34,7 +34,7 @@ const CreateAnnouncement = () => {
     (state) => state?.courseState?.announcementList
   );
   const anouncCourseList = useSelector(
-    (state) => state?.courseState?.anouncCourseList
+    (state) => state?.courseState?.courses
   );
   const announceCourseWise = useSelector(
     (state) => state?.courseState?.courses
@@ -94,11 +94,9 @@ const CreateAnnouncement = () => {
   };
 
   useEffect(() => {
-    dispatch(addAnnouncement());
+    dispatch(GetConfigureData());
     dispatch(getRoleListData());
-    dispatch(readCourseDataAnounc());
-    dispatch(readCourseData());
-    dispatch(readSubjectsData());
+   
   }, []);
 
   return (
@@ -150,8 +148,9 @@ const CreateAnnouncement = () => {
                 Access Type
               </option>
 
-              {anouncCourseList?.length > 0
-                ? announcementData[1]?.configurations?.map((ele) => {
+              {announcementData[1]?.configurations?.map((ele) => {
+
+            
                     return (
                       <>
                         <option value={ele?.configurationId}>
@@ -160,7 +159,7 @@ const CreateAnnouncement = () => {
                       </>
                     );
                   })
-                : null}
+                }
             </select>
           </div>
         </div>
