@@ -1,0 +1,52 @@
+.add-video {
+    padding: 40px 0;
+    width: 1100px;
+    margin: 0 auto;
+}
+
+.add-video-header {
+    padding: 10px 0;
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 30px;
+}
+
+.add-video-form {
+    padding: 10px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.add-video-btn {
+    background-color: black;
+    color: white;
+    transition: all 0.4s;
+
+}
+.add-video-btn:hover{
+    background-color: white;
+    color: black;
+    border-radius: 10px;
+
+}
+
+.add-video-input {
+    /* color: transparent; */
+}
+
+table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+td,
+th {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 12px;
+}
+
+th {
+    font-weight: 700;
+}

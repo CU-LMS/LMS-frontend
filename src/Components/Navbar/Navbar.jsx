@@ -3,6 +3,7 @@ import { useContext } from "react";
 import "./nav.css";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { ImCross } from "react-icons/im";
+import { toast } from "react-toastify";
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,9 +12,10 @@ import {
 } from "react-router-dom";
 import { AuthContext } from "../../AuthManagement/AuthContext";
 import { useNavigate } from "react-router-dom";
-
+import Cookies from 'js-cookie';
 
 export default function Navbar() {
+
   const navigate = useNavigate();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const { authenticated, logout } = useContext(AuthContext);
@@ -21,30 +23,45 @@ export default function Navbar() {
   const [icon, setIcon] = React.useState(true);
   const [hideNav, setHideNav] = React.useState("navheader");
   const [googleAuth, setGoogleAuth] = useState();
-  let credentials = JSON.parse(localStorage?.getItem("cuchd-accessToken"));
+  let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
+
   function toggleFunc() {
     setIcon(!icon);
     seTtoggle("dropdown_menu");
   }
 
-
-
   useEffect(() => {
     if (localStorage.getItem("accessToken")) {
       setIsLoggedIn(true);
-      localStorage.clear()
-      
+      localStorage.clear();
+
     }
-    
   }, []);
 
+  const logUserOut = () => {
 
-  const logUserOut =() => {
     setGoogleAuth(false);
     localStorage.clear("cuchd-accessToken");
-    navigate("/")
-    
+    localStorage.removeItem("cuchdCsrf")
+    navigate("/");
+    // toast.success("Logged Out Successfully", {autoClose: 1000})
+    Cookies.remove();
+
+
+  };
+
+  const loginUserClear = () => {
+    setGoogleAuth(false);
+    localStorage.removeItem("cuchdCsrf");
+
   }
+  const faqRoute = (event) => {
+
+    navigate("/FAQ")
+
+
+
+  };
 
   function hidemenu() {
     setIcon(!icon);
@@ -91,6 +108,7 @@ export default function Navbar() {
                 About
               </a>
             </li>
+
             <li className="navBtn">
               <a href="https://www.cuchd.in/academics/" target="_blank">
                 Academics
@@ -104,22 +122,19 @@ export default function Navbar() {
                 Contact
               </a>
             </li>
+           
+            <li className="navBtn">
+              <a className="faqbtn" onClick={faqRoute}>
+                FAQs
+              </a>
+            </li>
           </ul>
 
-          {credentials?.isAdmin ? (
-            
-              <NavLink to="/">
-                <button onClick={logUserOut} className="action_btn">Logout</button>
-              </NavLink>
-              
-            
-          ) : (
-            
-              <NavLink to="/login">
-                <button className="action_btn">Login</button>
-              </NavLink>
-            
-          )}
+
+          <NavLink to="/login">
+            <button onClick={loginUserClear} className="action_btn">Login</button>
+          </NavLink>
+
 
           <div className="toggle_btn">
             {icon ? (
@@ -138,15 +153,18 @@ export default function Navbar() {
             <NavLink to="/about">About</NavLink>
           </li>
           <li onClick={hidemenu}>
+            <NavLink to="/dashboard">Dashboard</NavLink>
+          </li>
+
+          <li onClick={hidemenu}>
             <NavLink to="/services">Services</NavLink>
           </li>
           <li onClick={hidemenu}>
             <NavLink to="/contact">Contact</NavLink>
           </li>
+          
           <li onClick={hidemenu}>
-            <NavLink to="/tool">Admin</NavLink>
-          </li>
-          <li onClick={hidemenu}>
+
             {" "}
             {/* <NavLink to="/login">
               <button className="action_btn">Login</button>

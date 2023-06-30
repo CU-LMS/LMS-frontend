@@ -1,0 +1,48 @@
+
+
+/* Add this CSS to your existing styles or create a new CSS file */
+footer {
+    background-color: #690000;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .social-icons a {
+    display: inline-block;
+    margin: 0 10px;
+    color: white;
+    font-size: 35px;
+    transition: color 0.3s ease;
+  }
+  
+  .social-icons a:hover {
+    color: #4267B2; /* Facebook blue */
+  }
+  
+  .social-icons a i {
+    line-height: 1;
+  }
+  
+  /* Adjust the size of the icons based on your preference */
+  .social-icons a i.fa-facebook {
+    font-size: 28px;
+  }
+  
+  .social-icons a i.fa-instagram {
+    font-size: 28px;
+  }
+  
+  .social-icons a i.fa-youtube {
+    font-size: 24px;
+  }
+  
+  .social-icons a i.fa-twitter {
+    font-size: 24px;
+  }
+  

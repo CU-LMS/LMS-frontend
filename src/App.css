@@ -1,5 +1,5 @@
 *{
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Poppins', sans-serif !important;
     font-weight: 300;
 }
 .toast-message{
@@ -13,3 +13,312 @@ draggable
 pauseOnHover
 theme="light" */
 }
+
+/* utils */
+.section-heading>h3 {
+    margin: 30px 0 10px;
+    color: #1e283c;
+    font-size: 25px;
+    font-weight: 600;
+    text-align: left;
+  }
+  
+  .section-heading>hr {
+    border-width: 0;
+    height: 3px;
+    background-color: #1e283c;
+    width: 8%;
+    opacity: 1 !important;
+    border-radius: 10px;
+  }
+
+  body {
+    transition: all 0.3s ease;
+  }
+
+  .sidebar-open-body {
+    width: calc(100% - 250px);
+    margin-left: auto;
+  }
+  
+  /* Header */
+  .header {
+    width: 100%;
+    background-color: #1e283c;
+    padding: 8px 0;
+  }
+  
+  .navbar {
+    background-color: transparent !important;
+  }
+  
+  .navbar-img {
+    width: 150px;
+  }
+  
+  .nav-link {
+    text-decoration: none;
+    color: #fff;
+    margin: 0 18px;
+  }
+  
+  .navbar-item {
+    color: #fff;
+    font-size: 30px;
+  }
+  
+  /* Footer */
+  .footer {
+    width: 100%;
+    background-color: #1e283c;
+  }
+  
+  .footer-icon {
+    font-size: 30px;
+    color: #fff;
+    margin-right: 10px;
+  }
+  
+  .footer span {
+    color: #fff;
+  }
+  
+  .footer-link {
+    color: #fff;
+    text-decoration: none;
+  }
+  
+  /* Sidebar */
+  .sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    z-index: 100;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    /* transition: all 0.3s ease; */
+    padding: 10px 0;
+    transform: translateX(-260px);
+    overflow: hidden;
+  }
+  
+  .sidebar-open {
+    transform: translateX(0);
+  }
+  
+  .body-sidebar {
+    height: 100dvh;
+    overflow-y: hidden;
+  }
+  
+  .sidebar-item {
+    padding: 0 15px;
+    transition: background-color 0.3s ease;
+    cursor: pointer;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  .sidebar-item:first-child:hover {
+    background-color: transparent;
+    cursor: default;
+  }
+  
+  .sidebar-item:hover {
+    background-color: #f1f1f1;
+  }
+  
+  .sidebar-item {
+    border-bottom: 1px solid #f1f1f1;
+  }
+  
+  .sidebar-item:last-child {
+    border-bottom: none;
+  }
+  
+  .sidebar-icon {
+    font-size: 25px;
+  }
+  
+  .user-title {
+    font-size: 12px;
+  }
+  
+  .sidebar-item-title {
+    font-size: 15px;
+  }
+  
+  /* Showcase / Carousel */
+  .carousel-item {
+    height: 60vh;
+  }
+  
+  .carousel-item img {
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Services */
+  .service-card {
+    width: 22%;
+    padding: 30px 20px;
+    background-color: #fff;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .service-card:hover {
+    box-shadow: rgba(0, 0, 0, 0.25) 0px 54px 55px, rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px, rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
+    transform: translateY(-5px);
+  }
+  
+  .service-icon {
+    font-size: 55px;
+    color: #1e283c;
+    margin-bottom: 20px;
+  }
+  
+  .service-card-heading {
+    font-size: 22px !important;
+    font-weight: 500;
+  }
+  
+  .service-card-para {
+    font-size: 14px;
+    font-weight: 300;
+  }
+  
+  /* info tabs  */
+  .info-tab-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 30px;
+  }
+  
+  .info-tab {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    cursor: pointer;
+    height: 350px;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+  
+  .info-tab-1::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsla(220, 33%, 18%, 1);
+  
+    background: linear-gradient(135deg, hsla(220, 33%, 18%, 1) 33%, hsla(355, 77%, 52%, 1) 100%);
+  
+    background: -moz-linear-gradient(135deg, hsla(220, 33%, 18%, 1) 33%, hsla(355, 77%, 52%, 1) 100%);
+  
+    background: -webkit-linear-gradient(135deg, hsla(220, 33%, 18%, 1) 33%, hsla(355, 77%, 52%, 1) 100%);
+  
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#1E283C", endColorstr="#E32636", GradientType=1);
+    pointer-events: none;
+    opacity: 0.89;
+    z-index: 10;
+  }
+  
+  .info-tab-2::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: hsla(220, 33%, 18%, 1);
+  
+    background: linear-gradient(135deg, hsla(220, 33%, 18%, 1) 33%, hsla(355, 77%, 52%, 1) 100%);
+  
+    background: -moz-linear-gradient(135deg, hsla(220, 33%, 18%, 1) 33%, hsla(355, 77%, 52%, 1) 100%);
+  
+    background: -webkit-linear-gradient(135deg, hsla(220, 33%, 18%, 1) 33%, hsla(355, 77%, 52%, 1) 100%);
+  
+    filter: progid: DXImageTransform.Microsoft.gradient(startColorstr="#1E283C", endColorstr="#E32636", GradientType=1);
+    pointer-events: none;
+    opacity: 0.89;
+    z-index: 10;
+  }
+  
+  .info-tab-icon {
+    font-size: 60px;
+    color: #f6f6f6;
+    margin-bottom: 20px;
+  }
+  
+  .info-tab-content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 100;
+    padding: 20px 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+  
+  .info-tab-content h3 {
+    color: #fff;
+  }
+  
+  .info-tab-content p {
+    color: #fff;
+    font-weight: 300;
+    font-size: 14px;
+  }
+  
+  .info-tab:hover .info-tab-content {
+    transform: scale(1.1);
+  }
+  
+  
+  /* Catalog */
+  .catalog-cards {
+    grid-gap: 15px;
+  }
+  
+  /* Profile */
+  .profile-header {
+    padding: 40px 30px;
+    background-color: #2A3346;
+    color: #fff;
+    border-bottom: 1px solid #e32636;
+  }
+  .profile-tabs {
+    width: 100%;
+    background-color: #d4d4d4;
+  }
+  .profile-tab {
+    padding: 15px 30px;
+    cursor: pointer;
+  }
+  .active-tab {
+    background-color: #f1f1f1;
+  }
+  .sidebar-open .dashboard{
+    width: calc(100%-250px);
+    float: right;
+  };
+  

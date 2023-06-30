@@ -2,6 +2,7 @@
   background-image: url(/src/asset/Dashboard-Background-Image-4.jpg);
   height: 100%;
 }
+
 .carousel-inner {
   position: relative;
   width: 100%;
@@ -18,13 +19,10 @@
 }
 
 .middle_row {
-  /* display: flex;
-  align-items: center;
-  justify-content: space-around; */
+
   margin: 30px 20px;
   display: grid;
   grid-gap: 20px;
-  /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr; */
   grid-template-columns: repeat(auto-fit, minmax(264px, 1fr));
   justify-items: center;
 }
@@ -139,10 +137,6 @@
 
 }
 
-
-
-.dash_courseCard:hover {
-}
 .imageArea1 {
   /* height: 164px; */
   transform: scale(1);
@@ -213,7 +207,7 @@ margin-left: 5px;
   background-color: rgb(62, 24, 233);
   border-radius: 5px;
   color: white;
-  width: 100px;
+  width: 200px;
   height: 33px;
   border: none;
 }

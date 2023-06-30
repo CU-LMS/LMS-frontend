@@ -7,19 +7,31 @@
   padding: 30px;
 }
 
-.container {
+.containerLogin {
   max-width: 940px;
   position: relative;
   width: 100%;
   background-color: #fff;
   padding: 40px 30px;
-  box-shadow: 15px 20px 12px  rgba(0, 0, 0, 0.2);
+  box-shadow: 15px 20px 12px rgba(0, 0, 0, 0.2);
   perspective: 2800px;
   /* border-radius: 15px; */
   /* border: 3px solid #690000; */
 }
+.buttonsubmithandle{
+  font-family: 'Poppins', sans-serif !important;
+  height: 45px !important;
+  border-radius: 15px;
+  transition: all 0.4s;
+}
+.buttonsubmithandle:hover{
+  border-radius: 1px;
+  border: 1px solid rgb(187, 255, 0);
+  box-shadow: 0px 17px 12px -15px #111;
 
-.container .cover {
+}
+
+.containerLogin .cover {
   position: absolute;
   top: 0;
   left: 50%;
@@ -32,7 +44,7 @@
   /* backface-visibility: hidden; */
 }
 
-.container .cover::before {
+.containerLogin .cover::before {
   content: "";
   position: absolute;
   height: 100%;
@@ -43,10 +55,10 @@
   /* z-index: 6; */
 }
 
-.container #flip:checked ~ .cover {
+.containerLogin #flip:checked ~ .cover {
   transform: rotatey(-180deg);
 }
-.container .cover .front .frontImg {
+.containerLogin .cover .front .frontImg {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -59,7 +71,7 @@
   backface-visibility: hidden;
 }
 
-.container .cover .back .backImg {
+.containerLogin .cover .back .backImg {
   transform: rotateY(180deg);
   position: absolute;
   height: 100%;
@@ -69,12 +81,12 @@
   /* backface-visibility: hidden; */
 }
 
-.container form {
+.containerLogin form {
   height: 100%;
   width: 100%;
   background: #fff;
 }
-.container .form-content {
+.containerLogin .form-content {
   display: flex;
   align-items: center;
   justify-content: space-around;
@@ -91,7 +103,23 @@
   font-weight: 500;
   color: #333;
 }
-
+.action_btn_2 {
+  cursor: pointer;
+  position: absolute;
+  z-index: 99999;
+  top: 18px;
+  right: 61px;
+  background-color: orange;
+  color: #fff;
+  padding: 0.5rem 1rem;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.4s;
+}
 .form-content .title::before {
   content: "";
   position: absolute;
@@ -187,12 +215,12 @@ form .form-content label:hover {
   margin-top: 25px;
 }
 
-.container #flip {
+.containerLogin #flip {
   display: none;
 }
 
 @media (max-width: 775px) {
-  .container .cover {
+  .containerLogin .cover {
     display: none;
   }
   .form-content .login-form,
@@ -203,10 +231,10 @@ form .form-content label:hover {
   .form-content .signUp-form {
     display: none;
   }
-  .container #flip:checked ~ form .signUp-form {
+  .containerLogin #flip:checked ~ form .signUp-form {
     display: block;
   }
-  .container #flip:checked ~ form .login-form {
+  .containerLogin #flip:checked ~ form .login-form {
     display: none;
   }
 }
@@ -216,7 +244,8 @@ form .form-content label:hover {
   display: inline-flex;
   align-items: center;
   /* color: rgba(0, 0, 0, 0.54); */
-  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px, rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 2px 2px 0px,
+    rgba(0, 0, 0, 0.24) 0px 0px 1px 0px;
   padding: 0px;
   border-radius: 5px;
   border: 1px solid rgb(204, 196, 196) !important;
@@ -229,22 +258,20 @@ form .form-content label:hover {
   font-size: 16px;
   color: #477c87; */
 }
-.google-div :hover{
+.google-div :hover {
   background-color: rgb(255, 255, 255);
   color: rgb(0, 0, 0);
   font-weight: 600;
-
-  
 }
-.google-button-text{
+.google-button-text {
   font-weight: 400;
   font-size: 16px;
   /* color: #477c87; */
-  color: #3F7EE8;
+  color: #3f7ee8;
   margin-bottom: 0 !important;
 }
 
-.or{
+.or {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -252,37 +279,33 @@ form .form-content label:hover {
   flex-direction: column;
 }
 
-.or-line-left{
-
+.or-line-left {
 }
-.line-container{
+.line-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.linehr{
+.linehr {
   flex-grow: 1;
   border: 0.5px solid rgb(148, 141, 141);
   height: 1px;
- 
 }
-.error-message{
-  color: #E42A2A;
+.error-message {
+  color: #e42a2a;
   font-size: 13px;
   /* max-width: 50%; */
   width: 200px;
-
 }
-.google-logout{
+.google-logout {
   bottom: 0;
 }
-.buttonSubmit{
+.buttonSubmit {
   width: 100%;
 }
-.buttonsubmithandle{
+.buttonsubmithandle {
   width: 100%;
   background-color: #690000;
   color: white;
   border: none;
-
 }

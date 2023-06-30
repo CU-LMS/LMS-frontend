@@ -11,11 +11,18 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-
+import { gmailSignUp } from "../../redux/slices/authentication/authSliceAction";
 import { manualSignIn } from "../../redux/slices/authentication/authSliceAction";
+import frontImage from "../../asset/loginpage.jpeg";
+import frontImage2 from "../../asset/frontPageCU.jpeg";
+import frontImage3 from "../../asset/frontPageCU3.jpg";
+import building from "../../asset/Building.png";
+import LoadingPage from "../../hoc/LoadingPage";
+import Modal from "react-modal";
 import "./login_signUp.css";
 
 export default function LoginSignUp() {
+  const [user, setUser] = useState({});
   const isAuth = useSelector((state) => state.authenticationState.isAuth);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -24,6 +31,9 @@ export default function LoginSignUp() {
   const [googleAuth, setGoogleAuth] = useState(false);
   const [authenticated, setAuthenticated] = useState(
     localStorage.getItem(localStorage.getItem("authenticated") || false)
+  );
+  const addUserLoading = useSelector(
+    (state) => state?.courseState?.addUserLoading
   );
 
   const {
@@ -36,7 +46,6 @@ export default function LoginSignUp() {
 
   useEffect(() => {
     if (isAuth === true) {
-      
       navigate("/view-content");
     }
   }, [isAuth]);
@@ -44,32 +53,17 @@ export default function LoginSignUp() {
   const onSubmit = (data) => {
     console.log("dddddddddddddd", data);
     dispatch(manualSignIn(data.userEmail, data.userPassword));
-
+    // cookies.clear();
   };
 
   const users = [{ username: "", password: "" }];
 
-  useEffect(() => {
-    function start() {
-      gapi.client.init({
-        clientId: clientId,
-        scope: "email",
-      });
-    }
-
-    gapi.load("client:auth2", start);
-  }, []);
-
   const clientId =
-    "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
+    // "549522418070-9f2edlmcvvuj0guri0hpu2jnd5fnl2vu.apps.googleusercontent.com";
+    "1094053124167-fr69k3addid69dikrvnreleq1es47u9j.apps.googleusercontent.com";
 
   const onLoginSuccess = (res) => {
-    console.log("Login Success:", res);
-    console.log("Login Success:", res.profileObj.name);
-
-    setGoogleAuth(true);
-    localStorage.setItem("profile", JSON.stringify(res.profileObj));
-    localStorage.setItem("accessToken", JSON.stringify(res.accessToken));
+    dispatch(gmailSignUp(res.profileObj));
   };
 
   const onLoginFailure = (res) => {
@@ -89,29 +83,32 @@ export default function LoginSignUp() {
             clientId={clientId}
             buttonText="Sign Out"
             onLogoutSuccess={logoutSuccess}
-            // render={(renderProps) => (
-            //   <button
-            //     className="google-logout"
-            //     onClick={renderProps.onClick}
-            //     disabled={renderProps.disabled}
-            //     style={{ cursor: "pointer" }}
-            //   >
-            //     Sign out
-            //   </button>
-            // )}
+            render={(renderProps) => (
+              <button
+                className="action_btn_2"
+                onClick={renderProps.onClick}
+                disabled={renderProps.disabled}
+                style={{ cursor: "pointer" }}
+              >
+                Sign out
+              </button>
+            )}
           />
+
           <Dashboard />
         </>
       ) : (
         <div className="body">
-          <div className="container">
+          <div className="containerLogin">
             <input type="checkbox" id="flip" />
             <div className="cover">
               <div className="front">
                 <img
                   className="frontImg"
                   id="frontImg"
-                  src="https://images.shiksha.com/mediadata/images/1642580468phpQDgPNe.jpeg"
+                  // src="https://images.shiksha.com/mediadata/images/1642580468phpQDgPNe.jpeg"
+                  // src={frontImage3}
+                  src={building}
                   alt=""
                 />
               </div>
@@ -165,7 +162,12 @@ export default function LoginSignUp() {
                       <a href="#">Forgot Password</a>
                     </div>
                     <div className="buttonSubmit">
-                      <button className="buttonsubmithandle" onClick={handleSubmit(onSubmit)}>Submit</button>
+                      <button
+                        className="buttonsubmithandle"
+                        onClick={handleSubmit(onSubmit)}
+                      >
+                        Submit
+                      </button>
                     </div>
 
                     <div className="line-container">
@@ -180,7 +182,7 @@ export default function LoginSignUp() {
                       onSuccess={onLoginSuccess}
                       onFailure={onLoginFailure}
                       cookiePolicy={"single_host_origin"}
-                      isSignedIn={true}
+                      // isSignedIn={true}
                     >
                       <p className="google-button-text">Continue with Google</p>
                     </GoogleLogin>
@@ -243,6 +245,32 @@ export default function LoginSignUp() {
           </div>
         </div>
       )}
+      <Modal
+        isOpen={addUserLoading === "loading" ? true : false}
+    
+        shouldCloseOnOverlayClick={false}
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            maxHeight: "90vh",
+            overflow: "auto",
+            backgroundColor: "transparent",
+            borderRadius: "13px",
+            border: "none",
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        }}
+      >
+      
+        <LoadingPage />
+      </Modal>
     </>
   );
 }
