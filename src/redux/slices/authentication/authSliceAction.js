@@ -45,7 +45,7 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
           "cuchdCsrf",
           JSON.stringify(localStorageObj)
         );
-        if(response.data.data.roleId===1)
+         if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3 )
         {
           localStorage.setItem(
             "adminData",
@@ -60,14 +60,20 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
           JSON.stringify(response.data.data)
         );
         }
-
-
-        if(response.data.data.roleId === 1){
-          window.location.href = "/tool";
+        if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3 )
+        {
+         // navigate("/admin-dashboard", {replace: true})
+          window.location.href="/admin-dashboard"
         }
-        if(response.data.data.roleId === 5){
+        if(response.data.data.roleId === 5 || response.data.data.roleId === 4){
           window.location.href = "/dashboard";
         }
+        // if(response.data.data.roleId === 1){
+        //   window.location.href = "/tool";
+        // }
+        // if(response.data.data.roleId === 5){
+        //   window.location.href = "/dashboard";
+        // }
       } 
       disaptch(handleLoding("idle"));
       

@@ -2,10 +2,16 @@ import React from "react";
 import { Card } from "react-bootstrap";
 import "./AdminCourses.css";
 // import introVideo from "../../asset/introVideo.mp4";
-
 import placeholder12 from "../../../asset/placeholder12.png";
+import { useNavigate } from "react-router-dom";
 
 const AdminCourses = () => {
+  const navigate = useNavigate();
+
+  const courseLink = (event) => {
+    navigate("/tool");         
+ };
+ 
   return (
     <>
       <div id="admin-dashboard">
@@ -22,8 +28,8 @@ const AdminCourses = () => {
                 <div className="card-body">
                   <h5 className="card-title">Create Courses</h5>
 
-                  <a href="#" className="btn btn-primary">
-                    Go somewhere
+                  <a  onClick={courseLink} className="btn btn-primary">
+                    Create
                   </a>
                 </div>
               </div>

@@ -22,7 +22,7 @@ const LoginProtectedRoute = ({ children }) => {
       if (response.data.statusCode === 200) {
         
         if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3 ){
-          navigate("/tool", {replace: true})
+          navigate("/admin-dashboard", {replace: true})
         }
         if(response.data.data.roleId === 5 || response.data.data.roleId === 4){
           navigate("/dashboard", {replace: true})
