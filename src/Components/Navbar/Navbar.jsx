@@ -162,9 +162,7 @@ export default function Navbar() {
           <li onClick={hidemenu}>
             <NavLink to="/contact">Contact</NavLink>
           </li>
-          <li onClick={hidemenu}>
-            <NavLink to="/tool">Admin</NavLink>
-          </li>
+          
           <li onClick={hidemenu}>
 
             {" "}

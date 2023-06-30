@@ -88,7 +88,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
           </p>
         </div>
         <Link
-          to="/tool"
+          to="/admin-dashboard"
           className="sidebar-item d-flex align-items-center py-3"
           data-value="dashboard"
           onClick={handleNavigate}
@@ -97,7 +97,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
           <p className="mb-0 sidebar-item-title">Dashboard</p>
         </Link>
         <Link
-          to="/tool"
+          to="/admin-courses"
           className="sidebar-item d-flex align-items-center py-3"
           data-value="catalog"
           onClick={handleNavigate}
