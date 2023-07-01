@@ -148,12 +148,12 @@ const EnrolledCourseContent = () => {
                   <tr>
                     <td>Start Date :</td>
 
-                    <td>{currentCourse.dStartDate}</td>
+                    <td>{new Date(currentCourse?.dStartDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                   <tr>
                     <td>End Date :</td>
 
-                    <td>{currentCourse.dEndDate}</td>
+                    <td>{new Date(currentCourse?.dEndDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                 </tbody>
               </table>

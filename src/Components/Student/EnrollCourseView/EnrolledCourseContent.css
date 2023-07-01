@@ -114,6 +114,7 @@
   flex-direction: row;
   /* align-items: baseline; */
   background-color: #d9d9d9;
+  padding: 10px 0;
 }
 .left-body-view{
   /* background-color: green; */
@@ -134,7 +135,7 @@
   width: 100% !important;
   height: 400px !important;
   margin-top: 20px;
-
+  padding: 35px;
 }
 .video-thumb{
   width: 100% !important;
@@ -164,7 +165,7 @@
   
 }
 .header6 tr td{
-padding:10px 0px;
+padding:10px;
 
 }
 .header6 ul{

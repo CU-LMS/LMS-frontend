@@ -23,6 +23,7 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import MainFooter from "./MainFooter";
+import { format } from 'date-fns'
 
 
 import "./ViewContent.css";
@@ -66,6 +67,10 @@ const ViewContent = () => {
   useEffect(() => {
     dispatch(readCourseData());
   }, []);
+
+  // const formattedStartDate = format(new Date(currentCourse?.dStartDate), 'dd-MM-yyyy');
+  // console.log(formattedStartDate);  
+  console.log(new Date(currentCourse?.dStartDate).toLocaleDateString());
 
   return (
     <>
@@ -157,12 +162,12 @@ const ViewContent = () => {
                   <tr>
                     <td>Start Date :</td>
 
-                    <td>{currentCourse.dStartDate}</td>
+                    <td>{new Date(currentCourse?.dStartDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                   <tr>
                     <td>End Date :</td>
 
-                    <td>{currentCourse.dEndDate}</td>
+                    <td>{new Date(currentCourse?.dEndDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                 </tbody>
               </table>
