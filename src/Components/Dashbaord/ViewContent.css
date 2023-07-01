@@ -359,7 +359,7 @@ margin-right: 10px;
 color: white;
 }
 .show-video{
-  width: 100%;
+  width: 100% !important;
 }
 td{
   color: black;
