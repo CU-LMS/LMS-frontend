@@ -40,6 +40,7 @@ import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 import Profile from "./Components/Admin/Profile";
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
 import { Helmet } from "react-helmet";
+import AdminCourses from "./Components/Admin/AdminCourses/AdminCourses";
 
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
@@ -167,6 +168,8 @@ function App() {
               }
             />
 
+            
+
             <Route
               path="/create-announcement"
               element={
@@ -180,6 +183,14 @@ function App() {
               element={
                 <AdminProtectedRoute>
                   <AdminDashBoard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin-courses"
+              element={
+                <AdminProtectedRoute>
+                  <AdminCourses />
                 </AdminProtectedRoute>
               }
             />

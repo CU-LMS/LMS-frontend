@@ -54,8 +54,9 @@ export const createCourse = (courseData) => async (dispatch) => {
       "file",
       courseData.courseVideo,
       courseData.courseVideo.name
-    );
-
+    );    
+    newFormData.append("isDraft", courseData?.isDraft);
+    
     let config = {
       method: "post",
       url: "course/AddCourseFilesDoc",
