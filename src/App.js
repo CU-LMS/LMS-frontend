@@ -39,8 +39,12 @@ import EnrolledCourseContent from "./Components/Student/EnrollCourseView/Enrolle
 import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 import Profile from "./Components/Admin/Profile";
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
-import { Helmet } from "react-helmet";
 import AdminCourses from "./Components/Admin/AdminCourses/AdminCourses";
+import AddNews from "./Components/Admin/AddNews";
+import LatestNews from "./Components/Student/LatestNews";
+import Catalog from "./Components/Student/Catalog";
+
+
 
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
@@ -138,6 +142,23 @@ function App() {
                 </StudentProtectedRoute>
               }
             />
+            <Route
+              path="/latest-news"
+              element={
+                <StudentProtectedRoute>
+                  <LatestNews />
+                </StudentProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/catalog"
+              element={
+                <StudentProtectedRoute>
+                  <Catalog />
+                </StudentProtectedRoute>
+              }
+            />
 
             <Route
               path="/mycourses"
@@ -168,13 +189,20 @@ function App() {
               }
             />
 
-            
-
             <Route
               path="/create-announcement"
               element={
                 <AdminProtectedRoute>
                   <CreateAnnouncement />
+                </AdminProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/add-news"
+              element={
+                <AdminProtectedRoute>
+                  <AddNews />
                 </AdminProtectedRoute>
               }
             />
@@ -186,23 +214,7 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
-            <Route
-              path="/admin-courses"
-              element={
-                <AdminProtectedRoute>
-                  <AdminCourses />
-                </AdminProtectedRoute>
-              }
-            />
-            <Route
-              path="/profile"
-              element={
-                <AdminProtectedRoute>
-                  {" "}
-                  <Profile />{" "}
-                </AdminProtectedRoute>
-              }
-            />
+            <Route path="/profile" element={<AdminProtectedRoute> <Profile /> </AdminProtectedRoute>} />
 
             {/* <Route path="/create-announcement" element={<CreateAnnouncement />} /> */}
             {/* <Route path="/announcement" element={<AnnouncementTemplate />} /> */}

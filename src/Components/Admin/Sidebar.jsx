@@ -74,90 +74,107 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
 
   const handleNavigate = () => {
     setIsSidebar(false);
-    
+
   };
 
+  // handle close sidebar
+  const handleCloseSidebar = () => {
+    setIsSidebar(false);
+  }
+
   return (
-    <div className={`sidebar ${isSidebar && "sidebar-open"}`}>
-      <div className="sidebar-content">
-        <div className="sidebar-item d-flex align-items-center py-4">
-          <FaUserCircle className="sidebar-icon me-3" />
-          <p className="mb-0 user-title">
-            <i>You are logged in as</i> <br />{" "}
-            <strong className="loginUser">{userData?.firstName}</strong>{" "}
-          </p>
-        </div>
-        <Link
-          to="/admin-dashboard"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="dashboard"
-          onClick={handleNavigate}
-        >
-          <RiDashboardFill className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Dashboard</p>
-        </Link>
-        <Link
-          to="/admin-courses"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="catalog"
-          onClick={handleNavigate}
-        >
-          <MdStorage className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Courses</p>
-        </Link>
-        <Link
-          to="/catalog"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="catalog"
-          onClick={handleNavigate}
-        >
-          <MdStorage className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Users</p>
-        </Link>
+    <div className={`sidebar-overlay ${isSidebar && "sidebar-show"}`} onClick={handleCloseSidebar}>
+      <div className={`sidebar ${isSidebar && "sidebar-open"}`}>
+        <div className="sidebar-content">
+          <div className="sidebar-item d-flex align-items-center py-4">
+            <FaUserCircle className="sidebar-icon me-3" />
+            <p className="mb-0 user-title">
+              <i>You are logged in as</i> <br />{" "}
+              <strong className="loginUser">{userData?.firstName}</strong>{" "}
+            </p>
+          </div>
+          <Link
+            to="/admin-dashboard"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="dashboard"
+            onClick={handleNavigate}
+          >
+            <RiDashboardFill className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Dashboard</p>
+          </Link>
+          <Link
+            to="/admin-courses"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="catalog"
+            onClick={handleNavigate}
+          >
+            <MdStorage className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Courses</p>
+          </Link>
+          <Link
+            to="/catalog"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="catalog"
+            onClick={handleNavigate}
+          >
+            <MdStorage className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Users</p>
+          </Link>
 
-        <Link
-          to="/create-announcement"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="announcement"
-          onClick={handleNavigate}
-        >
-          <BsNewspaper className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Announcements</p>
-        </Link>
+          <Link
+            to="/create-announcement"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="announcement"
+            onClick={handleNavigate}
+          >
+            <BsNewspaper className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Announcements</p>
+          </Link>
 
-        <Link
-          to="/create-user"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="announcement"
-          onClick={handleNavigate}
-        >
-          <BsNewspaper className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Add User</p>
-        </Link>
+          <Link
+            to="/create-user"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="announcement"
+            onClick={handleNavigate}
+          >
+            <BsNewspaper className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Add User</p>
+          </Link>
 
-        <Link
-          to="/calendar"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="calendar"
-          onClick={handleNavigate}
-        >
-          <BsCalendarWeek className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Calendar</p>
-        </Link>
-        <Link
-          to="/profile"
-          className="sidebar-item d-flex align-items-center py-3"
-          data-value="profile"
-          onClick={handleNavigate}
-        >
-          <FaUserEdit className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title">Profile</p>
-        </Link>
-        <div className="sidebar-item d-flex align-items-center py-3">
-          <MdLogout className="sidebar-icon me-3" />
-          <p className="mb-0 sidebar-item-title" onClick={logUserOut}>
-            Logout
-          </p>
+          <Link
+            to="/add-news"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="announcement"
+            onClick={handleNavigate}
+          >
+            <BsNewspaper className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Add News</p>
+          </Link>
+
+          <Link
+            to="/calendar"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="calendar"
+            onClick={handleNavigate}
+          >
+            <BsCalendarWeek className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Calendar</p>
+          </Link>
+          <Link
+            to="/profile"
+            className="sidebar-item d-flex align-items-center py-3"
+            data-value="profile"
+            onClick={handleNavigate}
+          >
+            <FaUserEdit className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title">Profile</p>
+          </Link>
+          <div className="sidebar-item d-flex align-items-center py-3">
+            <MdLogout className="sidebar-icon me-3" />
+            <p className="mb-0 sidebar-item-title" onClick={logUserOut}>
+              Logout
+            </p>
+          </div>
         </div>
       </div>
     </div>

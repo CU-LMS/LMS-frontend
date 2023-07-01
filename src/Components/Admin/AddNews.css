@@ -1,0 +1,7 @@
+.btn {
+    width: auto !important;
+    padding: 10px 30px;
+}
+.btn:first-child {
+    margin-right: 20px;
+}

@@ -40,15 +40,15 @@ const Profile = () => {
 
                     <div className="profile-section">
                         <p className='mb-0'><strong>Username</strong></p>
-                        <p>Leonardo da Vinci</p>
+                        <p className='make-ellipses'>Leonardo da Vinci</p>
                     </div>
                     <div className="profile-section">
                         <p className='mb-0'><strong>Email</strong></p>
-                        <p>leonardo.da.vinci@gmail.com</p>
+                        <p className='make-ellipses'>leonardo.da.vinci@gmail.com</p>
                     </div>
                     <div className="profile-section">
                         <p className='mb-0'><strong>Department</strong></p>
-                        <p>IDOL</p>
+                        <p >IDOL</p>
                     </div>
 
                     <button className='btn btn-primary mb-2 w-100'>Edit Profile</button>
