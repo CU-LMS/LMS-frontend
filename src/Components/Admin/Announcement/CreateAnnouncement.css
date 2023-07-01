@@ -22,3 +22,31 @@
 .multi-option-drop {
   height: 50px;
 }
+.do-and-dons {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+.doanddont-button {
+  color: black;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+;
+}
+.doanddont-button:hover{
+  /* background-color: #76b1b1; */
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: 600;
+
+
+  
+}
+.passage123{
+  color: white;
+}

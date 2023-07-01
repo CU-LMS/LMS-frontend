@@ -39,6 +39,7 @@ import EnrolledCourseContent from "./Components/Student/EnrollCourseView/Enrolle
 import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 import Profile from "./Components/Admin/Profile";
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
+import { Helmet } from "react-helmet";
 
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
@@ -72,6 +73,7 @@ function App() {
 
   return (
     <>
+     
       <AuthProvider>
         <SidebarContextProvider>
           {roleId == 5 || roleId == 4 ? (
