@@ -13,6 +13,7 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import MainFooter from "../../Dashbaord/MainFooter";
+import rankone from "../../../asset/rankone.jpg";
 
 
 import "./EnrolledCourseContent.css";
@@ -200,7 +201,7 @@ const EnrolledCourseContent = () => {
           <p>Develope more skills and knowledge by our best Teacher's </p>
         </div>
         <div className="right-book">
-          <img className="books-image" src={top} />
+          <img className="books-image" src={rankone} />
         </div>
       </div>
 
@@ -208,8 +209,6 @@ const EnrolledCourseContent = () => {
         <p className="heading-view-books3">
           For more Information, say Hello CU!, we will get back to you.
         </p>
-       
-        
       </div>
 
      

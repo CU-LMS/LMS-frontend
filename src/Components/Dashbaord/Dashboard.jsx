@@ -15,12 +15,14 @@ import ImageSlider from "./ImageSlider";
 import { useNavigate } from "react-router-dom";
 import { readNonErollCourseData } from "../../redux/slices/courses/coursesActions";
 import { useDispatch, useSelector } from "react-redux";
+import CourseRated from "../Student/courseRating/CourseRated";
+
 
 const Dashboard = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const courses = useSelector((state) => state.courseState.nonEnrollCourseList);
-
+  const rating = useSelector(( state) => state.ratingState.ratingByStudent);
   const [isLoading, setLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [hideFooter, setHideFooter] = useState("dashboardFooter");
@@ -28,6 +30,7 @@ const Dashboard = () => {
   
   useEffect(() => {
     dispatch(readNonErollCourseData());
+
   }, []);
 
   useEffect(() => {
@@ -89,7 +92,6 @@ const Dashboard = () => {
       <div className="dash_course">
 
         {courses?.map((ele, id) => {
-          // console.log("GGGGGGGGGGGG", courses)
           return (
             <>
               <div className="dash_courseCard" key={id.courseId}>
@@ -113,7 +115,7 @@ const Dashboard = () => {
                 >
                   <h6 style={{ fontWeight: 600 }}>{ele.courseName}</h6>
                   <p className="dash_cardInfo">{ele.courseCode}</p>
-
+       
                   <button
                     className="enrollButtonNow"
                     onClick={() => handleClickButtonRoll(ele.courseId)}

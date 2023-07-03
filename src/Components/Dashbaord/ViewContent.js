@@ -23,6 +23,7 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import MainFooter from "./MainFooter";
+import rankone from "../../asset/rankone.jpg"
 
 
 import "./ViewContent.css";
@@ -209,7 +210,7 @@ const ViewContent = () => {
           <p>Develope more skills and knowledge by our best Teacher's </p>
         </div>
         <div className="right-book">
-          <img className="books-image" src={top} />
+          <img className="books-image" src={rankone} />
         </div>
       </div>
 
