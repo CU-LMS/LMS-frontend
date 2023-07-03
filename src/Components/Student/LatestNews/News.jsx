@@ -1,18 +1,36 @@
-import React from 'react';
 import Buk from '../../../asset/buk.jpg';
+import { useDispatch,useSelector } from "react-redux";
+import React, { useEffect, useState } from "react";
+import { readNewsData } from '../../../redux/slices/Common/dashboardActions';
 
 const News = () => {
+
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(readNewsData());   
+   
+  }, []);
+
+  const newsData = useSelector(
+    (state) => state?.dashboardState?.getNewsData
+  );
+
+  console.log("news data",newsData);
   return (
+    <>
+    {newsData &&
+          newsData.map((row) => (
     <div className='news row'>
         <div className="col-lg-3 p-0">
-            <img src={Buk} alt="news-img" className='news-image'/>
+            <img src={row?.thumbNailUrl} alt="news-img" className='news-image'/>
         </div>
         <div className="col-lg-9 px-4 py-2">
-            <h3 className='news-title text-start'>This is a Demo News Title</h3>
+            <h3 className='news-title text-start'>{row?.newsTitle}</h3>
             <hr className='mb-3'/>
-            <p className='news-content'>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quo modi rem harum quaerat cupiditate consectetur explicabo perspiciatis, deleniti vel at animi ab unde, debitis dolor numquam praesentium soluta. Eligendi error modi numquam corporis doloremque quaerat iusto, officia non reiciendis dolore!</p>
+            <p className='news-content'>{row?.newsDesc}</p>
         </div>
-    </div>
+    </div>))}
+    </>
   )
 }
 
