@@ -2,8 +2,6 @@ import { handleRating } from "./RatingCourseSlice";
 import { handleAddUserLoading } from "../courses/coursesSlice";
 import http from "../../../hoc/axiosClient";
 
-
-
 // add course rating api call 
 
 export const ratingCourseAction = (courseId, courseRating) => async (dispatch) => {
@@ -24,7 +22,6 @@ export const ratingCourseAction = (courseId, courseRating) => async (dispatch) =
     let response = await http(config);
     console.log(response, "rating response");
     dispatch(handleRating(response?.data?.data));
-
     dispatch(handleAddUserLoading("idle"));
   } catch (err) {
     dispatch(handleAddUserLoading("idle"));

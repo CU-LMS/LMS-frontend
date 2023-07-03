@@ -197,7 +197,7 @@ const EnrolledCourseContent = () => {
 
       <div className="books-reference">
         <div className="left-book">
-          <p className="heading-view-books">Get your dream come true.</p>
+          <p className="heading-view-books">Make your dream come true.</p>
           <p>Develop more skills and knowledge by our best Teacher's </p>
         </div>
         <div className="right-book">
