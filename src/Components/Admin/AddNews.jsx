@@ -22,10 +22,15 @@ const AddNews = () => {
       const handleAddNewsData = () => {
         dispatch(addNews(formData));       
       };
+
+      const handleAddNews = (e) => {
+        e.preventDefault();
+        handleAddNewsData();
+      }
     return (
         
         <div className='add-news py-3 d-flex justify-content-center align-items-center'>
-            <form className="form-container">
+            <form className="form-container" onSubmit={handleAddNews}>
                 <div className="section-heading mb-5">
                     <h3 className="mt-0">Add News</h3>
                     <hr />
@@ -57,7 +62,7 @@ const AddNews = () => {
                                 <textarea className='form-control' placeholder='Enter Description....' 
                                  onChange={(e) =>
                                     setFormData({ ...formData, newsDesc: e.target.value })
-                                  }>
+                                  } required>
 
                                 </textarea>
                             </div>
@@ -72,7 +77,7 @@ const AddNews = () => {
                             <div className="form-group">
                                 <input type="file" style={{ width: 'auto' }} 
                                  accept=".png, .jpg, .jpeg"
-                                 onChange={handleFileUpload}/>
+                                 onChange={handleFileUpload} required/>
                             </div>
                         </div>
                     </div>
@@ -87,7 +92,7 @@ const AddNews = () => {
                                  onChange={(e) =>
                                     setFormData({ ...formData, newsStartDate: e.target.value })
                                   }
-                                />
+                                required/>
                             </div>
                         </div>
                         {/* end date */}
@@ -100,7 +105,7 @@ const AddNews = () => {
                                 onChange={(e) =>
                                     setFormData({ ...formData, newsEndDate: e.target.value })
                                   }
-                                />
+                                required/>
                             </div>
                         </div>
                     </div>
@@ -112,7 +117,7 @@ const AddNews = () => {
                         <div className="col">
                             <div className="form-group d-flex justify-content-end align-items-center">
                                 <button type='button' className='btn btn-outline-warning'>Cancel</button>
-                                <button type='button' className='btn btn-primary' onClick={handleAddNewsData}>Submit</button>
+                                <button type='submit' className='btn btn-primary'>Submit</button>
                             </div>
                         </div>
                     </div>
