@@ -17,9 +17,7 @@ const LatestNews = () => {
             </div>
 
             <div className="container">
-                <News />
-                <News />
-                <News />
+                <News />             
             </div>
         </div>
     )
