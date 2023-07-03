@@ -11,10 +11,12 @@ import {
 import { ImBooks } from "react-icons/im";
 import "./MyCourse.css"
 import axios from "axios";
+import CourseRated from "../Student/courseRating/CourseRated";
 
 import { useNavigate } from "react-router-dom";
 import { readMyCourseData } from "../../redux/slices/courses/coursesActions";
 import { useDispatch, useSelector } from "react-redux";
+
 
 const MyCourse = () => {
   const navigate = useNavigate();
@@ -47,7 +49,6 @@ const MyCourse = () => {
       <div className="dash_course">
 
         {courses?.map((ele, id) => {
-          // console.log("GGGGGGGGGGGG", courses)
           return (
             <>
               <div className="dash_courseCard" key={id?.courseId}>
@@ -71,7 +72,7 @@ const MyCourse = () => {
                 >
                   <h6 style={{ fontWeight: 600 }}>{ele.courseName}</h6>
                   <p className="dash_cardInfo">{ele.courseCode}</p>
-
+                  <CourseRated courseId={ele?.courseId} />
                   <button
                     className="enrollButtonNow"
                     onClick={() => handleClickButtonRoll(ele?.courseId)}

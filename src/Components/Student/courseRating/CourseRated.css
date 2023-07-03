@@ -1,0 +1,16 @@
+.starrate{
+    margin-bottom: 15px;
+  }
+  
+  .ratingradio{
+    display:none;
+  }
+  
+  
+  .star{
+    cursor: pointer;
+  
+    margin-left: 10px;
+   
+  
+  }
