@@ -285,6 +285,7 @@ const Home = () => {
               <div className="col-md-6">
               <ReactPlayer
                   className="show-video"
+                  style={{ width: 'auto' }}
                   url={introVideo}
                   controls={true}
                   sx={{ width: "100%" }}

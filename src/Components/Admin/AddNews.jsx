@@ -48,6 +48,29 @@ const AddNews = () => {
                         </div>
                     </div>
                     <div className="row">
+                        {/* start date */}
+                        <div className="col">
+                            <div className="form-group">
+                                <label className='me-3'>Start Date</label>
+                            </div>
+                            <div className="form-group">
+                                <input type="date" className='form-control' style={{ width: 'auto' }} min={new Date().toISOString().split('T')[0]}/>
+                            </div>
+                        </div>
+                        {/* end date */}
+                        <div className="col">
+                            <div className="form-group">
+                                <label className='me-3'>End Date</label>
+                            </div>
+                            <div className="form-group">
+                                <input type="date" className='form-control' style={{ width: 'auto' }} min={new Date().toISOString().split('T')[0]}/>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="row">
+
+                    </div>
+                    <div className="row">
                         {/* buttons */}
                         <div className="col">
                             <div className="form-group d-flex justify-content-end align-items-center">

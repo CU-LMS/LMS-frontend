@@ -197,7 +197,14 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
-
+            <Route
+              path="/admin-courses"
+              element={
+                <AdminProtectedRoute>
+                  < AdminCourses/>
+                </AdminProtectedRoute>
+              }
+            />
             <Route
               path="/add-news"
               element={

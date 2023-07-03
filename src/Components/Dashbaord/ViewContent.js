@@ -24,6 +24,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import MainFooter from "./MainFooter";
 import rankone from "../../asset/rankone.jpg"
+import { format } from 'date-fns'
 
 
 import "./ViewContent.css";
@@ -67,6 +68,10 @@ const ViewContent = () => {
   useEffect(() => {
     dispatch(readCourseData());
   }, []);
+
+  // const formattedStartDate = format(new Date(currentCourse?.dStartDate), 'dd-MM-yyyy');
+  // console.log(formattedStartDate);  
+  console.log(new Date(currentCourse?.dStartDate).toLocaleDateString());
 
   return (
     <>
@@ -158,12 +163,12 @@ const ViewContent = () => {
                   <tr>
                     <td>Start Date :</td>
 
-                    <td>{currentCourse.dStartDate}</td>
+                    <td>{new Date(currentCourse?.dStartDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                   <tr>
                     <td>End Date :</td>
 
-                    <td>{currentCourse.dEndDate}</td>
+                    <td>{new Date(currentCourse?.dEndDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                 </tbody>
               </table>
@@ -207,7 +212,7 @@ const ViewContent = () => {
       <div className="books-reference">
         <div className="left-book">
           <p className="heading-view-books">Get your dream come true.</p>
-          <p>Develope more skills and knowledge by our best Teacher's </p>
+          <p>Develop more skills and knowledge by our best Teacher's </p>
         </div>
         <div className="right-book">
           <img className="books-image" src={rankone} />
