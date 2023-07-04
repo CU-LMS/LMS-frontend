@@ -116,6 +116,7 @@
 
 .showcase-heading {
     color: #fff;
+    font-size: 30px !important;
 }
 
 .showcase-image {
@@ -144,6 +145,7 @@
 
 .typewrite-text {
     color: #c3d8ff;
+    font-size: 25px !important;
 }
 
 .showcase-btn {

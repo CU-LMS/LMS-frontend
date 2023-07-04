@@ -203,12 +203,17 @@
   } */
   
   .enrollButtonNow{
-    background-color: rgb(62, 24, 233);
+    /* background-color: rgb(62, 24, 233); */
+    background-color: rgb(164, 32, 32);
     border-radius: 5px;
     color: white;
-    width: 100px;
+    width: 200px;
     height: 33px;
     border: none;
+    margin-bottom: 10px;
+  }
+  .enrollButtonNow:hover{
+    border: 1px solid rgb(251, 255, 0);
   }
   
   

@@ -88,7 +88,7 @@ const Dashboard = () => {
           <div className="dash_cardInfo" style={{ color: "white" }}></div>
         </div>
       </div>
-      <div style={{ margin: "10px 30px", fontSize: "2rem" }}>Our Courses</div>
+      <div style={{ margin: "10px 30px", fontSize: "20px" }}>Our Courses</div>
       <div className="dash_course">
 
         {courses?.map((ele, id) => {

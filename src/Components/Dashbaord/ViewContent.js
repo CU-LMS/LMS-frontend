@@ -25,6 +25,8 @@ import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free
 import MainFooter from "./MainFooter";
 import rankone from "../../asset/rankone.jpg"
 import { format } from 'date-fns'
+import CourseRatingReview from "../Student/courseRating/CourseRatingReview";
+
 
 
 import "./ViewContent.css";
@@ -82,7 +84,7 @@ const ViewContent = () => {
       </marquee>
       {currentCourse && (
         <div>
-          <div className="main-header-view" key={currentCourse.courseId}>
+          {/* <div className="main-header-view" key={currentCourse.courseId}>
             <p className="mini-header-view-heading">Welcome</p>
             <p className="heading-view">
               Course Name : {currentCourse.courseName}{" "}
@@ -102,6 +104,33 @@ const ViewContent = () => {
               <p>Course Code : </p>
               <p className="count-enroll"> {currentCourse.courseCode}</p>
             </div>
+          </div> */}
+          <div className="main-header-view" key={currentCourse.courseId}>
+          <div className="main-header-view1">
+
+            <p className="mini-header-view-heading">Welcome</p>
+            <p className="heading-view">
+              Course Name : {currentCourse.courseName}{" "}
+            </p>
+            <p className="teacher-name">
+              Course coordinator : {currentCourse.autherName}
+            </p>
+            <p className="teacher-background">
+              {" "}
+              Semester : {currentCourse.semester}
+            </p>
+            <div className="buttonAndEnrolled">
+              
+              <button className="join-button" onClick={enrollTheUser}>
+                Enroll Now
+              </button>{" "}
+              <p>Course Code : </p>
+              <p className="count-enroll"> {currentCourse.courseCode}</p>
+            </div>
+            </div>
+            <div className="main-header-view2">
+          <CourseRatingReview />
+          </div>
           </div>
           <div className="body-view">
             <div className="left-body-view">

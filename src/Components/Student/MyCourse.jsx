@@ -45,7 +45,7 @@ const MyCourse = () => {
   }; 
   return (
     <div className="dashboard">
-      <div style={{ margin: "10px 30px", fontSize: "2rem" }}>My Courses</div>
+      <div style={{ margin: "10px 30px", fontSize: "20px" }}>My Courses</div>
       <div className="dash_course">
 
         {courses?.map((ele, id) => {
