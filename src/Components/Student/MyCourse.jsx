@@ -72,7 +72,7 @@ const MyCourse = () => {
                 >
                   <h6 style={{ fontWeight: 600 }}>{ele.courseName}</h6>
                   <p className="dash_cardInfo">{ele.courseCode}</p>
-                  <CourseRated courseId={ele?.courseId} />
+                  <CourseRated courseId={ele?.courseId} cRating={ele?.rating} />
                   <button
                     className="enrollButtonNow"
                     onClick={() => handleClickButtonRoll(ele?.courseId)}
