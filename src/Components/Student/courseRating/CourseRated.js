@@ -7,30 +7,33 @@ import { ratingCourseAction } from "../../../redux/slices/ratingCourse/RatingCou
 import "./CourseRated.css";
 import { useDispatch } from "react-redux";
 
-const CourseRated = ({courseId}) => {
+const CourseRated = ({courseId,cRating}) => {
 const dispatch = useDispatch();
 
-   
 
   const [rating, setRating] = useState(null);
   const [hover, setHover] = useState(null);
 
   useEffect(() => {
     const savedRating = localStorage.getItem(`rating-${courseId}`);
-    if (savedRating) {
-      setRating(parseInt(savedRating));
-    }
+    
+      setRating(cRating);
+    
   }, [courseId]);
 
   const handleRating = (courseRating) => {
-    console.log(courseRating, courseId, "XXXXXXXXXXX");
+    
+   
     setRating(courseRating);
     dispatch(ratingCourseAction(courseId, courseRating));
     localStorage.setItem(`rating-${courseId}`, courseRating.toString());
 
 }
   return (
+
     <>
+    {console.log(courseId, "XXXXXXXXXXX")}
+{console.log(cRating, "UUUUUUUUUUU")}
       <div className="top-ratingHeader">
         <div className="starrate">
           {[...Array(5)].map((star, index) => {
