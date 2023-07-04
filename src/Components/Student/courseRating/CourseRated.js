@@ -26,6 +26,7 @@ const dispatch = useDispatch();
    
     setRating(courseRating);
     dispatch(ratingCourseAction(courseId, courseRating));
+    console.log(courseId, courseRating, "trdtrdtdtrd")
     localStorage.setItem(`rating-${courseId}`, courseRating.toString());
 
 }

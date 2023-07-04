@@ -45,8 +45,7 @@ const EnrolledCourseContent = () => {
     <>
       
       <marquee className="linecolor" direction="left">
-        For more Information, say Hello CU! to any social media platform mention
-        below, we will get back to you...
+      For more Information, chat with us in CU-Sevak. We will get back to you...
       </marquee>
       {currentCourse && (
         <div>
@@ -190,7 +189,7 @@ const EnrolledCourseContent = () => {
 
       <div className="footer-social">
         <p className="heading-view-books3">
-          For more Information, say Hello CU!, we will get back to you.
+        For more Information, chat with us in CU-Sevak. We will get back to you...
         </p>
       </div>
 

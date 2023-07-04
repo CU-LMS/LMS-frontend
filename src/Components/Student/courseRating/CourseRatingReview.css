@@ -67,7 +67,7 @@
   }
   
   
-  .bar-5 {width: 60%; height: 20px; background-color: #ff9800; border-radius:15px}
+  .bar-5 { height: 20px; background-color: #ff9800; border-radius:15px}
   .bar-4 {width: 30%; height: 20px; background-color: #ff9800; border-radius:15px}
   .bar-3 {width: 10%; height: 20px; background-color: #ff9800; border-radius:15px}
   .bar-2 {width: 4%; height: 20px; background-color: #ff9800; border-radius:15px}

@@ -17,7 +17,7 @@ const CourseRatingReview = ({courseId}) => {
   const ratingData = useSelector(
     (state) => state?.ratingState?.getCourseRatingData
   );
-  console.log("demo-------------",ratingData)
+  console.log("demo hai",ratingData)
   
   return (
     <>
@@ -26,10 +26,10 @@ const CourseRatingReview = ({courseId}) => {
     <span className="review-heading">Student Reviews</span>
     <div className ="review-header">
     
-      <CourseRated />
+      {/* <CourseRated /> */}
 
 
-    <p className='review-p' > 3 out of 5 Rating </p>
+    {/* <p className='review-p' > 3 out of 5 Rating </p> */}
     </div>
  
     <div className="row">
@@ -38,55 +38,55 @@ const CourseRatingReview = ({courseId}) => {
   </div>
   <div className="middle">
     <div className="bar-container">
-      <div className="bar-5"></div>
+      <div style={ratingData.fiveRating ? {width:`${ratingData.fiveRating * 10}%`}: {width:"0%"}} className="bar-5"></div>
     </div>
   </div>
   <div className="side right">
-    <div>77%</div>
+    <div>{`${ratingData.fiveRating * 10}%`}</div>
   </div>
   <div className="side">
     <div>4 star</div>
   </div>
   <div className="middle">
     <div className="bar-container">
-      <div className="bar-4"></div>
+      <div style={ratingData.fourRating ? {width:`${ratingData.fourRating * 10}%`}: {width:"0%"}} className="bar-4"></div>
     </div>
   </div>
   <div className="side right">
-    <div>53%</div>
+    <div>{`${ratingData.fourRating * 10}%`}</div>
   </div>
   <div className="side">
     <div>3 star</div>
   </div>
   <div className="middle">
     <div className="bar-container">
-      <div className="bar-3"></div>
+      <div style={ratingData.threeRating ? {width:`${ratingData.threeRating * 10}%`}: {width:"0%"}} className="bar-3"></div>
     </div>
   </div>
   <div className="side right">
-    <div>35%</div>
+    <div>{`${ratingData.threeRating * 10}%`}</div>
   </div>
   <div className="side">
     <div>2 star</div>
   </div>
   <div className="middle">
     <div className="bar-container">
-      <div className="bar-2"></div>
+      <div style={ratingData.secondRating ? {width:`${ratingData.secondRating * 10}%`}: {width:"0%"}} className="bar-2"></div>
     </div>
   </div>
   <div className="side right">
-    <div>16%</div>
+    <div>{`${ratingData.secondRating * 10}%`}</div>
   </div>
   <div className="side">
     <div>1 star</div>
   </div>
   <div className="middle">
     <div className="bar-container">
-      <div className="bar-1"></div>
+      <div style={ratingData.firstRating ? {width:`${ratingData.firstRating * 10}%`}: {width:"0%"}} className="bar-1"></div>
     </div>
   </div>
   <div className="side right">
-    <div>25%</div>
+    <div>{`${ratingData.firstRating * 10}%`}</div>
   </div>
 </div>
 </div>
