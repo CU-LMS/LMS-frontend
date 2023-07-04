@@ -9,9 +9,9 @@ const AdminCourses = () => {
   const navigate = useNavigate();
 
   const courseLink = (event) => {
-    navigate("/tool");         
- };
- 
+    navigate("/tool");
+  };
+
   return (
     <>
       <div id="admin-dashboard">
@@ -28,7 +28,7 @@ const AdminCourses = () => {
                 <div className="card-body">
                   <h5 className="card-title">Create Courses</h5>
 
-                  <a  onClick={courseLink} className="btn btn-primary">
+                  <a onClick={courseLink} className="btn btn-primary">
                     Create
                   </a>
                 </div>
@@ -44,7 +44,7 @@ const AdminCourses = () => {
                   <h5 className="card-title">Create Test</h5>
 
                   <a href="#" className="btn btn-primary">
-                    Go somewhere
+                    Create
                   </a>
                 </div>
               </div>
@@ -59,7 +59,7 @@ const AdminCourses = () => {
                   <h5 className="card-title">Create Assignment</h5>
 
                   <a href="#" className="btn btn-primary">
-                    Go somewhere
+                    Create
                   </a>
                 </div>
               </div>
@@ -75,7 +75,7 @@ const AdminCourses = () => {
                   <h5 className="card-title">Schedule Class</h5>
 
                   <a href="#" className="btn btn-primary">
-                    Go somewhere
+                    Create
                   </a>
                 </div>
               </div>
@@ -92,7 +92,7 @@ const AdminCourses = () => {
                   <h5 className="card-title">Upload Training</h5>
 
                   <a href="#" className="btn btn-primary">
-                    Go somewhere
+                    Create
                   </a>
                 </div>
               </div>
@@ -107,7 +107,7 @@ const AdminCourses = () => {
                   <h5 className="card-title">Upload Resources</h5>
 
                   <a href="#" className="btn btn-primary">
-                    Go somewhere
+                    Create
                   </a>
                 </div>
               </div>

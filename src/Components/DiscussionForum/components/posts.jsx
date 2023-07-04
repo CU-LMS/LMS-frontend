@@ -7,7 +7,7 @@ const Posts = ({ posts }) => {
       {posts.map((post) => (
         <Link
           className="w-100 p-4 list-group-item list-group-item-action flex-column align-items-start"
-          to={`/post/${post.id}`}
+          to={`/discussion-forum/post/${post.id}`}
         >
           <div className="d-flex w-100 justify-content-between" key={post.id}>
             <h5 className="mb-1">{post.title}</h5>
