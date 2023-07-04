@@ -106,13 +106,6 @@ const ViewContent = () => {
           <div className="body-view">
             <div className="left-body-view">
               <div className="video-view">
-                {/* <iframe
-                  className="video-thumb"
-                  src="https://www.youtube.com/embed/Vr9qDP9LGO0?rel=0"
-                  frameborder="0"
-                  allow="acccurrentCourserometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen=""
-                ></iframe> */}
                 <ReactPlayer
                   className="show-video"
                   url={videoShow}
