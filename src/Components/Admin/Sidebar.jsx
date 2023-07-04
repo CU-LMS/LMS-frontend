@@ -130,6 +130,16 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
             <BsNewspaper className="sidebar-icon me-3" />
             <p className="mb-0 sidebar-item-title">Announcements</p>
           </Link>
+       
+        <Link
+          to="/discussion-forum"
+          className="sidebar-item d-flex align-items-center py-3"
+          data-value="announcement"
+          onClick={handleNavigate}
+        >
+          <BsNewspaper className="sidebar-icon me-3" />
+          <p className="mb-0 sidebar-item-title">Discussion Form</p>
+        </Link>
 
           <Link
             to="/create-user"

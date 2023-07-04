@@ -1,12 +1,5 @@
 import { Card } from "react-bootstrap";
 import { Calendar } from "antd";
-import { IoMdSchool } from "react-icons/io";
-import {
-  MdDrafts,
-  MdOutlineAssignmentTurnedIn,
-  MdOutlineFeedback,
-} from "react-icons/md";
-import { BsFillPeopleFill } from "react-icons/bs";
 import { readDashboardData } from "../../../redux/slices/Common/dashboardActions";
 import { useDispatch,useSelector } from "react-redux";
 import "./AdminDashBoard.css";
@@ -31,8 +24,9 @@ const AdminDashBoard = () => {
     <>
       <div id="admin-dashboard">
         <h1>Welcome</h1>
+
         <div className="admin-dashboard">
-          <div className="grid-parent">
+          <div className="grid-parent-dashboard">
             <div>
               <Card className="card">
                 <h2>Publish Courses</h2>
@@ -42,7 +36,7 @@ const AdminDashBoard = () => {
               <Card className="card">
                 <h2>Enrolled Courses</h2>
                 <h3>{dashboardData?.totalEnrolledCourse}</h3>
-                {/* <BsFillPeopleFill size={80} className="icon" /> */}
+                {/* <MdOutlineAssignmentTurnedIn size={80} className="icon" /> */}
               </Card>
             </div>
             <div>
@@ -63,15 +57,15 @@ const AdminDashBoard = () => {
             </div>
             <div>
               <Card className="card">
-                <h2>Enrollment Students</h2>
-                <h3>{dashboardData?.totalEnrolledStudent}</h3>
+                <h2>Enrolled Students</h2>
+                <h3>{dashboardData?.totalEnrolledCourse}</h3>
                 {/* <BsFillPeopleFill size={80} className="icon" /> */}
               </Card>
               <Card>
                 <h2>Feedback</h2>
                 {/* <MdOutlineFeedback size={80} className="icon" /> */}
               </Card>
-            </div>            
+            </div>
           </div>
         </div>
       </div>
