@@ -40,7 +40,13 @@ import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 import Profile from "./Components/Admin/Profile";
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
 import AdminCourses from "./Components/Admin/AdminCourses/AdminCourses";
+import AddNews from "./Components/Admin/AddNews";
+import LatestNews from "./Components/Student/LatestNews";
+import Catalog from "./Components/Student/Catalog";
+import Footer from "./Components/Footer/Footer";
 
+
+import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -73,6 +79,7 @@ function App() {
 
   return (
     <>
+     
       <AuthProvider>
         <SidebarContextProvider>
           {roleId == 5 || roleId == 4 ? (
@@ -136,6 +143,23 @@ function App() {
                 </StudentProtectedRoute>
               }
             />
+            <Route
+              path="/latest-news"
+              element={
+                <StudentProtectedRoute>
+                  <LatestNews />
+                </StudentProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/catalog"
+              element={
+                <StudentProtectedRoute>
+                  <Catalog />
+                </StudentProtectedRoute>
+              }
+            />
 
             <Route
               path="/mycourses"
@@ -166,13 +190,27 @@ function App() {
               }
             />
 
-            
-
             <Route
               path="/create-announcement"
               element={
                 <AdminProtectedRoute>
                   <CreateAnnouncement />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin-courses"
+              element={
+                <AdminProtectedRoute>
+                  < AdminCourses/>
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/add-news"
+              element={
+                <AdminProtectedRoute>
+                  <AddNews />
                 </AdminProtectedRoute>
               }
             />
@@ -184,24 +222,15 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
+            <Route path="/profile" element={<AdminProtectedRoute> <Profile /> </AdminProtectedRoute>} />
             <Route
-              path="/admin-courses"
+              path="/discussion-forum"
               element={
                 <AdminProtectedRoute>
-                  <AdminCourses />
+                  <DiscussionForum />
                 </AdminProtectedRoute>
               }
             />
-            <Route
-              path="/profile"
-              element={
-                <AdminProtectedRoute>
-                  {" "}
-                  <Profile />{" "}
-                </AdminProtectedRoute>
-              }
-            />
-
             {/* <Route path="/create-announcement" element={<CreateAnnouncement />} /> */}
             {/* <Route path="/announcement" element={<AnnouncementTemplate />} /> */}
             <Route path="/addVideo" element={<AddVideo />} />
@@ -214,6 +243,8 @@ function App() {
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
           </Routes>
+          
+         
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>

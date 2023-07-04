@@ -13,6 +13,7 @@ import { AiFillFacebook } from "react-icons/ai";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import MainFooter from "../../Dashbaord/MainFooter";
+import rankone from "../../../asset/rankone.jpg";
 
 
 import "./EnrolledCourseContent.css";
@@ -148,12 +149,12 @@ const EnrolledCourseContent = () => {
                   <tr>
                     <td>Start Date :</td>
 
-                    <td>{currentCourse.dStartDate}</td>
+                    <td>{new Date(currentCourse?.dStartDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                   <tr>
                     <td>End Date :</td>
 
-                    <td>{currentCourse.dEndDate}</td>
+                    <td>{new Date(currentCourse?.dEndDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                 </tbody>
               </table>
@@ -196,11 +197,11 @@ const EnrolledCourseContent = () => {
 
       <div className="books-reference">
         <div className="left-book">
-          <p className="heading-view-books">Get your dream come true.</p>
-          <p>Develope more skills and knowledge by our best Teacher's </p>
+          <p className="heading-view-books">Make your dream come true.</p>
+          <p>Develop more skills and knowledge by our best Teacher's </p>
         </div>
         <div className="right-book">
-          <img className="books-image" src={top} />
+          <img className="books-image" src={rankone} />
         </div>
       </div>
 
@@ -208,8 +209,6 @@ const EnrolledCourseContent = () => {
         <p className="heading-view-books3">
           For more Information, say Hello CU!, we will get back to you.
         </p>
-       
-        
       </div>
 
      
