@@ -1,12 +1,5 @@
 import { Card } from "react-bootstrap";
 import { Calendar } from "antd";
-import { IoMdSchool } from "react-icons/io";
-import {
-  MdDrafts,
-  MdOutlineAssignmentTurnedIn,
-  MdOutlineFeedback,
-} from "react-icons/md";
-import { BsFillPeopleFill } from "react-icons/bs";
 
 import "./AdminDashBoard.css";
 
@@ -19,46 +12,42 @@ const AdminDashBoard = () => {
     <>
       <div id="admin-dashboard">
         <h1>Welcome</h1>
+
         <div className="admin-dashboard">
-          <div className="grid-parent">
+          <div className="grid-parent-dashboard">
             <div>
-              <Card className="card">
-                <h2>Courses</h2>
-                <h3>10</h3>
-                {/* <IoMdSchool size={80} className="icon" /> */}
-              </Card>
-              <Card className="card">
-                <h2>Assignments Active</h2>
-                <h3>0</h3>
-                {/* <MdOutlineAssignmentTurnedIn size={80} className="icon" /> */}
-              </Card>
+              <div class="admin-dash-card">
+                <h2 class="card-title">Courses</h2>
+                <span class="card-number">10</span>
+              </div>
+
+              <div class="admin-dash-card">
+                <h2 class="card-title">Drafts</h2>
+                <span class="card-number">2</span>
+              </div>
             </div>
             <div>
-              <Card className="card">
-                <h2>Drafts</h2>
-                <h3>3</h3>
-                {/* <MdDrafts size={80} className="icon" /> */}
-              </Card>
-              <Card className="card">
-                <div style={wrapperStyle}>
-                  <Calendar fullscreen={false} />
-                </div>
-                {/* <h2>Schedule</h2> */}
-                {/* <div className="calender-container">
-                  <Calendar className="calender" fullscreen={false} />
-                </div> */}
-              </Card>
+              <div class="admin-dash-card">
+                <h2 class="card-title">Enrollment</h2>
+                <span class="card-number">428</span>
+              </div>
+
+              <div class="admin-dash-card">
+                <h2 class="card-title">Active Assignments</h2>
+                <span class="card-number">2</span>
+              </div>
             </div>
             <div>
-              <Card className="card">
-                <h2>Total Enrollment</h2>
-                <h3>1289</h3>
-                {/* <BsFillPeopleFill size={80} className="icon" /> */}
-              </Card>
-              <Card>
-                <h2>Feedback</h2>
-                {/* <MdOutlineFeedback size={80} className="icon" /> */}
-              </Card>
+              <div class="admin-dash-card">
+                <Calendar style={wrapperStyle} fullscreen={false} />
+                {/* <h2 class="card-title">Calender</h2>
+                <span class="card-number"></span> */}
+              </div>
+
+              <div class="admin-dash-card">
+                <h2 class="card-title">Feedback</h2>
+                <span class="card-number"></span>
+              </div>
             </div>
           </div>
         </div>

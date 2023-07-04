@@ -22,6 +22,7 @@ import Dashboard from "./Components/Dashbaord/Dashboard";
 import WatchCourseWhenEnrolled from "./Components/Dashbaord/WatchCourseWhenEnrolled";
 import AddUserByAdmin from "./Components/Tools/AddUserByAdmin";
 // import CreatePassword from "./Components/CreatePassword";
+import Footer from "./Components/Admin/Footer";
 import CreatePassword from "./Components/CreatePassword/CreatePassword";
 import FAQs from "./Components/FAQs/FAQs";
 import StudentSidebar from "./Components/Student/Sidebar";
@@ -40,7 +41,7 @@ import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 import Profile from "./Components/Admin/Profile";
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
 import AdminCourses from "./Components/Admin/AdminCourses/AdminCourses";
-
+import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -166,8 +167,6 @@ function App() {
               }
             />
 
-            
-
             <Route
               path="/create-announcement"
               element={
@@ -193,6 +192,14 @@ function App() {
               }
             />
             <Route
+              path="/discussion-forum"
+              element={
+                <AdminProtectedRoute>
+                  <DiscussionForum />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
               path="/profile"
               element={
                 <AdminProtectedRoute>
@@ -214,6 +221,7 @@ function App() {
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
           </Routes>
+          <Footer />
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>

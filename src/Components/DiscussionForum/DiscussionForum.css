@@ -1,0 +1,14 @@
+.total-posts {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #000000;
+}
+
+.filter-heading {
+  font-size: 22px;
+  font-weight: 500;
+
+  color: #000000;
+}
