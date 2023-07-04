@@ -1,10 +1,27 @@
-import React from 'react';
+import {React,useEffect} from 'react';
 import CourseRated from './CourseRated';
 import "./CourseRatingReview.css";
+import { useDispatch,useSelector } from 'react-redux';
+import { readRatingData } from '../../../redux/slices/ratingCourse/RatingCourseAction';
+import { isPortal } from 'react-is';
 
-const CourseRatingReview = () => {
+const CourseRatingReview = ({courseId}) => {
+
+  
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(readRatingData(courseId));   
+   
+  }, []);
+
+  const ratingData = useSelector(
+    (state) => state?.ratingState?.getCourseRatingData
+  );
+  console.log("demo-------------",ratingData)
+  
   return (
     <>
+    
     <div className="review-container">
     <span className="review-heading">Student Reviews</span>
     <div className ="review-header">

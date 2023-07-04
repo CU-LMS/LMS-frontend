@@ -129,7 +129,7 @@ const ViewContent = () => {
             </div>
             </div>
             <div className="main-header-view2">
-          <CourseRatingReview />
+          <CourseRatingReview courseId={currentCourse?.courseId} />
           </div>
           </div>
           <div className="body-view">
