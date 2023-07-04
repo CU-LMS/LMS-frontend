@@ -32,8 +32,7 @@ const dispatch = useDispatch();
   return (
 
     <>
-    {console.log(courseId, "XXXXXXXXXXX")}
-{console.log(cRating, "UUUUUUUUUUU")}
+    
       <div className="top-ratingHeader">
         <div className="starrate">
           {[...Array(5)].map((star, index) => {
