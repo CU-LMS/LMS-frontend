@@ -1,7 +1,7 @@
 import { Card } from "react-bootstrap";
 import { Calendar } from "antd";
 import { readDashboardData } from "../../../redux/slices/Common/dashboardActions";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./AdminDashBoard.css";
 import React, { useEffect, useState } from "react";
 const AdminDashBoard = () => {
@@ -12,8 +12,7 @@ const AdminDashBoard = () => {
 
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(readDashboardData());   
-   
+    dispatch(readDashboardData());
   }, []);
 
   const dashboardData = useSelector(

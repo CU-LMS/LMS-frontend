@@ -45,8 +45,8 @@ import LatestNews from "./Components/Student/LatestNews";
 import Catalog from "./Components/Student/Catalog";
 import Footer from "./Components/Footer/Footer";
 
-
 import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
+import PostPage from "./Components/DiscussionForum/components/PostPage";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -79,7 +79,6 @@ function App() {
 
   return (
     <>
-     
       <AuthProvider>
         <SidebarContextProvider>
           {roleId == 5 || roleId == 4 ? (
@@ -202,7 +201,7 @@ function App() {
               path="/admin-courses"
               element={
                 <AdminProtectedRoute>
-                  < AdminCourses/>
+                  <AdminCourses />
                 </AdminProtectedRoute>
               }
             />
@@ -222,12 +221,28 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
-            <Route path="/profile" element={<AdminProtectedRoute> <Profile /> </AdminProtectedRoute>} />
+            <Route
+              path="/profile"
+              element={
+                <AdminProtectedRoute>
+                  {" "}
+                  <Profile />{" "}
+                </AdminProtectedRoute>
+              }
+            />
             <Route
               path="/discussion-forum"
               element={
                 <AdminProtectedRoute>
                   <DiscussionForum />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/discussion-forum/post/:id"
+              element={
+                <AdminProtectedRoute>
+                  <PostPage />
                 </AdminProtectedRoute>
               }
             />
@@ -243,8 +258,7 @@ function App() {
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
           </Routes>
-          
-         
+
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>
