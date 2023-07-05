@@ -45,7 +45,7 @@ const MyCourse = () => {
   }; 
   return (
     <div className="dashboard">
-      <div style={{ margin: "10px 30px", fontSize: "2rem" }}>My Courses</div>
+      <div style={{ margin: "10px 30px", fontSize: "20px" }}>My Courses</div>
       <div className="dash_course">
 
         {courses?.map((ele, id) => {
@@ -72,7 +72,7 @@ const MyCourse = () => {
                 >
                   <h6 style={{ fontWeight: 600 }}>{ele.courseName}</h6>
                   <p className="dash_cardInfo">{ele.courseCode}</p>
-                  <CourseRated courseId={ele?.courseId} />
+                  <CourseRated courseId={ele?.courseId} cRating={ele?.rating} />
                   <button
                     className="enrollButtonNow"
                     onClick={() => handleClickButtonRoll(ele?.courseId)}

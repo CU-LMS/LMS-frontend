@@ -2,8 +2,6 @@ import { toast } from "react-toastify";
 import { handleApiError, handleLoding, handleIsAuth } from "./authSlice";
 import axios from "axios";
 import http from "../../../hoc/axiosClient";
-import { responsiveFontSizes } from "@mui/material";
-// import { handleIsAuth } from "./authSlice";
 import swal from "sweetalert";
 
 export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
@@ -25,7 +23,6 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
     if (apiResponse?.data?.statusCode === 200) {
       let config = {
         method: "get",
-       // url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${apiResponse?.data?.data?.token}`
          url: `Login/UserValidate?token=${apiResponse?.data?.data?.token}`
       }
       let response = await http(config);
@@ -62,18 +59,11 @@ export const manualSignIn = (userEmail, userPassword) => async (disaptch) => {
         }
         if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3 )
         {
-         // navigate("/admin-dashboard", {replace: true})
           window.location.href="/admin-dashboard"
         }
         if(response.data.data.roleId === 5 || response.data.data.roleId === 4){
           window.location.href = "/dashboard";
         }
-        // if(response.data.data.roleId === 1){
-        //   window.location.href = "/tool";
-        // }
-        // if(response.data.data.roleId === 5){
-        //   window.location.href = "/dashboard";
-        // }
       } 
       disaptch(handleLoding("idle"));
       
@@ -109,11 +99,9 @@ export const gmailSignUp = (userData) => async (dispatch) => {
       data,
     };
     let response = await http(config);
-    console.log(response, "RRRRRRRRRRR")
     if( response?.data?.data != null) {
       dispatch(manualSignIn(data.userId, 'Culms@123'));
     }
-    console.log(response);
   } catch (err) {
     console.log(err);
   }

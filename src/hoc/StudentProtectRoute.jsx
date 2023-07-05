@@ -26,17 +26,14 @@ const StudentProtectedRoute = ({ children }) => {
           setIsAuthenticate(true);
         }else{
           localStorage.clear("cuchdCsrf")
-          //navigate("/login")
           window.location.href=("/login");
         }
        
       } else {
         window.location.href=("/login");
-        //navigate("/login", { replace: true });
       }
     } catch (err) {
         window.location.href=("/login");
-      //navigate("/login", { replace: true });
     }
   };
 

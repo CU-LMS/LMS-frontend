@@ -25,6 +25,8 @@ import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free
 import MainFooter from "./MainFooter";
 import rankone from "../../asset/rankone.jpg"
 import { format } from 'date-fns'
+import CourseRatingReview from "../Student/courseRating/CourseRatingReview";
+
 
 
 import "./ViewContent.css";
@@ -77,12 +79,11 @@ const ViewContent = () => {
     <>
       
       <marquee className="linecolor" direction="left">
-        For more Information, say Hello CU! to any social media platform mention
-        below, we will get back to you...
+        For more Information, chat with us in CU-Sevak. We will get back to you...
       </marquee>
       {currentCourse && (
         <div>
-          <div className="main-header-view" key={currentCourse.courseId}>
+          {/* <div className="main-header-view" key={currentCourse.courseId}>
             <p className="mini-header-view-heading">Welcome</p>
             <p className="heading-view">
               Course Name : {currentCourse.courseName}{" "}
@@ -102,17 +103,37 @@ const ViewContent = () => {
               <p>Course Code : </p>
               <p className="count-enroll"> {currentCourse.courseCode}</p>
             </div>
+          </div> */}
+          <div className="main-header-view" key={currentCourse.courseId}>
+          <div className="main-header-view1">
+
+            <p className="mini-header-view-heading">Welcome</p>
+            <p className="heading-view">
+              Course Name : {currentCourse.courseName}{" "}
+            </p>
+            <p className="teacher-name">
+              Course coordinator : {currentCourse.autherName}
+            </p>
+            <p className="teacher-background">
+              {" "}
+              Semester : {currentCourse.semester}
+            </p>
+            <div className="buttonAndEnrolled">
+              
+              <button className="join-button" onClick={enrollTheUser}>
+                Enroll Now
+              </button>{" "}
+              <p>Course Code : </p>
+              <p className="count-enroll"> {currentCourse.courseCode}</p>
+            </div>
+            </div>
+            <div className="main-header-view2">
+          <CourseRatingReview courseId={currentCourse?.courseId} />
+          </div>
           </div>
           <div className="body-view">
             <div className="left-body-view">
               <div className="video-view">
-                {/* <iframe
-                  className="video-thumb"
-                  src="https://www.youtube.com/embed/Vr9qDP9LGO0?rel=0"
-                  frameborder="0"
-                  allow="acccurrentCourserometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen=""
-                ></iframe> */}
                 <ReactPlayer
                   className="show-video"
                   url={videoShow}
@@ -221,7 +242,7 @@ const ViewContent = () => {
 
       <div className="footer-social">
         <p className="heading-view-books3">
-          For more Information, say Hello CU!, we will get back to you.
+           For more Information, chat with us in CU-Sevak. We will get back to you...
         </p>
        
         
