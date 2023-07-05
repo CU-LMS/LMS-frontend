@@ -50,11 +50,7 @@ const ViewContent = () => {
       }
     }
   }, [state?.courseId, courses]);
-  // const handleScroll = () => {
-  //   const scrollTop =
-  //     window.pageYOffset || document.documentcurrentCoursement?.scrollTop;
-  //   setIsFixed(scrollTop > 0); // Set a condition based on scroll position
-  // };
+
 
   const enrollTheUser = () => {
     dispatch(enrollCourse(currentCourse?.courseId));

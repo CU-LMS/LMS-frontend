@@ -19,8 +19,8 @@ font-size: 1.1rem;
 }
 .chat-btn {
     position: fixed;
-    right: 50px;
-    bottom: 50px;
+    right: 16px;
+    bottom: 44px;
     border: none;
     outline: none;
     cursor: pointer;
@@ -49,8 +49,8 @@ font-size: 1.1rem;
     font-size: 16px;
     display: none;
     position: fixed;
-    bottom: 80px;
-    right: 120px;
+    bottom: 118px;
+right: 15px;
     height: var(--chat-window-height);
     width: var(--chat-window-total-width);
     background-color: var(--chat-window-bg-color);
@@ -133,8 +133,8 @@ font-size: 1.1rem;
 
 .bot-msg .msg {
     /* background-color: var(--chat-window-color-theme); */
-    background-color: #BDBFC4;
-    color: rgb(0, 0, 0);
+    background-color: #680000;
+    color: white;
     padding: 0.5rem;
     border-radius: 20px 20px 20px 0;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.4);

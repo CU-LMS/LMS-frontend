@@ -96,9 +96,9 @@ const MiniHeader = () => {
     setModalIsOpen(false);
     Cookies.remove();
   };
-  const handleCourseDraft = () => {
+  const handleCourseDraft = (courseId) => {
     setFormData({ ...formData, isDraft: true });
-    console.log("Draft Abhay");
+    console.log("Draft----------------", courseId);
   };
   const handleSaveCourse = () => {
     setFormData({ ...formData, isDraft: false });
