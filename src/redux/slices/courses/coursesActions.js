@@ -124,8 +124,8 @@ export const readParticularCourseData = (courseId) => async (dispatch) => {
 }
 
 export const enrollCourse = (courseId) => async (dispatch) => {
-  const navigate = useNavigate();
   try {
+    
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
     let config = {
       method: "post",
@@ -139,7 +139,7 @@ export const enrollCourse = (courseId) => async (dispatch) => {
     const response = await http(config);
     if (response?.data?.statusCode === 200) {
       toast.success("Sucessfully Enrolled");
-      navigate(`/watch-course?courseId=${courseId}`);
+      window.location.href = `/watch-course?courseId=${courseId}`;
     } else {
       toast.error("Error While Enrolling");
     }
