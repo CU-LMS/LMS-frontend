@@ -135,7 +135,6 @@ export const enrollCourse = (courseId) => async (dispatch) => {
         courseId: courseId,
       },
     };
-
     const response = await http(config);
     if (response?.data?.statusCode === 200) {
       toast.success("Sucessfully Enrolled");
@@ -144,7 +143,7 @@ export const enrollCourse = (courseId) => async (dispatch) => {
       toast.error("Error While Enrolling");
     }
   } catch (error) {
-    toast.error("Error While Enrolling");
+    toast.error("Errors");
   }
 };
 
