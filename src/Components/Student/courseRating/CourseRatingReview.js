@@ -16,12 +16,16 @@ const CourseRatingReview = ({ courseId }) => {
   );
   console.log("demo hai", ratingData);
 
+  const totalRating = (ratingData?.fiveRating + ratingData?.fourRating + ratingData?.threeRating + ratingData?.secondRating + ratingData?.firstRating);
+
+  console.log(totalRating, "99999999999")
+
   return (
     <>
       <div className="review-container">
         <span className="review-heading">Student Reviews</span>
         <div className="review-header"></div>
-
+        <p className="totalStar-rated">Total <span className="count-star">{totalRating}</span> students rated this course.</p>
         <div className="row">
           <div className="side">
             <div>5 star</div>
@@ -31,7 +35,7 @@ const CourseRatingReview = ({ courseId }) => {
               <div
                 style={
                   ratingData.fiveRating
-                    ? { width: `${ratingData.fiveRating * 10}%` }
+                    ? { width: `${ratingData.fiveRating/totalRating * 100}%` }
                     : { width: "0%" }
                 }
                 className="bar-5"
@@ -39,7 +43,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${ratingData.fiveRating * 10}%`}</div>
+            <div>{`${ratingData.fiveRating/totalRating * 100}%`}</div>
           </div>
           <div className="side">
             <div>4 star</div>
@@ -49,7 +53,7 @@ const CourseRatingReview = ({ courseId }) => {
               <div
                 style={
                   ratingData.fourRating
-                    ? { width: `${ratingData.fourRating * 10}%` }
+                    ? { width: `${ratingData.fourRating/totalRating * 100}%` }
                     : { width: "0%" }
                 }
                 className="bar-4"
@@ -57,7 +61,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${ratingData.fourRating * 10}%`}</div>
+            <div>{`${ratingData.fourRating/totalRating * 100}%`}</div>
           </div>
           <div className="side">
             <div>3 star</div>
@@ -67,7 +71,7 @@ const CourseRatingReview = ({ courseId }) => {
               <div
                 style={
                   ratingData.threeRating
-                    ? { width: `${ratingData.threeRating * 10}%` }
+                    ? { width: `${ratingData.threeRating/totalRating * 100}%` }
                     : { width: "0%" }
                 }
                 className="bar-3"
@@ -75,7 +79,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${ratingData.threeRating * 10}%`}</div>
+            <div>{`${ratingData.threeRating/totalRating * 100}%`}</div>
           </div>
           <div className="side">
             <div>2 star</div>
@@ -85,7 +89,7 @@ const CourseRatingReview = ({ courseId }) => {
               <div
                 style={
                   ratingData.secondRating
-                    ? { width: `${ratingData.secondRating * 10}%` }
+                    ? { width: `${ratingData.secondRating/totalRating * 100}%` }
                     : { width: "0%" }
                 }
                 className="bar-2"
@@ -93,7 +97,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${ratingData.secondRating * 10}%`}</div>
+            <div>{`${ratingData.secondRating/totalRating * 100}%`}</div>
           </div>
           <div className="side">
             <div>1 star</div>
@@ -103,7 +107,7 @@ const CourseRatingReview = ({ courseId }) => {
               <div
                 style={
                   ratingData.firstRating
-                    ? { width: `${ratingData.firstRating * 10}%` }
+                    ? { width: `${ratingData.firstRating/totalRating * 100}%` }
                     : { width: "0%" }
                 }
                 className="bar-1"
@@ -111,7 +115,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${ratingData.firstRating * 10}%`}</div>
+            <div>{`${ratingData.firstRating/totalRating * 100}%`}</div>
           </div>
         </div>
       </div>

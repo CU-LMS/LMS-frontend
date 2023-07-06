@@ -64,6 +64,9 @@
   box-shadow: 1px 1px 10px 5px rgba(0, 0, 0, 0.2);
 
 }
+.main-header-view1{
+  width: 60%;
+}
 .main-header-view{
   background-color: white !important;
 }

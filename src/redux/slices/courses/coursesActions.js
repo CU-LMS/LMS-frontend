@@ -9,7 +9,8 @@ import {
   handleShowAnnouncement,
   handleNonEnrollCourse,
   handleAddUserByAdmin,
-  handleAddUserLoading
+  handleAddUserLoading,
+  handleParticularCourseData
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
@@ -105,6 +106,20 @@ export const readCourseData = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const readParticularCourseData = (courseId) => async (dispatch) => {
+  try{
+    let config = {
+      method: "get",
+      url: `Course/GetByCourseId?courseId=${courseId}`,
+    };
+    const response = await http(config);
+    console.log(response)
+    dispatch(handleParticularCourseData(response?.data?.data));
+  }catch(err){
+    console.log(err);
+  }
+}
 export const enrollCourse = (courseId) => async (dispatch) => {
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
