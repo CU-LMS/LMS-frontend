@@ -33,8 +33,8 @@ const EnrolledCourseContent = () => {
     }
   }, [state?.courseId, courses]);
 
-  const enrollTheUser = () => {
-    window.location.href = `/watch-course?courseId=${currentCourse?.courseId}`;
+  const enrollTheUser = () => {    
+    navigate(`/watch-course?courseId=${currentCourse?.courseId}`);
   };
 
   useEffect(() => {
@@ -67,7 +67,7 @@ const EnrolledCourseContent = () => {
             <div className="buttonAndEnrolled">
               
               <button className="join-button" onClick={enrollTheUser}>
-                Enroll Now
+                Start Course
               </button>{" "}
               <p>Course Code : </p>
               <p className="count-enroll"> {currentCourse.courseCode}</p>
