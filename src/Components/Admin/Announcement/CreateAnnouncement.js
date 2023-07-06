@@ -79,8 +79,6 @@ const CreateAnnouncement = () => {
       announcementText,
       accessId,
     };
-    console.log(announcData, "DDDDDDDDAAAAAAAAA");
-
     dispatch(AddAnnouncementButton(announcData));
     setModalIsOpen(false);
   };
@@ -105,6 +103,10 @@ const CreateAnnouncement = () => {
   useEffect(() => {
     dispatch(GetConfigureData());
     dispatch(getRoleListData());
+    dispatch(readCourseData());
+    dispatch(readSubjectsData());
+    
+    
    
   }, []);
 

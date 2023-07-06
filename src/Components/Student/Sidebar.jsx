@@ -55,6 +55,7 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
 
   const logUserOut = (event) => {
     event.preventDefault();
+    console.log("LLLLLLLLLLLLL")
     setGoogleAuth(false);
     localStorage.clear("cuchd-accessToken");
     localStorage.removeItem("cuchdCsrf")
@@ -144,9 +145,9 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
             <FaUserEdit className="sidebar-icon me-3" />
             <p className='mb-0 sidebar-item-title'>Profile</p>
           </Link>
-          <div className="sidebar-item d-flex align-items-center py-3">
-            <MdLogout className="sidebar-icon me-3" />
-            <p className='mb-0 sidebar-item-title' onClick={logUserOut}>Logout</p>
+          <div onClick={logUserOut} className="sidebar-item d-flex align-items-center py-3">
+            <MdLogout  className="sidebar-icon me-3" />
+            <p className='mb-0 sidebar-item-title'>Logout</p>
           </div>
         </div>
       </div>

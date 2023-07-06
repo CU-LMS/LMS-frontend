@@ -15,7 +15,7 @@ const initialState = {
   nonEnrollCourseList:[],
   userAddedByAdmin:[],
   addUserLoading: "idle",
-  
+  particularCourseData:{}
 };
 
 
@@ -65,8 +65,10 @@ const course = createSlice({
     },
     handleAddUserLoading: (state, {payload}) => {
       state.addUserLoading = payload
+    },
+    handleParticularCourseData: (state, {payload}) => {
+      state.particularCourseData = payload
     }
-    
   },
 });
 
@@ -84,8 +86,8 @@ export const {
   handleShowAnnouncement,
   handleNonEnrollCourse,
   handleAddUserByAdmin,
-  handleAddUserLoading
-  
+  handleAddUserLoading,
+  handleParticularCourseData
 } = course.actions;
 
 export default course.reducer;

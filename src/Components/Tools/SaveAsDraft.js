@@ -4,12 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { readSubjectsData } from "../../redux/slices/subjects/subjectSliceAction";
 import "./MiniHeader.css";
 import { readDiscData } from "../../redux/slices/subjects/disciplineSliceAction";
-import { createCourse } from "../../redux/slices/courses/coursesActions";
+import { createCourse, readParticularCourseData } from "../../redux/slices/courses/coursesActions";
 import Modal from "react-modal";
 import Cookies from "js-cookie";
 import LoadingPage from "../../hoc/LoadingPage";
 
-const MiniHeader = () => {
+const SaveAsDraft = () => {
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [name, setName] = useState("");
@@ -20,6 +20,9 @@ const MiniHeader = () => {
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   const discData = useSelector((state) => state?.disciplineState?.discData);
   const loadingApi = useSelector((state) => state?.courseState?.lodingApi);
+  const particularCourseData = useSelector((state) => state?.courseState?.particularCourseData)
+
+  console.log(particularCourseData, "aaaaaaaaaaaaaaaaaaaaaaaas")
 
   const [formData, setFormData] = useState({
     courseName: "",
@@ -45,7 +48,29 @@ const MiniHeader = () => {
   useEffect(() => {
     dispatch(readSubjectsData());
     dispatch(readDiscData());
+    dispatch(readParticularCourseData(46))
   }, []);
+
+  useEffect(() => {
+    setFormData({
+        courseName: particularCourseData?.courseName,
+        authorName: particularCourseData?.authorName,
+        subject: particularCourseData?.subjectId,
+        discipline: particularCourseData?.disciplineId,
+        courseCode: particularCourseData?.courseCode,
+        semester: particularCourseData?.semester,
+        availability: particularCourseData?.availble,
+        duration: particularCourseData?.durationConfigurationId,
+        courseView: particularCourseData?.courseViewConfigurationId,
+        contentView: particularCourseData?.contentViewConfigurationId,
+        dStartTime: particularCourseData?.dStartTime,
+        dEndTime: particularCourseData?.dEndTime,
+        bannerImage: particularCourseData?.bannerImageName,
+        courseDoc: particularCourseData?.courseDoc,
+        courseVideo: null,
+        isDraft:particularCourseData?.isDraft,
+    })
+  },[particularCourseData])
 
   const handleScroll = () => {
     const windowHeight = window.innerHeight;
@@ -121,6 +146,10 @@ const MiniHeader = () => {
     setModalIsOpen(true);
   };
 
+  const openDraftImage = () => {
+    window.open(formData?.bannerImage, '_blank')
+  }
+
   return (
     <>
       <div className="main">
@@ -141,7 +170,8 @@ const MiniHeader = () => {
                     id="courseName"
                     placeholder="Enter Course Name"
                     className="form-control"
-                    required
+                    
+                    value={formData?.courseName}
                     onChange={(e) =>
                       setFormData({ ...formData, courseName: e.target.value })
                     }
@@ -157,7 +187,8 @@ const MiniHeader = () => {
                     id="authorName"
                     placeholder="Enter Author Name"
                     className="form-control"
-                    required
+                    
+                    value={formData?.authorName}
                     onChange={(e) =>
                       setFormData({ ...formData, authorName: e.target.value })
                     }
@@ -174,7 +205,8 @@ const MiniHeader = () => {
                     id="subject"
                     name="subject"
                     className="form-control"
-                    required
+                    
+                    value={formData?.subject}
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
                     }
@@ -203,7 +235,8 @@ const MiniHeader = () => {
                     id="discipline"
                     name="discipline"
                     className="form-control"
-                    required
+                    
+                    value={formData?.discipline}
                     onChange={(e) =>
                       setFormData({ ...formData, discipline: e.target.value })
                     }
@@ -237,7 +270,8 @@ const MiniHeader = () => {
                     id="courseCode"
                     placeholder="Description :"
                     className="form-control"
-                    required
+                    
+                    value={formData?.courseCode}
                     onChange={(e) =>
                       setFormData({ ...formData, courseCode: e.target.value })
                     }
@@ -252,6 +286,7 @@ const MiniHeader = () => {
                     name="semester"
                     className="form-control"
                     required
+                    value={formData?.semester}
                     onChange={(e) =>
                       setFormData({ ...formData, semester: e.target.value })
                     }
@@ -337,7 +372,7 @@ const MiniHeader = () => {
                       value="1"
                       name="duration"
                       required
-                      checked={formData.duration === "1"}
+                      checked={formData.duration == "1"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({ ...formData, duration: e.target.value })
@@ -415,6 +450,7 @@ const MiniHeader = () => {
                       type="radio"
                       id="default-content-view-icon"
                       value="1"
+                      checked={formData?.contentView == "1"}
                       name="default-content-view"
                       className="custom-control-input me-2"
                       required
@@ -439,6 +475,7 @@ const MiniHeader = () => {
                       id="default-content-view-text"
                       value="2"
                       name="default-content-view"
+                      checked={formData?.contentView == "2"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({
@@ -460,6 +497,7 @@ const MiniHeader = () => {
                       type="radio"
                       id="default-content-view-iconNtext"
                       value="3"
+                      checked={formData?.contentView == "3"}
                       name="default-content-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -489,6 +527,7 @@ const MiniHeader = () => {
                       type="radio"
                       id="ourse-view-default"
                       value="1"
+                      checked={formData?.courseView == "1"}
                       name="course-view"
                       required
                       className="custom-control-input me-2"
@@ -509,6 +548,7 @@ const MiniHeader = () => {
                       type="radio"
                       id="course-view-restricted"
                       value="2"
+                      checked={formData?.courseView == "2"}
                       name="course-view"
                       className="custom-control-input me-2"
                       onChange={(e) =>
@@ -532,6 +572,17 @@ const MiniHeader = () => {
               <div className="col-md-6">
                 <div className="form-group">
                   <label className="mb-3">Banner Image</label>
+                  <input
+                    
+                    type="text"
+                    name="banner-image"
+                    id="banner-image"
+                    onClick={openDraftImage}
+                    className="form-control-image"
+                    required
+                    value={formData?.bannerImage}
+                 
+                  />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
                     <input
                       type="file"
@@ -549,6 +600,16 @@ const MiniHeader = () => {
               <div className="col-md-6">
                 <div className="form-group">
                   <label className="mb-3">Upload Docs</label>
+                  <input
+                    type="text"
+                    name="upload-docs"
+                    id="upload-docs"
+                   
+                    className="form-control"
+                    required
+                    value={formData?.courseDoc}
+                   
+                  />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
                     <input
                       type="file"
@@ -675,4 +736,4 @@ const MiniHeader = () => {
   );
 };
 
-export default MiniHeader;
+export default SaveAsDraft;

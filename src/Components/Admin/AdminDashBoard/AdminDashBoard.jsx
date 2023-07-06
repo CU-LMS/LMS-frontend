@@ -57,7 +57,7 @@ const AdminDashBoard = () => {
             <div>
               <Card className="card">
                 <h2>Enrolled Students</h2>
-                <h3>{dashboardData?.totalEnrolledCourse}</h3>
+                <h3>{dashboardData?.totalEnrolledStudent}</h3>
                 {/* <BsFillPeopleFill size={80} className="icon" /> */}
               </Card>
               <Card>

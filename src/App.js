@@ -47,6 +47,7 @@ import Footer from "./Components/Footer/Footer";
 
 import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
 import PostPage from "./Components/DiscussionForum/components/PostPage";
+import SaveAsDraft from "./Components/Tools/SaveAsDraft";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -107,6 +108,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contac />} />
+            <Route path="/save-draft" element={<SaveAsDraft />} />
 
             {/* Student Route */}
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
