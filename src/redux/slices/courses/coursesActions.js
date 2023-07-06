@@ -10,12 +10,14 @@ import {
   handleNonEnrollCourse,
   handleAddUserByAdmin,
   handleAddUserLoading,
-  handleParticularCourseData
+  handleParticularCourseData,
+  handleEnrollCourses
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
 import { useState } from "react";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 export const createCourse = (courseData) => async (dispatch) => {
   try {
@@ -120,7 +122,9 @@ export const readParticularCourseData = (courseId) => async (dispatch) => {
     console.log(err);
   }
 }
+
 export const enrollCourse = (courseId) => async (dispatch) => {
+  const navigate = useNavigate();
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
     let config = {
@@ -135,7 +139,7 @@ export const enrollCourse = (courseId) => async (dispatch) => {
     const response = await http(config);
     if (response?.data?.statusCode === 200) {
       toast.success("Sucessfully Enrolled");
-      window.location.href = `/watch-course?courseId=${courseId}`;
+      navigate(`/watch-course?courseId=${courseId}`);
     } else {
       toast.error("Error While Enrolling");
     }
@@ -143,6 +147,8 @@ export const enrollCourse = (courseId) => async (dispatch) => {
     toast.error("Error While Enrolling");
   }
 };
+
+
 
 export const readFAQData = () => async (dispatch) => {
   try {

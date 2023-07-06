@@ -16,7 +16,8 @@ const CourseRatingReview = ({ courseId }) => {
   );
   console.log("demo hai", ratingData);
 
-  const totalRating = (ratingData?.fiveRating + ratingData?.fourRating + ratingData?.threeRating + ratingData?.secondRating + ratingData?.firstRating);
+  let totalRating = (ratingData?.fiveRating + ratingData?.fourRating + ratingData?.threeRating + ratingData?.secondRating + ratingData?.firstRating);
+  totalRating=totalRating==0?1:totalRating;
 
   console.log(totalRating, "99999999999")
 
