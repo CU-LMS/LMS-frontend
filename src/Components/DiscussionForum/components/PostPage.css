@@ -1,0 +1,26 @@
+.btn-submit {
+  background-color: #1e283c;
+  padding: 10px 25px;
+  font-size: 18px;
+  border-radius: 6px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+.btn-submit:hover {
+  background-color: transparent;
+  color: #1e283c;
+}
+
+.btn-like {
+  background-color: transparent;
+  border: 1px solid #1e283c;
+  padding: 10px 25px;
+  font-size: 18px;
+  border-radius: 6px;
+  color: #1e283c;
+  transition: all 0.3s ease;
+}
+.btn:visited {
+  background-color: #1e283c;
+  color: #fff;
+}

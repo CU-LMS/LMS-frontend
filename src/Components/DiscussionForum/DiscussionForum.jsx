@@ -58,7 +58,7 @@ const DiscussionForum = () => {
               <p className="total-posts">Total posts : {posts.length}</p>
               <button
                 type="button"
-                class="btn btn-success me-3 w-auto"
+                className="me-3 w-auto btn-newpost"
                 style={{ marginBottom: 20 }}
                 data-bs-toggle="modal"
                 data-bs-target="#exampleModal"
