@@ -365,6 +365,7 @@ export const readNonErollCourseData = () => async (dispatch) => {
       url: "Course/GetCourseListWithoutEnrollUser",
       data: {
         userId: credentials.userId,
+        roleId:credentials.roleId,        
       },
     };
     const response = await http(config);
@@ -390,6 +391,7 @@ export const addUserByAdmin = (userData) => async (dispatch) => {
         phoneNumber: userData.phoneNumber,
         gender: userData.gender,
         empId: userData.employeeId,
+        roleId:userData.roleId
       },
     };
     let result = await http(config);

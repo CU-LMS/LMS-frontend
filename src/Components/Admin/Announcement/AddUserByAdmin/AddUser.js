@@ -26,6 +26,7 @@ const AddUser = () => {
     phoneNumber: "",
     gender: "",
     employeeId: "",
+    roleId:""
   });
 
   const dispatch = useDispatch();
@@ -49,16 +50,7 @@ const AddUser = () => {
     (state) => state?.courseState?.addUserLoading
   );
 
-  const onSelect = (selectList, selectedItem) => {
-    console.log(selectList);
-    let tsl = [];
-    if (selectList?.length > 0) {
-      selectList?.forEach((ele) => {
-        tsl.push(ele.cat);
-      });
-    }
-    setRoleList(tsl);
-  };
+  
 
   const onConfigrationChange = (e) => {
     setDropdownType(e.target.value);
@@ -91,7 +83,7 @@ const AddUser = () => {
   useEffect(() => {
     dispatch(getRoleListData());
   }, []);
-
+console.log("rolessssss->",listData);
   return (
     <>
       <div className="modalParent">
