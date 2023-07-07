@@ -48,6 +48,7 @@ import Footer from "./Components/Footer/Footer";
 import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
 import PostPage from "./Components/DiscussionForum/components/PostPage";
 import SaveAsDraft from "./Components/Tools/SaveAsDraft";
+import FeedbackForm from "./Components/FeedbackForm/FeedbackForm";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -264,6 +265,10 @@ function App() {
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>
+      <Route
+              path="/feedback-form"
+              element={<FeedbackForm/>}
+            />
     </>
   );
 }
