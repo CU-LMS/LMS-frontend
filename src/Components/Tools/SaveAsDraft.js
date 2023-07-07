@@ -1,16 +1,17 @@
-
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { readSubjectsData } from "../../redux/slices/subjects/subjectSliceAction";
 import "./MiniHeader.css";
 import { readDiscData } from "../../redux/slices/subjects/disciplineSliceAction";
-import { createCourse, readParticularCourseData } from "../../redux/slices/courses/coursesActions";
+import {
+  createCourse,
+  readParticularCourseData,
+} from "../../redux/slices/courses/coursesActions";
 import Modal from "react-modal";
 import Cookies from "js-cookie";
 import LoadingPage from "../../hoc/LoadingPage";
 
 const SaveAsDraft = () => {
-
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [subjectArea, setSubjectArea] = useState([]);
@@ -20,9 +21,11 @@ const SaveAsDraft = () => {
   const subjectData = useSelector((state) => state?.subjectsState?.subjectData);
   const discData = useSelector((state) => state?.disciplineState?.discData);
   const loadingApi = useSelector((state) => state?.courseState?.lodingApi);
-  const particularCourseData = useSelector((state) => state?.courseState?.particularCourseData)
+  const particularCourseData = useSelector(
+    (state) => state?.courseState?.particularCourseData
+  );
 
-  console.log(particularCourseData, "aaaaaaaaaaaaaaaaaaaaaaaas")
+  console.log(particularCourseData, "aaaaaaaaaaaaaaaaaaaaaaaas");
 
   const [formData, setFormData] = useState({
     courseName: "",
@@ -40,7 +43,10 @@ const SaveAsDraft = () => {
     bannerImage: null,
     courseDoc: null,
     courseVideo: null,
-    isDraft:"",
+    isDraft: "",
+    duration: "1",
+    dStartDate: "",
+    dEndDate: "",
   });
 
   const dispatch = useDispatch();
@@ -48,29 +54,29 @@ const SaveAsDraft = () => {
   useEffect(() => {
     dispatch(readSubjectsData());
     dispatch(readDiscData());
-    dispatch(readParticularCourseData(46))
+    dispatch(readParticularCourseData(48));
   }, []);
 
   useEffect(() => {
     setFormData({
-        courseName: particularCourseData?.courseName,
-        authorName: particularCourseData?.authorName,
-        subject: particularCourseData?.subjectId,
-        discipline: particularCourseData?.disciplineId,
-        courseCode: particularCourseData?.courseCode,
-        semester: particularCourseData?.semester,
-        availability: particularCourseData?.availble,
-        duration: particularCourseData?.durationConfigurationId,
-        courseView: particularCourseData?.courseViewConfigurationId,
-        contentView: particularCourseData?.contentViewConfigurationId,
-        dStartTime: particularCourseData?.dStartTime,
-        dEndTime: particularCourseData?.dEndTime,
-        bannerImage: particularCourseData?.bannerImageName,
-        courseDoc: particularCourseData?.courseDoc,
-        courseVideo: null,
-        isDraft:particularCourseData?.isDraft,
-    })
-  },[particularCourseData])
+      courseName: particularCourseData?.courseName,
+      authorName: particularCourseData?.authorName,
+      subject: particularCourseData?.subjectId,
+      discipline: particularCourseData?.disciplineId,
+      courseCode: particularCourseData?.courseCode,
+      semester: particularCourseData?.semester,
+      availability: particularCourseData?.availble,
+      duration: particularCourseData?.durationConfigurationId,
+      courseView: particularCourseData?.courseViewConfigurationId,
+      contentView: particularCourseData?.contentViewConfigurationId,
+      dStartTime: particularCourseData?.dStartTime,
+      dEndTime: particularCourseData?.dEndTime,
+      bannerImage: particularCourseData?.bannerImageName,
+      courseDoc: particularCourseData?.courseDoc,
+      courseVideo: null,
+      isDraft: particularCourseData?.isDraft,
+    });
+  }, [particularCourseData]);
 
   const handleScroll = () => {
     const windowHeight = window.innerHeight;
@@ -147,8 +153,8 @@ const SaveAsDraft = () => {
   };
 
   const openDraftImage = () => {
-    window.open(formData?.bannerImage, '_blank')
-  }
+    window.open(formData?.bannerImage, "_blank");
+  };
 
   return (
     <>
@@ -156,7 +162,7 @@ const SaveAsDraft = () => {
         <form className="form-container" onSubmit={openModal}>
           <div className="section-heading mb-5">
             <h3 className="mt-0">Create New Course</h3>
-            <hr  />
+            <hr />
           </div>
 
           <div id="course-creation-form">
@@ -170,7 +176,6 @@ const SaveAsDraft = () => {
                     id="courseName"
                     placeholder="Enter Course Name"
                     className="form-control"
-                    
                     value={formData?.courseName}
                     onChange={(e) =>
                       setFormData({ ...formData, courseName: e.target.value })
@@ -187,7 +192,6 @@ const SaveAsDraft = () => {
                     id="authorName"
                     placeholder="Enter Author Name"
                     className="form-control"
-                    
                     value={formData?.authorName}
                     onChange={(e) =>
                       setFormData({ ...formData, authorName: e.target.value })
@@ -205,7 +209,6 @@ const SaveAsDraft = () => {
                     id="subject"
                     name="subject"
                     className="form-control"
-                    
                     value={formData?.subject}
                     onChange={(e) =>
                       setFormData({ ...formData, subject: e.target.value })
@@ -235,7 +238,6 @@ const SaveAsDraft = () => {
                     id="discipline"
                     name="discipline"
                     className="form-control"
-                    
                     value={formData?.discipline}
                     onChange={(e) =>
                       setFormData({ ...formData, discipline: e.target.value })
@@ -270,7 +272,6 @@ const SaveAsDraft = () => {
                     id="courseCode"
                     placeholder="Description :"
                     className="form-control"
-                    
                     value={formData?.courseCode}
                     onChange={(e) =>
                       setFormData({ ...formData, courseCode: e.target.value })
@@ -315,10 +316,10 @@ const SaveAsDraft = () => {
                     <input
                       type="radio"
                       id="availability-true"
-                      value="true"
+                      value="1"
                       name="availability"
                       required
-                      checked={formData.availability === "true"}
+                      checked={formData.availability == "1"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({
@@ -339,9 +340,9 @@ const SaveAsDraft = () => {
                     <input
                       type="radio"
                       id="availability-false"
-                      value="false"
+                      value="2"
                       name="availability"
-                      checked={formData.availability === "false"}
+                      checked={formData.availability == "2"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({
@@ -372,7 +373,7 @@ const SaveAsDraft = () => {
                       value="1"
                       name="duration"
                       required
-                      checked={formData.duration == "1"}
+                      checked={formData?.duration == "1"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({ ...formData, duration: e.target.value })
@@ -392,7 +393,7 @@ const SaveAsDraft = () => {
                       id="duration-selectDates"
                       value="2"
                       name="duration"
-                      checked={formData.duration === "2"}
+                      checked={formData?.duration == "2"}
                       className="custom-control-input me-2"
                       onChange={(e) =>
                         setFormData({ ...formData, duration: e.target.value })
@@ -410,10 +411,13 @@ const SaveAsDraft = () => {
               </div>
             </div>
 
-            {formData?.duration === "2" ? (
+            {formData?.duration == "2" ? (
               <>
                 <label className="duration-1">Start Date</label>
                 <input
+        
+                value="10"
+                checked={formData?.dStartDate == "10"}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -426,6 +430,8 @@ const SaveAsDraft = () => {
                 ></input>
                 <label className="duration-2">End Date</label>
                 <input
+                value="11"
+                checked={formData?.dEndDate == "11"}
                   onChange={(e) =>
                     setFormData({
                       ...formData,
@@ -573,7 +579,6 @@ const SaveAsDraft = () => {
                 <div className="form-group">
                   <label className="mb-3">Banner Image</label>
                   <input
-                    
                     type="text"
                     name="banner-image"
                     id="banner-image"
@@ -581,7 +586,6 @@ const SaveAsDraft = () => {
                     className="form-control-image"
                     required
                     value={formData?.bannerImage}
-                 
                   />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
                     <input
@@ -604,11 +608,9 @@ const SaveAsDraft = () => {
                     type="text"
                     name="upload-docs"
                     id="upload-docs"
-                   
                     className="form-control"
                     required
                     value={formData?.courseDoc}
-                   
                   />
                   <div className="custom-control custom-radio custom-control-inline mb-2">
                     <input

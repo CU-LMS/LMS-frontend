@@ -111,15 +111,6 @@ const Sidebar = ({ isSidebar, setIsSidebar }) => {
             <MdStorage className="sidebar-icon me-3" />
             <p className="mb-0 sidebar-item-title">Courses</p>
           </Link>
-          <Link
-            to="/catalog"
-            className="sidebar-item d-flex align-items-center py-3"
-            data-value="catalog"
-            onClick={handleNavigate}
-          >
-            <MdStorage className="sidebar-icon me-3" />
-            <p className="mb-0 sidebar-item-title">Users</p>
-          </Link>
 
           <Link
             to="/create-announcement"
