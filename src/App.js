@@ -260,15 +260,17 @@ function App() {
             <Route path="/FAQ" element={<FAQs />} />
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
+
+            <Route
+              path="/feedback-form"
+              element={<FeedbackForm/>}
+            />
           </Routes>
 
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>
-      <Route
-              path="/feedback-form"
-              element={<FeedbackForm/>}
-            />
+    
     </>
   );
 }
