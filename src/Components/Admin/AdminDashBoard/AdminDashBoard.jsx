@@ -4,7 +4,9 @@ import { readDashboardData } from "../../../redux/slices/Common/dashboardActions
 import { useDispatch, useSelector } from "react-redux";
 import "./AdminDashBoard.css";
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 const AdminDashBoard = () => {
+  const navigate = useNavigate();
   const wrapperStyle = {
     width: 300,
     border: "1px solid #d9d9d9",
@@ -18,6 +20,10 @@ const AdminDashBoard = () => {
   const dashboardData = useSelector(
     (state) => state?.dashboardState?.getDashboardData
   );
+  const publishNavigate = () => {
+    navigate("/publish-courses");
+
+  };
 
   return (
     <>
@@ -27,7 +33,7 @@ const AdminDashBoard = () => {
         <div className="admin-dashboard">
           <div className="grid-parent-dashboard">
             <div>
-              <Card className="card">
+              <Card className="card" onClick={publishNavigate}>
                 <h2>Publish Courses</h2>
                 <h3>{dashboardData?.totalActiveCourse}</h3>
                 {/* <IoMdSchool size={80} className="icon" /> */}

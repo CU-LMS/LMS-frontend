@@ -4,7 +4,8 @@ const initialState = {
     apiError: "",    
     addUserLoading: "idle",
     getDashboardData:[], 
-    getNewsData:[],   
+    getNewsData:[],
+    getPublishCourseData:null   
   };
 
   
@@ -24,7 +25,9 @@ const dashboard = createSlice({
       handleNewsData: (state, {payload}) => {
         state.getNewsData = payload
       },
-      
+      handlePublishCourseData: (state, {payload}) => {
+        state.getPublishCourseData = payload
+      },
       
     },
   });
@@ -33,7 +36,8 @@ const dashboard = createSlice({
     handleLoding,
     handleApiError,
     handleDashboard,
-    handleNewsData
+    handleNewsData,
+    handlePublishCourseData
   } = dashboard.actions;
   
   export default dashboard.reducer;

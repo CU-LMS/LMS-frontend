@@ -49,6 +49,7 @@ import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
 import PostPage from "./Components/DiscussionForum/components/PostPage";
 import SaveAsDraft from "./Components/Tools/SaveAsDraft";
 import FeedbackForm from "./Components/FeedbackForm/FeedbackForm";
+import PublishCourses from "./Components/Admin/PublishCourses/PublishCourses";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -254,6 +255,14 @@ function App() {
               element={
                 <AdminProtectedRoute>
                   <PostPage />
+                </AdminProtectedRoute>
+              }
+            />            
+            <Route
+              path="/publish-courses"
+              element={
+                <AdminProtectedRoute>
+                  <PublishCourses />
                 </AdminProtectedRoute>
               }
             />
