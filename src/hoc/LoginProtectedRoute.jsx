@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingPage from "./LoadingPage";
-import axios from "axios";
+import http from "./axiosClient";
 
 
 const LoginProtectedRoute = ({ children }) => {
@@ -17,7 +17,7 @@ const LoginProtectedRoute = ({ children }) => {
         url: `Login/UserValidate?token=${credentials.accessToken}`
       }
 
-      let response = await axios(config);
+      let response = await http(config);
       console.log(response, "aaaaa")
       if (response.data.statusCode === 200) {
         
