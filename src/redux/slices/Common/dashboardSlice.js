@@ -9,6 +9,8 @@ const initialState = {
     enrolledCourses: [],
     recordCount: 0,  
     numberOfPages: 0,
+    getPublishCourseData:null,
+    getDraftCourseData:null,
   };
 
   
@@ -38,8 +40,15 @@ const dashboard = createSlice({
         state.recordCount = action.payload
       },
       handleSetNumberOfPages: (state, action) => {
-        state.numberOfPages = Math.ceil(Number(action.payload) / 2);handlePublishCourseData: (state, {payload}) => {
+        state.numberOfPages = Math.ceil(Number(action.payload) / 2);
+      },
+
+      handlePublishCourseData: (state, {payload}) => {
         state.getPublishCourseData = payload
+      },
+
+      handleDraftCourseData: (state, {payload}) => {
+        state.getDraftCourseData = payload
       },
       
     },
@@ -54,7 +63,8 @@ const dashboard = createSlice({
     handleSetRecordCount,
     handleSetNumberOfPages,
     handleEnrolledCourses,
-    handlePublishCourseData
+    handlePublishCourseData,
+    handleDraftCourseData
   } = dashboard.actions;
   
   export default dashboard.reducer;

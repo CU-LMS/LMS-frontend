@@ -52,11 +52,12 @@ import FeedbackForm from "./Components/FeedbackForm/FeedbackForm";
 import EnrolledStudents from "./Components/Admin/AdminDashBoard/pages/EnrolledStudents";
 import EnrolledCourses from "./Components/Admin/AdminDashBoard/pages/EnrolledCourses";
 import PublishCourses from "./Components/Admin/PublishCourses/PublishCourses";
+import DraftCourses from "./Components/Admin/DraftCourses/DraftCourses";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
   let adminData = JSON.parse(localStorage.getItem("adminData"));
-  console.log("Abhayjjjjjjjj", adminData);
+
   const path = window.location.pathname;
   let roleId = 0;
   roleId = userData == null ? 0 : userData.roleId;
@@ -277,7 +278,7 @@ function App() {
                   <PostPage />
                 </AdminProtectedRoute>
               }
-            />            
+            />
             <Route
               path="/publish-courses"
               element={
@@ -286,6 +287,17 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
+
+            <Route
+              path="/draft-courses"
+              element={
+                <AdminProtectedRoute>
+                  <DraftCourses />
+                </AdminProtectedRoute>
+              }
+            />
+
+            
             {/* <Route path="/create-announcement" element={<CreateAnnouncement />} /> */}
             {/* <Route path="/announcement" element={<AnnouncementTemplate />} /> */}
             <Route path="/addVideo" element={<AddVideo />} />
@@ -300,14 +312,14 @@ function App() {
 
             <Route
               path="/feedback-form"
-              element={<FeedbackForm/>}
+              element={<FeedbackForm />}
             />
           </Routes>
 
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>
-    
+
     </>
   );
 }

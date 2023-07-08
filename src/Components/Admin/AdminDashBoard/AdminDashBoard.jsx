@@ -35,8 +35,8 @@ const AdminDashBoard = () => {
           <div className="grid-parent-dashboard">
             <div className="text-center">
 
-              <Link to="/published-courses" className="card-wrapper mb-3">
-                <Card className="card" onClick={publishNavigate}>
+              <Link to="/publish-courses" className="card-wrapper mb-3">
+                <Card className="card">
                   <h2>Publish Courses</h2>
                   <h3>{dashboardData?.totalActiveCourse}</h3>
                   {/* <IoMdSchool size={80} className="icon" /> */}
@@ -54,7 +54,7 @@ const AdminDashBoard = () => {
 
 
             <div className="text-center">
-              <Link className="card-wrapper mb-3">
+              <Link to="/draft-courses" className="card-wrapper mb-3">
                 <Card className="card">
                   <h2>Draft Courses</h2>
                   <h3>{dashboardData?.totalDraftCourse}</h3>
@@ -73,13 +73,11 @@ const AdminDashBoard = () => {
                 </Card>
               </Link>
             </div>
-
-
             <div className="text-center">
               <Link to="/enrolled-students" className="card-wrapper mb-3">
                 <Card className="card">
                   <h2>Enrolled Students</h2>
-                  <h3>{dashboardData?.totalEnrolledCourse}</h3>
+                  <h3>{dashboardData?.totalEnrolledStudent}</h3>
                   {/* <BsFillPeopleFill size={80} className="icon" /> */}
                 </Card>
               </Link>
