@@ -48,6 +48,8 @@ import Footer from "./Components/Footer/Footer";
 import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
 import PostPage from "./Components/DiscussionForum/components/PostPage";
 import SaveAsDraft from "./Components/Tools/SaveAsDraft";
+import EnrolledStudents from "./Components/Admin/AdminDashBoard/pages/EnrolledStudents";
+import EnrolledCourses from "./Components/Admin/AdminDashBoard/pages/EnrolledCourses";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -207,6 +209,24 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
+
+            <Route
+              path="/enrolled-courses"
+              element={
+                <AdminProtectedRoute>
+                  <EnrolledCourses />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/enrolled-students"
+              element={
+                <AdminProtectedRoute>
+                  <EnrolledStudents />
+                </AdminProtectedRoute>
+              }
+            />
+
             <Route
               path="/add-news"
               element={
