@@ -11,7 +11,7 @@ export default function CreatePassword() {
   const [username, setUsername] = useState("");
   const [otp, setOTP] = useState("");
   const [errorMsg, setRrrorMsg] = useState("");
-  const [confirmpassword, setConfirmpassword] = useState("");
+  const [confirmPassword, setConfirmpassword] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
 
@@ -26,30 +26,45 @@ export default function CreatePassword() {
   const onSubmit = (data) => {
     console.log("Abhay", data);
     console.log("username", data.userName);
+    console.log("Password", data.password);
+    console.log("ConfPassword", data.confirmPassword);
 
     const errorMsg = strCompare(data.password, data.confirmPassword);
-    console.log("ErrorLog", errorMsg);
+    if (errorMsg == "Matched") {
+      console.log("sending");
+      // dispatch(createPassword(data.userName, data.password, data.otp));
+      // cookies.clear();
+    }
+    console.log("Error Message", errorMsg);
     setRrrorMsg(errorMsg);
-    dispatch(createPassword(data.userName, data.password, data.otp));
-    // cookies.clear();
   };
   const strCompare = (pass, confpass) => {
     let errMsg = "";
     if (pass !== confpass) {
-      errMsg = "Confirm password is not matched";
+      errMsg = "Passwords do not match";
     } else {
-      errMsg = "";
+      errMsg = "Matched";
     }
+    return errMsg;
+  };
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    console.log("Working", e);
+    handleSubmit(onSubmit);
   };
 
   return (
     <div className="popup">
       <div className="popup-inner">
         <h2 className="create-heading">Create Password</h2>
-        <form action="#">
+        <form className="was-validated" onSubmit={handleFormSubmit}>
           <label>
-            <p>Username</p>
+            <p>Email</p>
             <input
+              className="form-control"
+              pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+              maxLength={45}
               type="text"
               placeholder="Enter your email"
               required
@@ -59,10 +74,14 @@ export default function CreatePassword() {
             />
           </label>
           <label>
-           <p> Password:</p>
+            <p> Password:</p>
             <input
+              className="form-control"
               type="password"
+              pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
               required
+              minLength={6}
+              placeholder="Enter new password"
               {...register("password")}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -71,19 +90,26 @@ export default function CreatePassword() {
           <label>
             <p>Confirm Password:</p>
             <input
-              type="text"
+              className="form-control"
+              type="password"
               required
+              minLength={6}
+              pattern="(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$"
+              placeholder="Confirm new password"
               {...register("confirmPassword")}
-              value={confirmpassword}
+              value={confirmPassword}
               onChange={(e) => setConfirmpassword(e.target.value)}
             />
           </label>
           <label>
-           <p> OTP:</p>
+            <p> OTP:</p>
             <input
+              className="form-control "
               type="text"
               placeholder="Enter OTP"
               required
+              pattern="^\d{6}$"
+              maxLength={6}
               {...register("otp")}
               value={otp}
               onChange={(e) => setOTP(e.target.value)}
@@ -91,8 +117,9 @@ export default function CreatePassword() {
           </label>
           <p className="text-danger">{errorMsg}</p>
           <div className="footer-in-modal">
-
-          <button className="sure-button" onClick={handleSubmit(onSubmit)}> Create</button>
+            <button type="submit" className="sure-button">
+              Create
+            </button>
           </div>
         </form>
       </div>

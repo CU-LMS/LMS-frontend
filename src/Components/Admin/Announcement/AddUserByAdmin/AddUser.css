@@ -39,18 +39,18 @@
   border: none;
   background: transparent;
   font-weight: 600;
-;
 }
-.doanddont-button:hover{
+.doanddont-button:hover {
   /* background-color: #76b1b1; */
   border-radius: 10px;
   border: none;
   color: black;
   font-weight: 600;
-
-
-  
 }
-.passage123{
+.passage123 {
   color: white;
+}
+
+.emp-code:valid {
+  background-image: none !important;
 }
