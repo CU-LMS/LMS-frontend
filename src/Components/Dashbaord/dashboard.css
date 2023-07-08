@@ -85,7 +85,7 @@
 }
 
 #dashboardGridCard_2_1 {
-  background-image: url(/src/asset/Big-Tile-1-PhotoRoom.jpg);
+  background-image: url(/src/asset/redback1.gif);
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -121,15 +121,15 @@
 }
 
 .dash_courseCard {
-   border-radius: 10px;
+  border-radius: 10px;
   height: 307px;
-  width: 217px;
+  width: 270px !important;
   display: flex;
   align-items: center;
   flex-direction: column;
   background-color: white;
   overflow: hidden;
-  border: 1px solid rgb(155, 147, 147);
+  border: 1px solid rgb(211, 193, 193) !important;
   margin-bottom: 20px; 
 
 
@@ -153,6 +153,7 @@
   height: 164px;
   transform: scale(1);
   transition: transform 0.5s ease;
+  width: 100%;
 }
 .overflow1{
   overflow: hidden;

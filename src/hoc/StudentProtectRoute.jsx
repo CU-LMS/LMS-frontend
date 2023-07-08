@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 import LoadingPage from "./LoadingPage";
-import axios from "axios";
+import http from "./axiosClient";
+
 
 
 const StudentProtectedRoute = ({ children }) => {
@@ -15,32 +16,31 @@ const StudentProtectedRoute = ({ children }) => {
     try {
       let config = {
         method: "get",
-        url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${credentials.accessToken}`
-         //url: `Login/UserValidate?token=${credentials.accessToken}`
+         url: `Login/UserValidate?token=${credentials.accessToken}`
       }
 
-      let response = await axios(config);
+      let response = await http(config);
       console.log(response)
       if (response.data.statusCode === 200) {
         if(response.data.data.roleId === 5 ||response.data.data.roleId === 4){
           setIsAuthenticate(true);
         }else{
+          console.log("FIRST")
           localStorage.clear("cuchdCsrf")
-          //navigate("/login")
           window.location.href=("/login");
         }
        
       } else {
+        console.log("SECOND")
         window.location.href=("/login");
-        //navigate("/login", { replace: true });
       }
     } catch (err) {
         window.location.href=("/login");
-      //navigate("/login", { replace: true });
     }
   };
 
   useEffect(() => {
+    console.log("THIRD")
     if (credentials === undefined || credentials === null) {
       navigate("/login", { replace: true });
     } else {

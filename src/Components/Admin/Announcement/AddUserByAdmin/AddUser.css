@@ -1,16 +1,56 @@
-.name-flex{
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
+.name-flex {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
 }
-.marginToRight{
-    margin-right: 10px;
+.marginToRight {
+  margin-right: 10px;
 }
-.add-user-heading{
-    font-size: 27px;
-    font-weight: 600;
-    font-family: 'Poppins', sans-serif !important;
-    color: white;
-    margin-bottom: 10px;
+.add-user-heading {
+  font-size: 27px;
+  font-weight: 600;
+  font-family: "Poppins", sans-serif !important;
+  color: white;
+  margin-bottom: 10px;
+}
+.modalParent {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+.invisible-button {
+  width: 20%;
+}
+.button-useradd {
+  width: 60%;
+  display: flex;
+  justify-content: center;
+}
+.do-and-dons {
+  width: 20%;
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 10px;
+}
+.doanddont-button {
+  color: black;
+  width: 100%;
+  cursor: pointer;
+  border: none;
+  background: transparent;
+  font-weight: 600;
+;
+}
+.doanddont-button:hover{
+  /* background-color: #76b1b1; */
+  border-radius: 10px;
+  border: none;
+  color: black;
+  font-weight: 600;
 
+
+  
+}
+.passage123{
+  color: white;
 }

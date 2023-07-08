@@ -1,0 +1,49 @@
+.global-footer {
+  width: 100%;
+  padding: 10px 30px;
+  background-color: #002142;
+  color: #fff;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+.college-name {
+  font-size: 1.5rem;
+  margin-top: 10px;
+}
+
+.contact-us {
+  font-size: 1.6rem;
+  color: #e32636;
+  font-weight: 600;
+}
+.paragraph {
+  /* text-align: center; */
+  font-size: 0.9rem;
+  /* word-wrap: break-word;
+    word-break: break-all; */
+}
+.contact {
+  font-weight: 300;
+  padding: 10px 0px;
+  font-size: 1.6rem;
+}
+.icons {
+  font-size: 30px;
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 30px;
+}
+
+.number {
+  font-size: 1.2rem;
+  font-weight: 300;
+}
+
+.heading-footer {
+  text-align: left;
+  font-size: 1.7rem;
+  font-weight: 600;
+  margin-top: 10px;
+  margin-bottom: 40px;
+  color: #fff;
+}

@@ -51,19 +51,13 @@ const WatchCourseWhenEnrolled = () => {
     setActiveFileUrl(fileUrl);
   };
 
-  // useEffect(() => {
-  //   if(activeFileUrl && activeFileType === "mp4") {
-  //     window.open(activeFileUrl);
-  //   }
-  // }, [activeFileUrl])
-
   useEffect(() => {
     getCourseDetails();
   }, []);
 
   return (
     <>
-      {console.log(documentData, "DDDDDDDDDDDDDDDDDDDDDDD")}
+    
       <div class="video-player">
         <div class="video-container">
          

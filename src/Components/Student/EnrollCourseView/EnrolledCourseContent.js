@@ -3,23 +3,19 @@ import { useState, useEffect } from "react";
 import { readCourseData } from "../../../redux/slices/courses/coursesActions";
 import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
-import { enrollCourse } from "../../../redux/slices/courses/coursesActions";
 import ReactPlayer from "react-player";
 import videoShow from "../../../asset/annual-convocation-2023.mp4";
 import loadingBook from "../../../asset/loadingBook.jpg";
 import loadingBook1 from "../../../asset/Building.png";
-import top from "../../../asset/top.jpg";
-import { AiFillFacebook } from "react-icons/ai";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faInstagram, faYoutube, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import MainFooter from "../../Dashbaord/MainFooter";
+import rankone from "../../../asset/rankone.jpg";
+import CourseRatingReview from "../courseRating/CourseRatingReview";
+
 
 
 import "./EnrolledCourseContent.css";
 
 const EnrolledCourseContent = () => {
   const courses = useSelector((state) => state.courseState.courses);
-  // const dummyVar = courses.find(x =>x.courseId==1);
   const [currentCourse, setCurrentCourse] = useState();
   const dispatch = useDispatch();
   const [isFixed, setIsFixed] = useState(false);
@@ -36,23 +32,10 @@ const EnrolledCourseContent = () => {
       }
     }
   }, [state?.courseId, courses]);
-  // const handleScroll = () => {
-  //   const scrollTop =
-  //     window.pageYOffset || document.documentcurrentCoursement?.scrollTop;
-  //   setIsFixed(scrollTop > 0); // Set a condition based on scroll position
-  // };
 
-  const enrollTheUser = () => {
-    //dispatch(enrollCourse(currentCourse?.courseId));
-    window.location.href = `/watch-course?courseId=${currentCourse?.courseId}`;
+  const enrollTheUser = () => {    
+    navigate(`/watch-course?courseId=${currentCourse?.courseId}`);
   };
-
-  // useEffect(() => {
-  //   window.addEventListener("scroll", handleScroll);
-  //   return () => {
-  //     window.removeEventListener("scroll", handleScroll);
-  //   };
-  // }, []);
 
   useEffect(() => {
     dispatch(readCourseData());
@@ -62,12 +45,14 @@ const EnrolledCourseContent = () => {
     <>
       
       <marquee className="linecolor" direction="left">
-        For more Information, say Hello CU! to any social media platform mention
-        below, we will get back to you...
+      For more Information, chat with us in CU-Sevak. We will get back to you...
       </marquee>
       {currentCourse && (
         <div>
+
           <div className="main-header-view" key={currentCourse.courseId}>
+          <div className="main-header-view1">
+
             <p className="mini-header-view-heading">Welcome</p>
             <p className="heading-view">
               Course Name : {currentCourse.courseName}{" "}
@@ -87,17 +72,15 @@ const EnrolledCourseContent = () => {
               <p>Course Code : </p>
               <p className="count-enroll"> {currentCourse.courseCode}</p>
             </div>
+            </div>
+            <div className="main-header-view2">
+          <CourseRatingReview courseId={currentCourse?.courseId}/>
+          </div>
           </div>
           <div className="body-view">
             <div className="left-body-view">
               <div className="video-view">
-                {/* <iframe
-                  className="video-thumb"
-                  src="https://www.youtube.com/embed/Vr9qDP9LGO0?rel=0"
-                  frameborder="0"
-                  allow="acccurrentCourserometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
-                  allowfullscreen=""
-                ></iframe> */}
+
                 <ReactPlayer
                   className="show-video"
                   url={videoShow}
@@ -148,12 +131,12 @@ const EnrolledCourseContent = () => {
                   <tr>
                     <td>Start Date :</td>
 
-                    <td>{currentCourse.dStartDate}</td>
+                    <td>{new Date(currentCourse?.dStartDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                   <tr>
                     <td>End Date :</td>
 
-                    <td>{currentCourse.dEndDate}</td>
+                    <td>{new Date(currentCourse?.dEndDate).toLocaleDateString('en-US',{ weekday: 'long', year: 'numeric', month: 'long', day: 'numeric'})}</td>
                   </tr>
                 </tbody>
               </table>
@@ -173,7 +156,7 @@ const EnrolledCourseContent = () => {
             and should be willing to provide you with a letter of{" "}
             <p>recommendation upon request.</p>
           </p>
-          {/* <p>Bose, AN., Ghosh, S.N. Yang C.T. and Mitra </p> */}
+
         </div>
         <div className="right-book">
           <img className="books-image" src={loadingBook1} />
@@ -191,25 +174,23 @@ const EnrolledCourseContent = () => {
           <span className="however">HOWEVER</span>
          
         </div>
-        {/* <p> It is the acquisition of information, knowledge, and skills.</p> */}
+
       </div>
 
       <div className="books-reference">
         <div className="left-book">
-          <p className="heading-view-books">Get your dream come true.</p>
-          <p>Develope more skills and knowledge by our best Teacher's </p>
+          <p className="heading-view-books">Make your dream come true.</p>
+          <p>Develop more skills and knowledge by our best Teacher's </p>
         </div>
         <div className="right-book">
-          <img className="books-image" src={top} />
+          <img className="books-image" src={rankone} />
         </div>
       </div>
 
       <div className="footer-social">
         <p className="heading-view-books3">
-          For more Information, say Hello CU!, we will get back to you.
+        For more Information, chat with us in CU-Sevak. We will get back to you...
         </p>
-       
-        
       </div>
 
      

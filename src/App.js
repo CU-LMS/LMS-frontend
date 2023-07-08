@@ -40,7 +40,15 @@ import AdminDashBoard from "./Components/Admin/AdminDashBoard/AdminDashBoard";
 import Profile from "./Components/Admin/Profile";
 import AddUser from "./Components/Admin/Announcement/AddUserByAdmin/AddUser";
 import AdminCourses from "./Components/Admin/AdminCourses/AdminCourses";
+import AddNews from "./Components/Admin/AddNews";
+import LatestNews from "./Components/Student/LatestNews";
+import Catalog from "./Components/Student/Catalog";
+import Footer from "./Components/Footer/Footer";
 
+import DiscussionForum from "./Components/DiscussionForum/DiscussionForum";
+import PostPage from "./Components/DiscussionForum/components/PostPage";
+import SaveAsDraft from "./Components/Tools/SaveAsDraft";
+import FeedbackForm from "./Components/FeedbackForm/FeedbackForm";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -101,6 +109,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/services" element={<Services />} />
             <Route path="/contact" element={<Contac />} />
+            <Route path="/save-draft" element={<SaveAsDraft />} />
 
             {/* Student Route */}
             {/* <Route path="/dashboard" element={<Dashboard />} /> */}
@@ -136,6 +145,31 @@ function App() {
                 </StudentProtectedRoute>
               }
             />
+            <Route
+              path="/latest-news"
+              element={
+                <StudentProtectedRoute>
+                  <LatestNews />
+                </StudentProtectedRoute>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <StudentProtectedRoute>
+                  <Profile />
+                </StudentProtectedRoute>
+              }
+            />
+
+            <Route
+              path="/catalog"
+              element={
+                <StudentProtectedRoute>
+                  <Catalog />
+                </StudentProtectedRoute>
+              }
+            />
 
             <Route
               path="/mycourses"
@@ -166,21 +200,11 @@ function App() {
               }
             />
 
-            
-
             <Route
               path="/create-announcement"
               element={
                 <AdminProtectedRoute>
                   <CreateAnnouncement />
-                </AdminProtectedRoute>
-              }
-            />
-            <Route
-              path="/admin-dashboard"
-              element={
-                <AdminProtectedRoute>
-                  <AdminDashBoard />
                 </AdminProtectedRoute>
               }
             />
@@ -193,6 +217,22 @@ function App() {
               }
             />
             <Route
+              path="/add-news"
+              element={
+                <AdminProtectedRoute>
+                  <AddNews />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/admin-dashboard"
+              element={
+                <AdminProtectedRoute>
+                  <AdminDashBoard />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
               path="/profile"
               element={
                 <AdminProtectedRoute>
@@ -201,7 +241,22 @@ function App() {
                 </AdminProtectedRoute>
               }
             />
-
+            <Route
+              path="/discussion-forum"
+              element={
+                <AdminProtectedRoute>
+                  <DiscussionForum />
+                </AdminProtectedRoute>
+              }
+            />
+            <Route
+              path="/discussion-forum/post/:id"
+              element={
+                <AdminProtectedRoute>
+                  <PostPage />
+                </AdminProtectedRoute>
+              }
+            />
             {/* <Route path="/create-announcement" element={<CreateAnnouncement />} /> */}
             {/* <Route path="/announcement" element={<AnnouncementTemplate />} /> */}
             <Route path="/addVideo" element={<AddVideo />} />
@@ -213,10 +268,17 @@ function App() {
             <Route path="/FAQ" element={<FAQs />} />
             {/* <Route path="/tool" element={<AdministratorTools />} /> */}
             {/* <Route path="/tool" element={<SideNavBar />} /> */}
+
+            <Route
+              path="/feedback-form"
+              element={<FeedbackForm/>}
+            />
           </Routes>
+
           <ToastContainer className="toast-message" />
         </SidebarContextProvider>
       </AuthProvider>
+    
     </>
   );
 }

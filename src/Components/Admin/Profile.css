@@ -25,10 +25,7 @@
   .profile-left-col {
     background-color: #fff;
     padding: 30px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
+    display: block;
   }
   .profile-picture {
     display: flex;
@@ -67,7 +64,12 @@
     margin-bottom: 10px;
   }
   .profile-section p {
+    display: inline-block;
     font-size: 13px;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .profile-right-col  {
     padding: 20px;

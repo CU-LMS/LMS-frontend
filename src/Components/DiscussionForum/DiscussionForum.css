@@ -1,0 +1,28 @@
+.total-posts {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  color: #000000;
+}
+
+.filter-heading {
+  font-size: 22px;
+  font-weight: 500;
+
+  color: #000000;
+}
+
+.btn-newpost {
+  background-color: #1e283c;
+  padding: 10px 25px;
+  font-size: 18px;
+  border-radius: 6px;
+  color: #fff;
+  transition: all 0.3s ease;
+}
+
+.btn-newpost:hover {
+  background-color: transparent;
+  color: #1e283c;
+}

@@ -10,10 +10,13 @@ import {
   addAnnouncement,
   getRoleListData,
 } from "../../../../redux/slices/courses/coursesActions";
-import "./AddUser.css";
 import { readSubjectsData } from "../../../../redux/slices/subjects/subjectSliceAction";
 import { addUserByAdmin } from "../../../../redux/slices/courses/coursesActions";
 import LoadingPage from "../../../../hoc/LoadingPage";
+import ThumbUpAltIcon from "@mui/icons-material/ThumbUpAlt";
+import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import "./AddUser.css";
+
 const AddUser = () => {
   const [addUserData, setAddUserData] = useState({
     userFirstName: "",
@@ -23,9 +26,11 @@ const AddUser = () => {
     phoneNumber: "",
     gender: "",
     employeeId: "",
+    roleId:""
   });
 
   const dispatch = useDispatch();
+  const [openRights, setOpenRights] = useState(false);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [announcementText, setAnnouncementtext] = useState();
   const [roleList, setRoleList] = useState([]);
@@ -45,16 +50,7 @@ const AddUser = () => {
     (state) => state?.courseState?.addUserLoading
   );
 
-  const onSelect = (selectList, selectedItem) => {
-    console.log(selectList);
-    let tsl = [];
-    if (selectList?.length > 0) {
-      selectList?.forEach((ele) => {
-        tsl.push(ele.cat);
-      });
-    }
-    setRoleList(tsl);
-  };
+  
 
   const onConfigrationChange = (e) => {
     setDropdownType(e.target.value);
@@ -64,7 +60,7 @@ const AddUser = () => {
 
   const handleAddUserData = () => {
     dispatch(addUserByAdmin(addUserData));
-    setModalIsOpen(false);
+    setModalIsOpen(true);
   };
 
   const closeModal = () => {
@@ -76,18 +72,71 @@ const AddUser = () => {
     setModalIsOpen(true);
   };
 
-  useEffect(() => {
-       dispatch(getRoleListData());   
-  }, []);
+  const openDoAndDonts = () => {
+    setOpenRights(true);
+  };
 
+  const modalClose = () => {
+    setOpenRights(false);
+  };
+
+  useEffect(() => {
+    dispatch(getRoleListData());
+  }, []);
+console.log("rolessssss->",listData);
   return (
     <>
-      
       <div className="modalParent">
-        <button className="openModal" onClick={openModal}>
-          Add User
-        </button>
+        <div className="invisible-button"></div>
+        <div className="button-useradd">
+          <button className="openModal" onClick={openModal}>
+            Add User
+          </button>
+        </div>
+
+        <div className="do-and-dons">
+          <button onClick={openDoAndDonts} className="doanddont-button">
+            <ThumbUpAltIcon /> Do's and Don'ts <ThumbDownIcon />
+          </button>
+        </div>
       </div>
+
+      <Modal
+        isOpen={openRights}
+        onRequestClose={closeModal}
+        shouldCloseOnOverlayClick={false}
+        style={{
+          content: {
+            top: "50%",
+            left: "50%",
+            right: "auto",
+            bottom: "auto",
+            marginRight: "-50%",
+            transform: "translate(-50%, -50%)",
+            maxHeight: "90vh",
+            overflow: "auto",
+            backgroundColor: "black",
+            borderRadius: "13px",
+            border: "none",
+            boxShadow: "0px 17px 12px -15px #111",
+            width:"60%"
+          },
+          overlay: {
+            backgroundColor: "rgba(0, 0, 0, 0.5)",
+          },
+        }}
+      >
+        {/* <h2 className="modal=heading"></h2> */}
+        <p className="warning-shine">Do's</p>
+        <p className="passage123">Its component-based architecture and efficient rendering make it a powerful tool for developers. However, creating user interfaces in React.js requires careful consideration of best practices to ensure optimal performance, maintainability, and usability. In this article, we will explore the do's and don'ts of creating user interfaces in React.js.</p>
+        <p className="warning-shine">Don'ts</p>
+        <p className="passage123">Its component-based architecture and efficient rendering make it a powerful tool for developers. However, creating user interfaces in React.js requires careful consideration of best practices to ensure optimal performance, maintainability, and usability. In this article, we will explore the do's and don'ts of creating user interfaces in React.js.</p>
+        <div className="modal-butoons">
+          <button className="sure-button" onClick={modalClose}>
+            Sure
+          </button>
+        </div>
+      </Modal>
 
       <Modal
         isOpen={modalIsOpen}
@@ -284,6 +333,7 @@ const AddUser = () => {
           </button>
         </div>
       </Modal>
+
       <Modal
         isOpen={addUserLoading === "loading" ? true : false}
         // onRequestClose={closeModal}
@@ -310,6 +360,8 @@ const AddUser = () => {
         {/* <h2 className="modal=heading"></h2> */}
         <LoadingPage />
       </Modal>
+
+ 
     </>
   );
 };

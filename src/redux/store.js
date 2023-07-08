@@ -4,7 +4,7 @@ import subjectsReducer from "./slices/subjects/subjectsSlice";
 import disciplineReducer from "./slices/subjects/disciplinedropSlice";
 import courseReducer from "./slices/courses/coursesSlice";
 import dashboardReducer from "./slices/Common/dashboardSlice";
-
+import ratingReducer from "./slices/ratingCourse/RatingCourseSlice";
 
 export const store = configureStore({
   reducer: {
@@ -12,7 +12,7 @@ export const store = configureStore({
     subjectsState: subjectsReducer,
     disciplineState: disciplineReducer,
     courseState: courseReducer,
-    dashboardState: dashboardReducer
-
+    dashboardState: dashboardReducer,
+    ratingState: ratingReducer,
   },
 });

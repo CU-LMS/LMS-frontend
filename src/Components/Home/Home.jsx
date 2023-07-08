@@ -16,6 +16,7 @@ import { Carousel } from "react-responsive-carousel";
 import VideoShow from "../../asset/annual-convocation-2023.mp4"
 import introVideo from "../../asset/introVideo.mp4";
 import "../../home.css";
+import Footer from "../Footer/Footer";
 
 
 const Home = () => {
@@ -285,6 +286,7 @@ const Home = () => {
               <div className="col-md-6">
               <ReactPlayer
                   className="show-video"
+                  style={{ width: 'auto' }}
                   url={introVideo}
                   controls={true}
                   sx={{ width: "100%" }}
@@ -318,6 +320,7 @@ const Home = () => {
             </div>
           </div>
         </div>
+        <Footer />
       </div>
     </>
   );

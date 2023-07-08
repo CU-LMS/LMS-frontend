@@ -110,12 +110,13 @@
 .showcase-container {
     padding-top: 60px;
     height: 60vh;
-    width: 90vw;
+    width: 100%;
     
 }
 
 .showcase-heading {
     color: #fff;
+    font-size: 30px !important;
 }
 
 .showcase-image {
@@ -144,6 +145,7 @@
 
 .typewrite-text {
     color: #c3d8ff;
+    font-size: 25px !important;
 }
 
 .showcase-btn {

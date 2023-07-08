@@ -9,12 +9,15 @@ import {
   handleShowAnnouncement,
   handleNonEnrollCourse,
   handleAddUserByAdmin,
-  handleAddUserLoading
+  handleAddUserLoading,
+  handleParticularCourseData,
+  handleEnrollCourses
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
 import { useState } from "react";
 import swal from "sweetalert";
+import { useNavigate } from "react-router-dom";
 
 export const createCourse = (courseData) => async (dispatch) => {
   try {
@@ -105,8 +108,24 @@ export const readCourseData = () => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const readParticularCourseData = (courseId) => async (dispatch) => {
+  try{
+    let config = {
+      method: "get",
+      url: `Course/GetByCourseId?courseId=${courseId}`,
+    };
+    const response = await http(config);
+    console.log(response)
+    dispatch(handleParticularCourseData(response?.data?.data));
+  }catch(err){
+    console.log(err);
+  }
+}
+
 export const enrollCourse = (courseId) => async (dispatch) => {
   try {
+    
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
     let config = {
       method: "post",
@@ -116,7 +135,6 @@ export const enrollCourse = (courseId) => async (dispatch) => {
         courseId: courseId,
       },
     };
-
     const response = await http(config);
     if (response?.data?.statusCode === 200) {
       toast.success("Sucessfully Enrolled");
@@ -125,9 +143,11 @@ export const enrollCourse = (courseId) => async (dispatch) => {
       toast.error("Error While Enrolling");
     }
   } catch (error) {
-    toast.error("Error While Enrolling");
+    toast.error("Errors");
   }
 };
+
+
 
 export const readFAQData = () => async (dispatch) => {
   try {
@@ -350,6 +370,7 @@ export const readNonErollCourseData = () => async (dispatch) => {
       url: "Course/GetCourseListWithoutEnrollUser",
       data: {
         userId: credentials.userId,
+        roleId:credentials.roleId,        
       },
     };
     const response = await http(config);
@@ -375,6 +396,7 @@ export const addUserByAdmin = (userData) => async (dispatch) => {
         phoneNumber: userData.phoneNumber,
         gender: userData.gender,
         empId: userData.employeeId,
+        roleId:userData.roleId
       },
     };
     let result = await http(config);
