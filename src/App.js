@@ -152,6 +152,14 @@ function App() {
                 </StudentProtectedRoute>
               }
             />
+            <Route
+              path="/profile"
+              element={
+                <StudentProtectedRoute>
+                  <Profile />
+                </StudentProtectedRoute>
+              }
+            />
 
             <Route
               path="/catalog"

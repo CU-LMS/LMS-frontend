@@ -60,7 +60,7 @@ const AddUser = () => {
 
   const handleAddUserData = () => {
     dispatch(addUserByAdmin(addUserData));
-    setModalIsOpen(false);
+    setModalIsOpen(true);
   };
 
   const closeModal = () => {
@@ -361,7 +361,7 @@ console.log("rolessssss->",listData);
         <LoadingPage />
       </Modal>
 
-      <Modal></Modal>
+ 
     </>
   );
 };

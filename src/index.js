@@ -7,6 +7,23 @@ import { BrowserRouter } from "react-router-dom";
 import { store } from "./redux/store";
 import { Provider } from "react-redux";
 import { Helmet } from "react-helmet";
+import axios from "axios";
+
+
+axios.interceptors.request.use(( request ) => {
+  request.headers.LMS = "CU-DIGI"
+  console.log(request, "INTERCEPTOR")
+  return request;
+})
+
+axios.interceptors.response.use(( response ) => {
+  console.log(response, "INTERCEPTOR RESPONSE")
+  return response;
+})
+
+
+
+
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
