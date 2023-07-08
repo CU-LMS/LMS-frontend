@@ -26,7 +26,7 @@ const AddUser = () => {
     phoneNumber: "",
     gender: "",
     employeeId: "",
-    roleId:""
+    roleId: "",
   });
 
   const dispatch = useDispatch();
@@ -49,8 +49,6 @@ const AddUser = () => {
   const addUserLoading = useSelector(
     (state) => state?.courseState?.addUserLoading
   );
-
-  
 
   const onConfigrationChange = (e) => {
     setDropdownType(e.target.value);
@@ -80,15 +78,20 @@ const AddUser = () => {
     setOpenRights(false);
   };
 
+  const submitAfterValidation = (e) => {
+    e.preventDefault();
+    handleAddUserData();
+  };
+
   useEffect(() => {
     dispatch(getRoleListData());
   }, []);
-console.log("rolessssss->",listData);
+  console.log("rolessssss->", listData);
   return (
     <>
       <div className="modalParent">
         <div className="invisible-button"></div>
-        <div className="button-useradd">
+        <div className="button-useradd mt-2">
           <button className="openModal" onClick={openModal}>
             Add User
           </button>
@@ -119,7 +122,7 @@ console.log("rolessssss->",listData);
             borderRadius: "13px",
             border: "none",
             boxShadow: "0px 17px 12px -15px #111",
-            width:"60%"
+            width: "60%",
           },
           overlay: {
             backgroundColor: "rgba(0, 0, 0, 0.5)",
@@ -128,9 +131,23 @@ console.log("rolessssss->",listData);
       >
         {/* <h2 className="modal=heading"></h2> */}
         <p className="warning-shine">Do's</p>
-        <p className="passage123">Its component-based architecture and efficient rendering make it a powerful tool for developers. However, creating user interfaces in React.js requires careful consideration of best practices to ensure optimal performance, maintainability, and usability. In this article, we will explore the do's and don'ts of creating user interfaces in React.js.</p>
+        <p className="passage123">
+          Its component-based architecture and efficient rendering make it a
+          powerful tool for developers. However, creating user interfaces in
+          React.js requires careful consideration of best practices to ensure
+          optimal performance, maintainability, and usability. In this article,
+          we will explore the do's and don'ts of creating user interfaces in
+          React.js.
+        </p>
         <p className="warning-shine">Don'ts</p>
-        <p className="passage123">Its component-based architecture and efficient rendering make it a powerful tool for developers. However, creating user interfaces in React.js requires careful consideration of best practices to ensure optimal performance, maintainability, and usability. In this article, we will explore the do's and don'ts of creating user interfaces in React.js.</p>
+        <p className="passage123">
+          Its component-based architecture and efficient rendering make it a
+          powerful tool for developers. However, creating user interfaces in
+          React.js requires careful consideration of best practices to ensure
+          optimal performance, maintainability, and usability. In this article,
+          we will explore the do's and don'ts of creating user interfaces in
+          React.js.
+        </p>
         <div className="modal-butoons">
           <button className="sure-button" onClick={modalClose}>
             Sure
@@ -164,174 +181,188 @@ console.log("rolessssss->",listData);
         }}
       >
         <div className="add-user-heading">Add User</div>
-        {listData?.length > 0 ? (
-          <>
-            <select
-              id="subject"
-              name="subject"
-              className="form-control"
-              required
-              onChange={(e) =>
-                setAddUserData({ ...addUserData, roleId: e.target.value })
-              }
-            >
-              <option disabled selected value="">
-                Select Role
-              </option>
-              {listData?.length > 0 && listData
-                ? listData?.map((ele) => {
-                    return (
-                      <>
-                        <option value={ele?.cat}>{ele?.key}</option>
-                      </>
-                    );
-                  })
-                : null}
-            </select>
-          </>
-        ) : null}
-        <div className="name-flex">
-          <div className="col-md-6 ">
-            <div className="form-group marginToRight">
-              <input
-                type="text"
-                name="userFirstName"
-                id="userFirstName"
-                placeholder="First Name"
-                className="form-control"
-                required
-                onChange={(e) => {
-                  setAddUserData({
-                    ...addUserData,
-                    userFirstName: e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="col-md-6">
-            <div className="form-group">
-              <input
-                type="text"
-                name="userLastName"
-                id="UserLastName"
-                placeholder="Last Name"
-                className="form-control"
-                required
-                onChange={(e) => {
-                  setAddUserData({
-                    ...addUserData,
-                    UserLastName: e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="col-6-area">
-          <div className="form-group">
-            <input
-              type="email"
-              name="userEmail"
-              id="UserEmail"
-              placeholder="User Email"
-              className="form-control"
-              required
-              onChange={(e) => {
-                setAddUserData({ ...addUserData, UserEmail: e.target.value });
-              }}
-            />
-          </div>
-        </div>
-
-        <div className="name-flex">
-          <div className="col-md-6 ">
-            <div className="form-group marginToRight">
-              <input
-                type="text"
-                name="phoneCode"
-                id="phoneCode"
-                placeholder="Phone Code"
-                className="form-control"
-                required
-                onChange={(e) => {
-                  setAddUserData({ ...addUserData, phoneCode: e.target.value });
-                }}
-              />
-            </div>
-          </div>
-
-          <div className="col-md-6">
-            <div className="form-group">
-              <input
-                type="number"
-                name="phoneNumber"
-                id="phoneNumber"
-                placeholder="Phone Number"
-                className="form-control"
-                required
-                onChange={(e) => {
-                  setAddUserData({
-                    ...addUserData,
-                    phoneNumber: e.target.value,
-                  });
-                }}
-              />
-            </div>
-          </div>
-        </div>
-
-        <div className="name-flex">
-          <div className="col-md-6">
-            <div className="form-group marginToRight">
+        <form className="was-validated" onSubmit={submitAfterValidation}>
+          {listData?.length > 0 ? (
+            <>
               <select
-                id="gender"
-                name="gender"
-                className="form-control"
+                id="subject"
+                name="subject"
                 required
-                onChange={(e) => {
-                  setAddUserData({ ...addUserData, gender: e.target.value });
-                }}
+                className="form-control"
+                onChange={(e) =>
+                  setAddUserData({ ...addUserData, roleId: e.target.value })
+                }
               >
                 <option disabled selected value="">
-                  Gender
+                  Select Role
                 </option>
-                <option value="male">Male</option>
-                <option value="female">Female</option>
+                {listData?.length > 0 && listData
+                  ? listData?.map((ele) => {
+                      return (
+                        <>
+                          <option value={ele?.cat}>{ele?.key}</option>
+                        </>
+                      );
+                    })
+                  : null}
               </select>
+            </>
+          ) : null}
+
+          <div className="name-flex">
+            <div className="col-md-6 ">
+              <div className="form-group marginToRight">
+                <input
+                  type="text"
+                  maxLength={30}
+                  name="userFirstName"
+                  id="userFirstName"
+                  placeholder="First Name"
+                  className="form-control"
+                  required
+                  onChange={(e) => {
+                    setAddUserData({
+                      ...addUserData,
+                      userFirstName: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-group">
+                <input
+                  type="text"
+                  maxLength={30}
+                  name="userLastName"
+                  id="UserLastName"
+                  placeholder="Last Name"
+                  className="form-control"
+                  required
+                  onChange={(e) => {
+                    setAddUserData({
+                      ...addUserData,
+                      UserLastName: e.target.value,
+                    });
+                  }}
+                />
+              </div>
             </div>
           </div>
 
-          <div className="col-md-6 ">
-            <div className="form-group ">
+          <div className="col-6-area">
+            <div className="form-group">
               <input
-                type="text"
-                name="employeeId"
-                id="employeeId"
-                placeholder="Employee Id"
+                type="email"
+                pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                maxLength={45}
+                name="userEmail"
+                id="UserEmail"
+                placeholder="User Email"
                 className="form-control"
                 required
                 onChange={(e) => {
-                  setAddUserData({
-                    ...addUserData,
-                    employeeId: e.target.value,
-                  });
+                  setAddUserData({ ...addUserData, UserEmail: e.target.value });
                 }}
               />
             </div>
           </div>
-        </div>
 
-        <div className="modal-butoons">
-          <button className="cancel" onClick={closeModal}>
-            Cancel
-          </button>
-          <button onClick={handleAddUserData} className="sure-button">
-            Create{" "}
-          </button>
-        </div>
+          <div className="name-flex">
+            <div className="col-md-6 ">
+              <div className="form-group marginToRight">
+                <input
+                  type="text"
+                  name="phoneCode"
+                  id="phoneCode"
+                  pattern="^\+\d+"
+                  maxLength={4}
+                  placeholder="Phone Code"
+                  className="form-control"
+                  required
+                  onChange={(e) => {
+                    setAddUserData({
+                      ...addUserData,
+                      phoneCode: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+
+            <div className="col-md-6">
+              <div className="form-group">
+                <input
+                  type="tel"
+                  pattern="[0-9]{10}"
+                  name="phoneNumber"
+                  id="phoneNumber"
+                  placeholder="Phone Number"
+                  className="form-control"
+                  maxLength={12}
+                  required
+                  onChange={(e) => {
+                    setAddUserData({
+                      ...addUserData,
+                      phoneNumber: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="name-flex">
+            <div className="col-md-6">
+              <div className="form-group marginToRight">
+                <select
+                  id="gender"
+                  name="gender"
+                  className="form-control"
+                  required
+                  onChange={(e) => {
+                    setAddUserData({ ...addUserData, gender: e.target.value });
+                  }}
+                >
+                  <option disabled selected value="">
+                    Gender
+                  </option>
+                  <option value="male">Male</option>
+                  <option value="female">Female</option>
+                </select>
+              </div>
+            </div>
+
+            <div className="col-md-6 emp-code custom-select">
+              <div className="form-group emp-id">
+                <input
+                  type="text"
+                  name="employeeId"
+                  id="employeeId"
+                  placeholder="Employee Id"
+                  className="form-control emp-code"
+                  maxLength={15}
+                  onChange={(e) => {
+                    setAddUserData({
+                      ...addUserData,
+                      employeeId: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="modal-butoons">
+            <button className="cancel" onClick={closeModal}>
+              Cancel
+            </button>
+            <button className="sure-button" type="submit">
+              Create{" "}
+            </button>
+          </div>
+        </form>
       </Modal>
 
       <Modal
