@@ -36,6 +36,8 @@ export default function LoginSignUp() {
     (state) => state?.courseState?.addUserLoading
   );
 
+  const loadingApi = useSelector((state) => state?.courseState?.lodingApi);
+
   const {
     register,
     handleSubmit,
@@ -106,8 +108,6 @@ export default function LoginSignUp() {
                 <img
                   className="frontImg"
                   id="frontImg"
-                  // src="https://images.shiksha.com/mediadata/images/1642580468phpQDgPNe.jpeg"
-                  // src={frontImage3}
                   src={building}
                   alt=""
                 />
@@ -182,15 +182,11 @@ export default function LoginSignUp() {
                       onSuccess={onLoginSuccess}
                       onFailure={onLoginFailure}
                       cookiePolicy={"single_host_origin"}
-                      // isSignedIn={true}
+
                     >
                       <p className="google-button-text">Continue with Google</p>
                     </GoogleLogin>
-                    {/* //for signup button is here  */}
-                    {/* <div className="text login-text">
-                      Dont have an account ?{" "}
-                      <label htmlFor="flip">SignUp Now</label>{" "}
-                    </div> */}
+
                   </div>
                 </div>
                 <div className="signUp-form">
@@ -246,7 +242,7 @@ export default function LoginSignUp() {
         </div>
       )}
       <Modal
-        isOpen={addUserLoading === "loading" ? true : false}
+        isOpen={loadingApi === "loading" ? true : false}
     
         shouldCloseOnOverlayClick={false}
         style={{

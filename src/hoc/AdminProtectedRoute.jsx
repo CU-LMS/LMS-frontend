@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { handleLoding } from "../redux/slices/Common/dashboardSlice";
 import LoadingPage from "./LoadingPage";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import http from "./axiosClient"
 
 
 const AdminProtectedRoute = ({ children }) => {
+  
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
 
@@ -13,14 +16,13 @@ const AdminProtectedRoute = ({ children }) => {
 
   const handleAccessVerification = async (credentials) => {
     try {
+      dispatch(handleLoding("loading"));
       let config = {
         method: "get",
-    
-        url: `http://43.240.66.78:7265/api/Login/UserValidate?token=${credentials.accessToken}`
-         //url: `Login/UserValidate?token=${credentials.accessToken}`
+         url: `Login/UserValidate?token=${credentials.accessToken}`
       }
 
-      let response = await axios(config);
+      let response = await http(config);
       console.log(response)
       if (response.data.statusCode === 200) {
         if(response.data.data.roleId === 1 || response.data.data.roleId === 2 || response.data.data.roleId === 3){
@@ -35,8 +37,10 @@ const AdminProtectedRoute = ({ children }) => {
         //navigate("/login", { replace: true });
         window.location.href=("/login");
       }
+      dispatch(handleLoding("idle"));
     } catch (err) {
       window.location.href=("/login");
+      dispatch(handleLoding("idle"));
       //navigate("/login", { replace: true });
     }
   };
