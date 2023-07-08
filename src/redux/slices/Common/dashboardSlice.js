@@ -4,7 +4,11 @@ const initialState = {
     apiError: "",    
     addUserLoading: "idle",
     getDashboardData:[], 
-    getNewsData:[],   
+    getNewsData:[], 
+    enrolledStudents: [],
+    enrolledCourses: [],
+    recordCount: 0,  
+    numberOfPages: 0,
   };
 
   
@@ -24,8 +28,18 @@ const dashboard = createSlice({
       handleNewsData: (state, {payload}) => {
         state.getNewsData = payload
       },
-      
-      
+      handleEnrolledStudents: (state, action) => {
+        state.enrolledStudents = action.payload
+      }, 
+      handleEnrolledCourses: (state, action) => {
+        state.enrolledCourses = action.payload;
+      },
+      handleSetRecordCount: (state, action) => {
+        state.recordCount = action.payload
+      },
+      handleSetNumberOfPages: (state, action) => {
+        state.numberOfPages = Math.ceil(Number(action.payload) / 2);
+      }
     },
   });
   
@@ -33,7 +47,11 @@ const dashboard = createSlice({
     handleLoding,
     handleApiError,
     handleDashboard,
-    handleNewsData
+    handleNewsData,
+    handleEnrolledStudents,
+    handleSetRecordCount,
+    handleSetNumberOfPages,
+    handleEnrolledCourses
   } = dashboard.actions;
   
   export default dashboard.reducer;
