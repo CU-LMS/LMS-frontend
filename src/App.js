@@ -51,6 +51,7 @@ import SaveAsDraft from "./Components/Tools/SaveAsDraft";
 import FeedbackForm from "./Components/FeedbackForm/FeedbackForm";
 import EnrolledStudents from "./Components/Admin/AdminDashBoard/pages/EnrolledStudents";
 import EnrolledCourses from "./Components/Admin/AdminDashBoard/pages/EnrolledCourses";
+import PublishCourses from "./Components/Admin/PublishCourses/PublishCourses";
 function App() {
   let userData = JSON.parse(localStorage.getItem("userData"));
 
@@ -274,6 +275,14 @@ function App() {
               element={
                 <AdminProtectedRoute>
                   <PostPage />
+                </AdminProtectedRoute>
+              }
+            />            
+            <Route
+              path="/publish-courses"
+              element={
+                <AdminProtectedRoute>
+                  <PublishCourses />
                 </AdminProtectedRoute>
               }
             />
