@@ -41,7 +41,7 @@ const dashboard = createSlice({
         state.numberOfPages = Math.ceil(Number(action.payload) / 2);handlePublishCourseData: (state, {payload}) => {
         state.getPublishCourseData = payload
       },
-      }
+      
     },
   });
   

@@ -8,20 +8,7 @@ import { useSelector } from "react-redux";
 
 
 
-export const readDashboardData = () => async (dispatch) => {
-  try {
-    let config = {
-      method: "post",
-      url: "Admin/GetDashBoardData",
-      data: {
-      },
-    };
-    const response = await http(config);
-    dispatch(handleDashboard(response?.data?.data));
-  } catch (error) {
-    console.log(error);
-  }
-};
+
 export const readDashboardData = () => async (dispatch) => {
   try {
     let config = {
@@ -284,7 +271,8 @@ export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatc
       dispatch(handleEnrolledStudents(response?.data?.data));
       dispatch(handleSetRecordCount(response?.data?.recordCount));
       dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
-    } else {
+    }
+     else {
       let config = {
         method: "post",
         url: "EnrollCourse/GetEnrolledCourses",
@@ -302,7 +290,8 @@ export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatc
 
 
 
-  } catch (e) {
+  } catch (e) 
+  {
     console.log(e);
   }
-}
+} 
