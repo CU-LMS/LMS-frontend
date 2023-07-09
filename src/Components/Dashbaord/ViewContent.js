@@ -38,7 +38,7 @@ const ViewContent = () => {
   const dispatch = useDispatch();
   const [isFixed, setIsFixed] = useState(false);
   const navigate = useNavigate();
-
+  let credentials = JSON.parse(localStorage.getItem("cuchdCsrf"));
   const { state } = useLocation();
  
 
@@ -114,13 +114,18 @@ const ViewContent = () => {
               {" "}
               Semester : {currentCourse.semester}
             </p>
+            
             <div className="buttonAndEnrolled">
-              
-              <button className="join-button" onClick={enrollTheUser}>
+              {credentials?.roleId=="4" ||credentials?.roleId=="5"?
+              (
+                <>
+                <button className="join-button" onClick={enrollTheUser}>
                 Enroll Now
               </button>{" "}
-              <p>Course Code : </p>
-              <p className="count-enroll"> {currentCourse.courseCode}</p>
+                </>
+              ):null}
+              
+              
             </div>
             </div>
             <div className="main-header-view2">

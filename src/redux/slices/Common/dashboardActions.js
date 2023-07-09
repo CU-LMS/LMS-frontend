@@ -128,7 +128,7 @@ export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
     console.log('getEnrollStudents', response);
     dispatch(handleEnrolledStudents(response?.data?.data));
     dispatch(handleSetRecordCount(response?.data?.recordCount));
-    dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
+    dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
   } catch (e) {
     console.log(e);
   }
@@ -168,7 +168,7 @@ export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
     console.log('getEnrolledCourses', response);
     dispatch(handleEnrolledCourses(response?.data?.data));
     dispatch(handleSetRecordCount(response?.data?.recordCount));
-    dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
+    dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
   } catch (e) {
     console.log(e);
   }
@@ -205,7 +205,7 @@ export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatc
       console.log("search item: ", response?.data);
       dispatch(handleEnrolledStudents(response?.data?.data));
       dispatch(handleSetRecordCount(response?.data?.recordCount));
-      dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
+      dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
     } else {
       let config = {
         method: "post",
@@ -218,7 +218,7 @@ export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatc
       const response = await http(config);
       dispatch(handleEnrolledCourses(response?.data?.data));
       dispatch(handleSetRecordCount(response?.data?.recordCount));
-      dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
+      dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
     }
 
 
@@ -251,7 +251,8 @@ export const readPublishCourse = (pageNo, pageSize,filterValue) => async (dispat
     };
     const response = await http(config);
     dispatch(handlePublishCourseData(response?.data));
-    dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
+    dispatch(handleSetRecordCount(response?.data?.recordCount));
+    dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
   } catch (error) {
     console.log(error);
   }
@@ -279,7 +280,8 @@ export const readDraftCourse = (pageNo, pageSize,filterValue) => async (dispatch
     };
     const response = await http(config);
     dispatch(handleDraftCourseData(response?.data));
-    dispatch(handleSetNumberOfPages(response?.data?.recordCount, pageSize));
+    dispatch(handleSetRecordCount(response?.data?.recordCount));
+    dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
   } catch (error) {
     console.log(error);
   }

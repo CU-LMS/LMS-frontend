@@ -4,45 +4,65 @@ import { readPublishCourse } from "../../../redux/slices/Common/dashboardActions
 import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ResponsivePagination from 'react-responsive-pagination';
 
 const PublishCourses = () => {
   const dispatch = useDispatch();
-  let pageNo=1;
-  let pageSige=10; 
-  let recordCount=0;
+  let pageSize=10; 
   let filterValue="newdate" 
 
   
+  const totalPages = useSelector(state => state?.dashboardState?.numberOfPages);
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordCount = useSelector(state => state?.dashboardState?.recordCount);
 
     useEffect(() => {
-        dispatch(readPublishCourse(pageNo,pageSige,filterValue));
+        dispatch(readPublishCourse(currentPage,pageSize,filterValue));
       }, []);
     const publishCourse = useSelector(
         (state) => state?.dashboardState?.getPublishCourseData
       );
 
-        recordCount=publishCourse?.recordCount;
+      const handleSetCurrentPage = (num) => {
+        setCurrentPage(num);
+        dispatch(readPublishCourse(num,pageSize,filterValue));
+    }
+     
 
-console.log(publishCourse);
+        const onSelectChange = (e) => {
+          dispatch(readPublishCourse(currentPage,pageSize,e.target.value));        
+          
+        };
       
 
   return (
     <div className='catalog py-3'>
         <div className="container">
             <div className="py-2 d-flex justify-content-end align-items-center">
-                <select name="filter" id="filter" className='form-control w-25'>
+                <select name="filter" id="filter" 
+                 onChange={onSelectChange}
+                className='form-control w-25'>
+                    <option value="newdate">Newest</option> 
                     <option value="alphabetical">Alphabetical</option>
                     <option value="rating">Rating</option>
-                    <option value="newest">Newest</option>
-                    <option value="trending">Trending</option>
+                                       
                 </select>
             </div>
 
             <div className="cards d-flex justify-content-between align-items-center flex-wrap py-4">
             {publishCourse?.data &&
           publishCourse?.data.map((row) => (
-                <Card row={row}/>               
+                <Card row={row} pageName={"publish"}/>               
                 ))}
+            </div>
+            <div>
+            {recordCount > pageSize && <div>
+                    <ResponsivePagination
+                        current={currentPage}
+                        total={totalPages}
+                        onPageChange={handleSetCurrentPage}
+                    />
+                </div>}
             </div>
         </div>
     </div>
