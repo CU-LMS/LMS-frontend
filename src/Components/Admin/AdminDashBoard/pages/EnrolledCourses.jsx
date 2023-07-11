@@ -71,7 +71,7 @@ const EnrolledCourses = () => {
                                         <p className='course-name-td'>{course?.courseName}</p></td>
 
 
-                                    <td title={course?.autherName}><p className='course-name-td'>{course?.autherName}</p></td>
+                                    <td title={course?.authorName}><p className='course-name-td'>{course?.authorName}</p></td>
 
                                     <td title={startDate}><p>{startDate}</p></td>
 

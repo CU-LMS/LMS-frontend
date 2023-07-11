@@ -85,7 +85,7 @@ const ViewContent = () => {
               Course Name : {currentCourse.courseName}{" "}
             </p>
             <p className="teacher-name">
-              Course coordinator : {currentCourse.autherName}
+              Course coordinator : {currentCourse.authorName}
             </p>
             <p className="teacher-background">
               {" "}
@@ -108,7 +108,7 @@ const ViewContent = () => {
               Course Name : {currentCourse.courseName}{" "}
             </p>
             <p className="teacher-name">
-              Course coordinator : {currentCourse.autherName}
+              Course coordinator : {currentCourse.authorName}
             </p>
             <p className="teacher-background">
               {" "}

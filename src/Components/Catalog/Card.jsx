@@ -28,7 +28,7 @@ const editDraftCourse = (courseId) => {
             </div>
             <div className="card-content">
                 <h3>{row?.courseName}</h3>
-                <p>{row.autherName}</p>
+                <p>{row.authorName}</p>
             </div>
            
         </div>
