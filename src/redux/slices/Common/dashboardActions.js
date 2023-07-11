@@ -1,6 +1,8 @@
-import { handleDashboard, handleEnrolledStudents,handlePublishCourseData,
+import {
+  handleDashboard, handleEnrolledStudents, handlePublishCourseData,
   handleDraftCourseData,
-  handleEnrolledCourses, handleNewsData, handleSetNumberOfPages, handleSetRecordCount } from "./dashboardSlice";
+  handleEnrolledCourses, handleNewsData, handleSetNumberOfPages, handleSetRecordCount, handleSpinner
+} from "./dashboardSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
 import { useState } from "react";
@@ -73,7 +75,7 @@ export const addNews = (newsData) => async (dispatch) => {
     console.log(error);
   }
 };
-    
+
 
 export const readNewsData = () => async (dispatch) => {
   try {
@@ -98,6 +100,7 @@ export const readNewsData = () => async (dispatch) => {
 // handle get enrolled students
 export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
 
+  dispatch(handleSpinner(true));
   console.log('inside get enroll students');
 
   let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
@@ -129,6 +132,7 @@ export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
     dispatch(handleEnrolledStudents(response?.data?.data));
     dispatch(handleSetRecordCount(response?.data?.recordCount));
     dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
+    dispatch(handleSpinner(false));
   } catch (e) {
     console.log(e);
   }
@@ -140,6 +144,8 @@ export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
 export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
 
   console.log('inside get enroll students');
+
+  dispatch(handleSpinner(true));
 
   let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
   let accessToken = localStorageData.accessToken;
@@ -169,6 +175,7 @@ export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
     dispatch(handleEnrolledCourses(response?.data?.data));
     dispatch(handleSetRecordCount(response?.data?.recordCount));
     dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
+    dispatch(handleSpinner(false));
   } catch (e) {
     console.log(e);
   }
@@ -178,6 +185,8 @@ export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
 
 // handle get data over search text 
 export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatch) => {
+
+  dispatch(handleSpinner(true));
   let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
   let accessToken = localStorageData.accessToken;
   const item = {
@@ -221,17 +230,16 @@ export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatc
       dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
     }
 
-
-
+    dispatch(handleSpinner(false));
 
   } catch (e) {
     console.log(e);
   }
 }
 
-export const readPublishCourse = (pageNo, pageSize,filterValue) => async (dispatch) => {
+export const readPublishCourse = (pageNo, pageSize, filterValue) => async (dispatch) => {
   try {
-    
+
     let credentials = JSON.parse(localStorage.getItem("cuchdCsrf"));
     let accessToken = credentials.accessToken;
     let config = {
@@ -258,9 +266,9 @@ export const readPublishCourse = (pageNo, pageSize,filterValue) => async (dispat
   }
 };
 
-export const readDraftCourse = (pageNo, pageSize,filterValue) => async (dispatch) => {
+export const readDraftCourse = (pageNo, pageSize, filterValue) => async (dispatch) => {
   try {
-    
+
     let credentials = JSON.parse(localStorage.getItem("cuchdCsrf"));
     let accessToken = credentials.accessToken;
     let config = {
