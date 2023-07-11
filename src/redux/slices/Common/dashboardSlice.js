@@ -1,10 +1,11 @@
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-    lodingApi: "idle",
+    lodingApi: "idle", // "loading", "idle"
     apiError: "",    
     addUserLoading: "idle",
     getDashboardData:[], 
     getNewsData:[], 
+    spinner: false,
     enrolledStudents: [],
     enrolledCourses: [],
     recordCount: 0,  
@@ -18,8 +19,8 @@ const dashboard = createSlice({
     name: "dashboard",
     initialState,
     reducers: {
-      handleLoding: (state, { payload }) => {
-        state.lodingApi = payload;
+      handleLoding: (state, action) => {
+        state.lodingApi = action.payload;
       },
       handleApiError: (state, {payload}) => {
           state.apiError = payload
@@ -50,6 +51,9 @@ const dashboard = createSlice({
       handleDraftCourseData: (state, {payload}) => {
         state.getDraftCourseData = payload
       },
+      handleSpinner: (state, action) => {
+        state.spinner = action.payload;
+      }
       
     },
   });
@@ -64,7 +68,8 @@ const dashboard = createSlice({
     handleSetNumberOfPages,
     handleEnrolledCourses,
     handlePublishCourseData,
-    handleDraftCourseData
+    handleDraftCourseData,
+    handleSpinner
   } = dashboard.actions;
   
   export default dashboard.reducer;

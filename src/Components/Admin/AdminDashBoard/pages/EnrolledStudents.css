@@ -3,9 +3,11 @@
     padding: 30px 0;
 }
 .table-enrolled {
+    height: 65vh;
     padding: 0 20px;
     overflow-x: auto;
     margin: 0 auto;
+    overflow-y: auto;
 }
 /* .enrolled-students-table {
     table-layout: fixed;
@@ -39,7 +41,9 @@ tr td p {
 .enrolled-search-icon {
     margin: 5px 0;
 }
-
+.pagination {
+    margin-bottom: 0 !important;
+}
 /* media queries */
 @media screen and (max-width: 1120px) {
     .table-enrolled {
