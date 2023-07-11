@@ -249,9 +249,9 @@ const ViewContent = () => {
         
       </div>
 
-     <div>
+     {/* <div>
       <MainFooter />
-     </div>
+     </div> */}
     </>
   );
 };

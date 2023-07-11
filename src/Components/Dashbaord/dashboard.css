@@ -85,7 +85,7 @@
 }
 
 #dashboardGridCard_2_1 {
-  background-image: url(/src/asset/redback1.gif);
+  /* background-image: url(/src/asset/redback1.gif); */
   background-repeat: no-repeat;
   background-size: cover;
 }
@@ -116,7 +116,7 @@
   justify-items: center;
   /* justify-content: space-around; */
   /* grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr; */
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   
 }
 
