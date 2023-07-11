@@ -61,6 +61,7 @@ const SaveAsDraft = () => {
 
   useEffect(() => {
     setFormData({
+      courseId:courseId,
       courseName: particularCourseData?.courseName,
       authorName: particularCourseData?.authorName,
       subject: particularCourseData?.subjectId,
