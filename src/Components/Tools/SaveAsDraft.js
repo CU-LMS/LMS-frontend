@@ -66,7 +66,7 @@ const SaveAsDraft = () => {
       authorName: particularCourseData?.authorName,
       subject: particularCourseData?.subjectId,
       discipline: particularCourseData?.disciplineId,
-      courseCode: particularCourseData?.courseCode,
+      descriptions: particularCourseData?.descriptions,
       semester: particularCourseData?.semester,
       availability: particularCourseData?.availble,
       duration: particularCourseData?.durationConfigurationId,
@@ -271,13 +271,13 @@ const SaveAsDraft = () => {
                 <div className="form-group">
                   <input
                     type="text"
-                    name="courseCode"
-                    id="courseCode"
+                    name="descriptions"
+                    id="descriptions"
                     placeholder="Description :"
                     className="form-control"
-                    value={formData?.courseCode}
+                    value={formData?.descriptions}
                     onChange={(e) =>
-                      setFormData({ ...formData, courseCode: e.target.value })
+                      setFormData({ ...formData, descriptions: e.target.value })
                     }
                   />
                 </div>

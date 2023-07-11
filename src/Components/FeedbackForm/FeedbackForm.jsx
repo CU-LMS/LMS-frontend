@@ -1,9 +1,47 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Col, FloatingLabel, Form, Row } from "react-bootstrap";
-
+import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import "./feedbackform.css";
+import { GetConfigureData } from "../../redux/slices/courses/coursesActions";
+import {createFeedback} from "../../redux/slices/ratingCourse/RatingCourseAction";
 
 const FeedbackForm = () => {
+  const dispatch = useDispatch();
+  const [openRights, setOpenRights] = useState(false);
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+  const [announcementText, setAnnouncementtext] = useState();
+  const [roleList, setRoleList] = useState([]);
+  const [configraData, setConfigraData] = useState("");
+  const [dropdownType, setDropdownType] = useState("");
+
+  const configureData = useSelector(
+    (state) => state?.courseState?.announcementList
+  );
+
+  const feedbackType = configureData.find(x => x.moduleId == 3)?.configurations;
+  const feedbackCategory = configureData.find(x => x.moduleId == 4)?.configurations;
+ 
+  const [formData , setFormData] = useState({
+    id:0,
+    feedbackType: "",
+    feedbackCategory: "",
+    descriptions: "",
+    userName: "",
+    email: "",
+    mobile_Number: "",     
+  });
+
+  useEffect(() => {
+    dispatch(GetConfigureData());
+  }, []);
+
+  const handlefeedbackData = () => {
+    console.log("feedback data",formData);
+    dispatch(createFeedback(formData));
+   
+  };
+
   return (
     <>
       <div className="main-header p-3 my-3 mx-auto">
@@ -22,36 +60,67 @@ const FeedbackForm = () => {
             <div className="text-primary text-center mb-4">
               {/* <bd.icons.Email style={{ fontSize: 50 }} /> */}
             </div>
-            <FloatingLabel
-              label="What type of feedback would you like to send?"
-              for="validationServer01"
-              className="dense has-icon mb-3"
-            >
-              <Form.Select name="type" placeholder="Program">
-                <option>Selected Type</option>
 
-                <option>Comment</option>
-                <option>Suggestion</option>
-                <option>Question</option>
-                <option>Concern</option>
-                <option>Others</option>
-              </Form.Select>
-            </FloatingLabel>
-            <FloatingLabel
-              label="Select the category of your feedback"
-              for="validationDefault01"
-              className="dense has-icon mb-3"
-            >
-              <Form.Select name="type" placeholder="Program">
-                <option>Selected Category</option>
+            <div className="col-6-area">
+              <div className="form-group">
+                <select
+                  id="accessType"
+                  name="accessType"
+                  className="form-control"
+                  onChange={(e) =>
+                    setFormData({ ...formData, feedbackType: e.target.value })
+                  }
+                  required
+                >
+                  <option disabled selected value="">
+                    Select Types
+                  </option>
+                  {feedbackType?.map((ele) => {
 
-                <option>About The University</option>
-                <option>Admission</option>
-                <option>Academics</option>
-                <option>Student Services</option>
-                <option>Others</option>
-              </Form.Select>
-            </FloatingLabel>
+
+                    return (
+                      <>
+                        <option value={ele?.configurationId}>
+                          {ele?.value}
+                        </option>
+                      </>
+                    );
+                  })
+                  }
+
+                </select>
+              </div>
+            </div>
+
+
+            <div className="col-6-area">
+              <div className="form-group">
+                <select
+                  id="accessType"
+                  name="accessType"
+                  className="form-control"
+                  onChange={(e) =>
+                    setFormData({ ...formData, feedbackCategory: e.target.value })
+                  }
+                  required
+                >
+                  <option disabled selected value="">
+                    Select Types
+                  </option>
+
+                  {feedbackCategory?.map((ele) => {
+                    return (
+                      <>
+                        <option value={ele?.configurationId}>
+                          {ele?.value}
+                        </option>
+                      </>
+                    );
+                  })
+                  }
+                </select>
+              </div>
+            </div>
             <FloatingLabel
               label="Enter your feedback:"
               for="validationDefault04"
@@ -62,6 +131,9 @@ const FeedbackForm = () => {
                 name="message"
                 placeholder="Message"
                 id="validationDefault04"
+                onChange={(e) =>
+                  setFormData({ ...formData, descriptions: e.target.value })
+                }
                 style={{ height: 100 }}
                 required
               />
@@ -78,6 +150,9 @@ const FeedbackForm = () => {
                 placeholder="FullName"
                 autoComplete="off"
                 id="validationDefault02"
+                onChange={(e) =>
+                  setFormData({ ...formData, userName: e.target.value })
+                }
                 required
               />
             </FloatingLabel>
@@ -92,6 +167,9 @@ const FeedbackForm = () => {
                 type="email"
                 placeholder="yourName@gmail.com"
                 id="validationDefault01"
+                onChange={(e) =>
+                  setFormData({ ...formData, email: e.target.value })
+                }
                 required
               />
             </FloatingLabel>
@@ -103,6 +181,9 @@ const FeedbackForm = () => {
                 placeholder="M.No"
                 autoComplete="off"
                 id="validationDefault02"
+                onChange={(e) =>
+                  setFormData({ ...formData, mobile_Number: e.target.value })
+                }
                 required
               />
             </FloatingLabel>
@@ -120,7 +201,7 @@ const FeedbackForm = () => {
             <button type="button" className=" btn btn-dark">
               RESET
             </button>
-            <button type="button" className=" form-btn btn btn-danger">
+            <button type="button" onClick={handlefeedbackData} className=" form-btn btn btn-danger">
               SUBMIT
             </button>
           </Form>

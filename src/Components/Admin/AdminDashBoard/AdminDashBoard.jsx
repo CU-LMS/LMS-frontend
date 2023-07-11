@@ -81,7 +81,7 @@ const AdminDashBoard = () => {
                   {/* <BsFillPeopleFill size={80} className="icon" /> */}
                 </Card>
               </Link>
-              <Link className="card-wrapper">
+              <Link to="/feedback-form" className="card-wrapper">
                 <Card>
                   <h2>Feedback</h2>
                   {/* <MdOutlineFeedback size={80} className="icon" /> */}
