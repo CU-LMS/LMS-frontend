@@ -305,3 +305,10 @@
     background-color: #E32636;
     transition: all 0.3s ease;
 }
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    
+}

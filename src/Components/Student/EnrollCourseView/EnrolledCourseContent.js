@@ -44,9 +44,9 @@ const EnrolledCourseContent = () => {
   return (
     <>
       
-      <marquee className="linecolor" direction="left">
+      {/* <marquee className="linecolor" direction="left">
       For more Information, chat with us in CU-Sevak. We will get back to you...
-      </marquee>
+      </marquee> */}
       {currentCourse && (
         <div>
 

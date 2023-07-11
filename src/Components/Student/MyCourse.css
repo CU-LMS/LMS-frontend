@@ -1,6 +1,6 @@
 .dashboard {
     background-image: url(/src/asset/Dashboard-Background-Image-4.jpg);
-    height: 100%;
+    height: calc(100% - 150px);
   }
   .carousel-inner {
     position: relative;

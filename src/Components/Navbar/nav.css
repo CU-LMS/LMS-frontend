@@ -8,15 +8,21 @@
 
 .navheader {
   background-color: rgb(32, 32, 32);
-  position: sticky;
+  position: fixed;
   top: 0;
   transition: all 0.4s;
   z-index: 100;
+  width: 100%;
+  
 }
 
 /* .navHide {
   top: -70px;
 } */
+
+.home-nav-bar{
+  margin-top: -100px;
+}
 
 li {
   list-style: none;
