@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import http from "../../hoc/axiosClient";
 import { toast } from "react-toastify";
 import "./WatchCourse.css";
 import PdfViewerComponent from "./PdfViewerComponent";
@@ -20,10 +21,10 @@ const WatchCourseWhenEnrolled = () => {
     };
     let config = {
       method: "post",
-      url: "http://43.240.66.78:7265/api/Course/GetEnrollCourseFileList",
+      url: "Course/GetEnrollCourseFileList",
       data,
     };
-    const response = await axios(config);
+    const response = await http(config);
     if (response?.data?.statusCode === 200) {
       console.log(response?.data?.data);
       setDocumentData(response?.data?.data);

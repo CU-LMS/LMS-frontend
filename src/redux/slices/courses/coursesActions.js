@@ -11,13 +11,12 @@ import {
   handleAddUserByAdmin,
   handleAddUserLoading,
   handleParticularCourseData,
-  handleEnrollCourses
+
 } from "./coursesSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
-import { useState } from "react";
 import swal from "sweetalert";
-import { useNavigate } from "react-router-dom";
+
 
 export const createCourse = (courseData) => async (dispatch) => {
   try {
@@ -26,6 +25,13 @@ export const createCourse = (courseData) => async (dispatch) => {
     let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
     let accessToken = localStorageData.accessToken;
     const newFormData = new FormData();
+    let curl="course/AddCourseFilesDoc";
+    if( courseData.courseId!="0")
+    {
+      newFormData.append("courseId", courseData.courseId);
+      curl="course/UpdateCourseFilesDoc";
+    }
+   
     newFormData.append("courseName", courseData.courseName);
     newFormData.append("courseCode", courseData.courseCode);
     newFormData.append("availble", courseData.availability);
@@ -47,14 +53,16 @@ export const createCourse = (courseData) => async (dispatch) => {
     newFormData.append("disciplineId", courseData.discipline);
     newFormData.append("subjectId", courseData.subject);
     newFormData.append("semester", courseData.semester);
+    newFormData.append("authorName", courseData.authorName);
+    newFormData.append("descriptions", courseData.descriptions);
     newFormData.append(
-      "file",
+      "bannerImage",
       courseData.bannerImage,
       courseData.bannerImage.name
     );
-    newFormData.append("file", courseData.courseDoc, courseData.courseDoc.name);
+    newFormData.append("courseDoc", courseData.courseDoc, courseData.courseDoc.name);
     newFormData.append(
-      "file",
+      "courseVideo",
       courseData.courseVideo,
       courseData.courseVideo.name
     );    
@@ -62,7 +70,7 @@ export const createCourse = (courseData) => async (dispatch) => {
     
     let config = {
       method: "post",
-      url: "course/AddCourseFilesDoc",
+      url: curl,
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

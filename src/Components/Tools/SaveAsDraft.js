@@ -12,6 +12,8 @@ import Cookies from "js-cookie";
 import LoadingPage from "../../hoc/LoadingPage";
 
 const SaveAsDraft = () => {
+  const queryParameters = new URLSearchParams(window.location.search);
+  const courseId = queryParameters.get("courseId");
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [name, setName] = useState("");
   const [subjectArea, setSubjectArea] = useState([]);
@@ -54,11 +56,12 @@ const SaveAsDraft = () => {
   useEffect(() => {
     dispatch(readSubjectsData());
     dispatch(readDiscData());
-    dispatch(readParticularCourseData(48));
+    dispatch(readParticularCourseData(courseId));
   }, []);
 
   useEffect(() => {
     setFormData({
+      courseId:courseId,
       courseName: particularCourseData?.courseName,
       authorName: particularCourseData?.authorName,
       subject: particularCourseData?.subjectId,

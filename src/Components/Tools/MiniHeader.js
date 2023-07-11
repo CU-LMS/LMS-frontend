@@ -22,11 +22,12 @@ const MiniHeader = () => {
   const loadingApi = useSelector((state) => state?.courseState?.lodingApi);
 
   const [formData, setFormData] = useState({
+    courseId:"0",
     courseName: "",
     authorName: "",
     subject: "",
     discipline: "",
-    courseCode: "",
+    descriptions: "",
     semester: "",
     availability: "",
     duration: "",
@@ -233,13 +234,13 @@ const MiniHeader = () => {
                 <div className="form-group">
                   <input
                     type="text"
-                    name="courseCode"
-                    id="courseCode"
+                    name="descriptions"
+                    id="descriptions"
                     placeholder="Description :"
                     className="form-control"
                     required
                     onChange={(e) =>
-                      setFormData({ ...formData, courseCode: e.target.value })
+                      setFormData({ ...formData, descriptions: e.target.value })
                     }
                   />
                 </div>

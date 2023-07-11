@@ -1,0 +1,58 @@
+.enrolled-students {
+    width: 100%;
+    padding: 30px 0;
+}
+.table-enrolled {
+    height: 65vh;
+    padding: 0 20px;
+    overflow-x: auto;
+    margin: 0 auto;
+    overflow-y: auto;
+}
+/* .enrolled-students-table {
+    table-layout: fixed;
+} */
+thead th {
+    cursor: pointer;
+}
+tr:nth-child(2n+1) {
+    background-color: #f1f1f1;
+}
+.course-name-td {
+    /* width: 200px; */
+}
+tr td, th  {
+    padding: 6px !important;
+}
+tr td p {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.btn-search {
+    background-color: #1e283c;
+    padding: 10px 25px;
+    font-size: 18px;
+    border-radius: 6px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.enrolled-search-icon {
+    margin: 5px 0;
+}
+.pagination {
+    margin-bottom: 0 !important;
+}
+/* media queries */
+@media screen and (max-width: 1120px) {
+    .table-enrolled {
+        width: 760px;
+    }
+    td, th {
+        font-size: 14px;
+    }
+    .course-name-td {
+        /* width: 100px; */
+    }
+}

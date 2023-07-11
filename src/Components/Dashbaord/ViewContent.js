@@ -38,7 +38,7 @@ const ViewContent = () => {
   const dispatch = useDispatch();
   const [isFixed, setIsFixed] = useState(false);
   const navigate = useNavigate();
-
+  let credentials = JSON.parse(localStorage.getItem("cuchdCsrf"));
   const { state } = useLocation();
  
 
@@ -85,7 +85,7 @@ const ViewContent = () => {
               Course Name : {currentCourse.courseName}{" "}
             </p>
             <p className="teacher-name">
-              Course coordinator : {currentCourse.autherName}
+              Course coordinator : {currentCourse.authorName}
             </p>
             <p className="teacher-background">
               {" "}
@@ -108,19 +108,24 @@ const ViewContent = () => {
               Course Name : {currentCourse.courseName}{" "}
             </p>
             <p className="teacher-name">
-              Course coordinator : {currentCourse.autherName}
+              Course coordinator : {currentCourse.authorName}
             </p>
             <p className="teacher-background">
               {" "}
               Semester : {currentCourse.semester}
             </p>
+            
             <div className="buttonAndEnrolled">
-              
-              <button className="join-button" onClick={enrollTheUser}>
+              {credentials?.roleId=="4" ||credentials?.roleId=="5"?
+              (
+                <>
+                <button className="join-button" onClick={enrollTheUser}>
                 Enroll Now
               </button>{" "}
-              <p>Course Code : </p>
-              <p className="count-enroll"> {currentCourse.courseCode}</p>
+                </>
+              ):null}
+              
+              
             </div>
             </div>
             <div className="main-header-view2">
@@ -244,9 +249,9 @@ const ViewContent = () => {
         
       </div>
 
-     <div>
+     {/* <div>
       <MainFooter />
-     </div>
+     </div> */}
     </>
   );
 };

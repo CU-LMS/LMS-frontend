@@ -28,14 +28,14 @@ const CourseRatingReview = ({ courseId }) => {
   totalRating = totalRating == 0 ? 1 : totalRating;
 
   console.log(totalRating, "99999999999");
-
+  
   return (
     <>
       <div className="review-container">
         <span className="review-heading">Student Reviews</span>
         <div className="review-header"></div>
         <p className="totalStar-rated">
-          Total <span className="count-star">{totalRating}</span> students rated
+          Total <span className="count-star">{totalRating == 1 || totalRating == 0 ? 1 : totalRating }</span> students rated
           this course.
         </p>
         <div className="row">
@@ -49,7 +49,7 @@ const CourseRatingReview = ({ courseId }) => {
                   ratingData.fiveRating
                     ? {
                         width: `${
-                          (ratingData.fiveRating / totalRating) * 100
+                          Math.round((ratingData.fiveRating / totalRating) * 100)
                         }%`,
                       }
                     : { width: "0%" }
@@ -59,7 +59,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${(ratingData.fiveRating / totalRating) * 100}%`}</div>
+            <div>{`${Math.round((ratingData.fiveRating / totalRating) * 100)}%`}</div>
           </div>
           <div className="side">
             <div>4 star</div>
@@ -71,7 +71,7 @@ const CourseRatingReview = ({ courseId }) => {
                   ratingData.fourRating
                     ? {
                         width: `${
-                          (ratingData.fourRating / totalRating) * 100
+                          Math.round((ratingData.fourRating / totalRating) * 100)
                         }%`,
                       }
                     : { width: "0%" }
@@ -81,7 +81,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${(ratingData.fourRating / totalRating) * 100}%`}</div>
+            <div>{`${Math.round((ratingData.fourRating / totalRating) * 100)}%`}</div>
           </div>
           <div className="side">
             <div>3 star</div>
@@ -93,7 +93,7 @@ const CourseRatingReview = ({ courseId }) => {
                   ratingData.threeRating
                     ? {
                         width: `${
-                          (ratingData.threeRating / totalRating) * 100
+                          Math.round((ratingData.threeRating / totalRating) * 100)
                         }%`,
                       }
                     : { width: "0%" }
@@ -103,7 +103,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${(ratingData.threeRating / totalRating) * 100}%`}</div>
+            <div>{`${Math.round((ratingData.threeRating / totalRating) * 100)}%`}</div>
           </div>
           <div className="side">
             <div>2 star</div>
@@ -115,7 +115,7 @@ const CourseRatingReview = ({ courseId }) => {
                   ratingData.secondRating
                     ? {
                         width: `${
-                          (ratingData.secondRating / totalRating) * 100
+                          Math.round((ratingData.secondRating / totalRating) * 100)
                         }%`,
                       }
                     : { width: "0%" }
@@ -125,7 +125,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${(ratingData.secondRating / totalRating) * 100}%`}</div>
+            <div>{`${Math.round((ratingData.secondRating / totalRating) * 100)}%`}</div>
           </div>
           <div className="side">
             <div>1 star</div>
@@ -137,7 +137,7 @@ const CourseRatingReview = ({ courseId }) => {
                   ratingData.firstRating
                     ? {
                         width: `${
-                          (ratingData.firstRating / totalRating) * 100
+                          Math.round((ratingData.firstRating / totalRating) * 100)
                         }%`,
                       }
                     : { width: "0%" }
@@ -147,7 +147,7 @@ const CourseRatingReview = ({ courseId }) => {
             </div>
           </div>
           <div className="side right">
-            <div>{`${(ratingData.firstRating / totalRating) * 100}%`}</div>
+            <div>{`${Math.round((ratingData.firstRating / totalRating) * 100)}%`}</div>
           </div>
         </div>
       </div>
