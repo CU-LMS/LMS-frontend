@@ -16,7 +16,7 @@ import {
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
 import swal from "sweetalert";
-import { handleSpinner } from "../Common/dashboardSlice";
+import { handleSetNumberOfPages, handleSetRecordCount, handleSpinner } from "../Common/dashboardSlice";
 
 
 
@@ -369,34 +369,40 @@ export const showAnnouncement = () => async (dispatch) => {
 
     const response = await http(config);
     console.log("Announcement___Response", response);
-    dispatch(handleShowAnnouncement(response?.data?.data));
-    console.log("ZZZZZZZZZZZZ", response);
+    dispatch(handleShowAnnouncement(response?.data?.data));    
   } catch (error) {
     console.log(error);
   }
 };
 
-export const readNonErollCourseData = () => async (dispatch) => {
-
-  dispatch(handleLoding("loading"));
-
+export const readNonErollCourseData = (pageNo, pageSize,value) => async (dispatch) => {
+console.log("Abhay dddd======");
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
+    let accessToken = credentials.accessToken;
     let config = {
       method: "post",
       url: "Course/GetCourseListWithoutEnrollUser",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+      },
       data: {
-        userId: credentials.userId,
-        roleId:credentials.roleId,        
+        RoleId: credentials.roleId,
+        UserId: credentials.userId,
+        pageNo: pageNo,
+        pageSize: pageSize,
+        filterValue: value
       },
     };
     const response = await http(config);
     console.log(response.data);
     dispatch(handleNonEnrollCourse(response?.data?.data));
-    dispatch(handleLoding("idle"));
+    dispatch(handleSetRecordCount(response?.data?.recordCount));
+    dispatch(handleSetNumberOfPages(Math.ceil(Number(response?.data?.recordCount) / pageSize)));
+   
   } catch (error) {
     console.log(error);
-    dispatch(handleLoding("idle"));
+   
   }
 };
 
