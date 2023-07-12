@@ -1,83 +1,90 @@
 /* Profile */
 .profile {
-    background-color: #f1f1f1;
+  background-color: #f1f1f1;
 }
 .profile-header {
-    padding: 40px 30px;
-    background-color: #2A3346;
-    color: #fff;
-    border-bottom: 1px solid #e32636;
-  }
-  .profile-tabs {
-    width: 100%;
-    background-color: #d4d4d4;
-  }
-  .profile-tab {
-    padding: 15px 30px;
-    cursor: pointer;
-  }
-  .active-tab {
-    background-color: #f1f1f1;
-  }
-  .profile-content {
-    --bs-gutter-x: 0;
-  }
-  .profile-left-col {
-    background-color: #fff;
-    padding: 30px;
-    display: block;
-  }
-  .profile-picture {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-  }
-  
-  .avatar-icon {
-    font-size: 180px;
-    color: #a4a4a4;
-  }
-  .camera-icon-btn {
-    padding: 12px 15px;
-    border-radius: 50%;
-    background-color: #1e283c;
-    margin-top: -45px;
-    border: 1px solid #ddd;
-    transition: all 0.3s ease;
-  }
-  .camera-icon {
-    font-size: 18px;
-    color: #fff;
-    margin-bottom: 3px;
-  }
-  .profile-name {
-    width: 100%;
-    font-size: 27px;
-    white-space:nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .profile-section {
-    text-align: left;
-    align-self: flex-start;
-    margin-bottom: 10px;
-  }
-  .profile-section p {
-    display: inline-block;
-    font-size: 13px;
-    width: 100%;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-  }
-  .profile-right-col  {
-    padding: 20px;
-  }
-  .profile-right-col-content {
-    padding: 30px;
-    background-color: #fff;
-  }
-  .page-icon {
-    font-size: 25px;
-  }
+  padding: 40px 30px;
+  background-color: #2a3346;
+  color: #fff;
+  border-bottom: 1px solid #e32636;
+}
+.profile-tabs {
+  width: 100%;
+  background-color: #d4d4d4;
+}
+.profile-tab {
+  padding: 15px 30px;
+  cursor: pointer;
+}
+.active-tab {
+  background-color: #f1f1f1;
+}
+.profile-content {
+  --bs-gutter-x: 0;
+}
+.profile-left-col {
+  background-color: #fff;
+  padding: 30px;
+  display: block;
+}
+.profile-picture {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.avatar-icon {
+  font-size: 150px;
+  color: #a4a4a4;
+}
+.camera-icon-btn {
+  padding: 12px 15px;
+  border-radius: 50%;
+  background-color: #1e283c;
+  margin-top: -45px;
+  border: 1px solid #ddd;
+  transition: all 0.3s ease;
+}
+.camera-icon {
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 3px;
+}
+.profile-name {
+  width: 100%;
+  font-size: 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-section {
+  text-align: left;
+  align-self: flex-start;
+  margin-bottom: 10px;
+}
+.profile-section p {
+  display: inline-block;
+  font-size: 13px;
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.profile-right-col {
+  padding: 20px;
+}
+.profile-right-col-content {
+  padding: 30px;
+  background-color: #fff;
+}
+.page-icon {
+  font-size: 25px;
+}
+
+.rules-password {
+  font-size: 20px;
+  color: black;
+  margin-top: 10px;
+  margin-bottom: 0;
+}
