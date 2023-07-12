@@ -16,7 +16,7 @@ import { useNavigate } from "react-router-dom";
 import { readNonErollCourseData } from "../../redux/slices/courses/coursesActions";
 import { useDispatch, useSelector } from "react-redux";
 import CourseRated from "../Student/courseRating/CourseRated";
-
+import { FiSearch } from 'react-icons/fi';
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -26,7 +26,8 @@ const Dashboard = () => {
   const [isLoading, setLoading] = useState(false);
   const [currentImage, setCurrentImage] = useState(0);
   const [hideFooter, setHideFooter] = useState("dashboardFooter");
-
+const [searchText, setSearchText] = useState('');
+    let pageSize = 10;
   
   useEffect(() => {
     dispatch(readNonErollCourseData());
@@ -45,6 +46,12 @@ const Dashboard = () => {
     navigate("/view-content", {state: { courseId } });
   };
 
+    // handle search text 
+    const handleSearchText = (e) => {
+      e.preventDefault();
+      dispatch(readNonErollCourseData());
+      //dispatch(getDataBySearch("enrolledStudents", searchText, pageSize, currentPage));
+  }
   var lastScrollTop = window.scrollY;
   window.addEventListener("scroll", function () {
     var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -88,6 +95,10 @@ const Dashboard = () => {
           <div className="dash_cardInfo" style={{ color: "white" }}></div>
         </div>
       </div>
+      <form className="enrolled-search py-1 d-flex justify-content-end align-items-center mb-2" onSubmit={handleSearchText}>
+                    <input type="text" className='form-control w-25 me-2' onChange={(e) => setSearchText(e.target.value)} />
+                    <button className='btn-search m-0 d-flex' > <FiSearch className='enrolled-search-icon' /></button>
+                </form>
       <div style={{ margin: "10px 30px", fontSize: "20px" }}>Our Courses</div>
       <div className="dash_course">
 
