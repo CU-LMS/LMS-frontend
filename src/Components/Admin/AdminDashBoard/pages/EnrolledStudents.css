@@ -23,13 +23,16 @@ tr:nth-child(2n+1) {
 }
 tr td, th  {
     padding: 6px !important;
+    font-size: 14px;
 }
 tr td p {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
 }
-
+.enrolled-heading {
+    font-size: 26px;
+}
 .btn-search {
     background-color: #1e283c;
     padding: 10px 25px;

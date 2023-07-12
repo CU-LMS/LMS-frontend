@@ -74,6 +74,7 @@ const course = createSlice({
 
 export const {
   handleLoding,
+
   handleApiError,
   handleCourses,
   handleEnrollCourses,

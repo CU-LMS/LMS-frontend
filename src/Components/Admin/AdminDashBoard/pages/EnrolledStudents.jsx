@@ -15,9 +15,7 @@ const EnrolledStudents = () => {
     const dispatch = useDispatch();
     const enrolledStudents = useSelector(state => state.dashboardState.enrolledStudents);
     const totalPages = useSelector(state => state?.dashboardState?.numberOfPages);
-    const recordCount = useSelector(state => state?.dashboardState?.recordCount);
     const loadingState = useSelector(state => state?.dashboardState?.spinner);
-    console.log(loadingState);
     const [currentPage, setCurrentPage] = useState(1);
     const [searchText, setSearchText] = useState('');
     let pageSize = 10;
@@ -30,7 +28,8 @@ const EnrolledStudents = () => {
     // handle search text 
     const handleSearchText = (e) => {
         e.preventDefault();
-        dispatch(getDataBySearch("enrolledStudents", searchText, pageSize, currentPage));
+        let trimmedText = searchText.trim();
+        dispatch(getDataBySearch("enrolledStudents", trimmedText, pageSize, currentPage));
     }
 
 
@@ -41,24 +40,24 @@ const EnrolledStudents = () => {
 
 
     let content = <>
-        <table className='enrolled-students-table mb-3 table-responsive'>
+        <table className='enrolled-students-table table-responsive'>
             <thead>
-                <th>ID</th>
+                <th>SR No</th>
                 <th>Learner Name</th>
-                <th>Course Name</th>
-                <th>Enrollement Date</th>
+                <th>Gender</th>
+                <th>Registered On</th>
                 <th>Mobile Number</th>
                 <th>Email</th>
             </thead>
             <tbody>
-                {enrolledStudents?.map(student => {
+                {enrolledStudents?.map((student, index) => {
                     let enrollmentDate = moment(student?.firstEnteredOn).format("DD-MM-YYYY");
                     return (
                         <tr>
-                            <td><p>{student?.id}</p></td>
+                            <td><p>{index + 1}</p></td>
                             <td title={`${student?.firstName} ${student?.lastName}`}>
                                 <p className='course-name-td'>{`${student?.firstName} ${student?.lastName}`}</p></td>
-                            <td title={student?.courseName}><p className='course-name-td'>{student?.courseName}</p></td>
+                            <td title={student?.gender}><p className='course-name-td'>{student?.gender}</p></td>
                             <td title={enrollmentDate}><p>{enrollmentDate}</p></td>
                             <td title={student?.phoneNumber}><p className='course-name-td'>{student?.phoneNumber}</p></td>
                             <td title={student?.userId}><p className='course-name-td'>{student?.userId}</p></td>
@@ -70,25 +69,29 @@ const EnrolledStudents = () => {
     </>
 
     return (
-        <div className='enrolled-students pt-0'>
-            <div className="py-4 text-center mb-2 bg-light mt-0">
-                <h3>Enrolled Students</h3>
+        <>
+        {loadingState && <Spinner />}
+            <div className='enrolled-students pt-0'>
+                <div className="py-4 text-center mb-2 bg-light mt-0">
+                    <h3 className='enrolled-heading'>Enrolled Students</h3>
+                </div>
+                <div className="table-enrolled mb-2">
+                    <form className="enrolled-search py-1 d-flex justify-content-end align-items-center mb-2" onSubmit={handleSearchText}>
+                        <input type="text" className='form-control w-25 me-2' onChange={(e) => setSearchText(e.target.value)} />
+                        <button type='submit' className='btn-search m-0 d-flex'> <FiSearch className='enrolled-search-icon' /></button>
+                    </form>
+                    {content}
+                </div>
+                {<div>
+                    <ResponsivePagination
+                        current={currentPage}
+                        total={totalPages}
+                        onPageChange={handleSetCurrentPage}
+                    />
+                </div>}
             </div>
-            <div className="table-enrolled">
-                <form className="enrolled-search py-1 d-flex justify-content-end align-items-center mb-2" onSubmit={handleSearchText}>
-                    <input type="text" className='form-control w-25 me-2' onChange={(e) => setSearchText(e.target.value)} />
-                    <button type='submit' className='btn-search m-0 d-flex'> <FiSearch className='enrolled-search-icon' /></button>
-                </form>
-                {!loadingState ? content : <> <div className='d-flex justify-content-center py-4'><Spinner /></div></> }
-            </div>
-            {<div>
-                <ResponsivePagination
-                    current={currentPage}
-                    total={totalPages}
-                    onPageChange={handleSetCurrentPage}
-                />
-            </div>}
-        </div>
+        </>
+
     )
 }
 
