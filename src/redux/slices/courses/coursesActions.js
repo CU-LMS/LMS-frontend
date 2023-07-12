@@ -16,6 +16,9 @@ import {
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
 import swal from "sweetalert";
+import { handleSpinner } from "../Common/dashboardSlice";
+
+
 
 
 export const createCourse = (courseData) => async (dispatch) => {
@@ -158,6 +161,7 @@ export const enrollCourse = (courseId) => async (dispatch) => {
 
 
 export const readFAQData = () => async (dispatch) => {
+  dispatch(handleSpinner(true))
   try {
     let config = {
       method: "post",
@@ -169,8 +173,10 @@ export const readFAQData = () => async (dispatch) => {
     };
     const response = await http(config);
     dispatch(handleFAQs(response?.data?.data));
+    dispatch(handleSpinner(false));
   } catch (error) {
     console.log(error);
+    dispatch(handleSpinner(false));
   }
 };
 
@@ -371,6 +377,9 @@ export const showAnnouncement = () => async (dispatch) => {
 };
 
 export const readNonErollCourseData = () => async (dispatch) => {
+
+  dispatch(handleLoding("loading"));
+
   try {
     let credentials = JSON.parse(localStorage?.getItem("cuchdCsrf"));
     let config = {
@@ -382,9 +391,12 @@ export const readNonErollCourseData = () => async (dispatch) => {
       },
     };
     const response = await http(config);
+    console.log(response.data);
     dispatch(handleNonEnrollCourse(response?.data?.data));
+    dispatch(handleLoding("idle"));
   } catch (error) {
     console.log(error);
+    dispatch(handleLoding("idle"));
   }
 };
 

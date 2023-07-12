@@ -23,7 +23,6 @@ const AdminDashBoard = () => {
   );
   const publishNavigate = () => {
     navigate("/publish-courses");
-
   };
 
   return (

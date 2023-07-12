@@ -5,13 +5,10 @@ import {
 } from "./dashboardSlice";
 import { toast } from "react-toastify";
 import http from "../../../hoc/axiosClient";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import swal from "sweetalert";
 import { handleLoding } from "../courses/coursesSlice";
 import { useSelector } from "react-redux";
-
-
-
 
 export const readDashboardData = () => async (dispatch) => {
   try {
@@ -100,6 +97,7 @@ export const readNewsData = () => async (dispatch) => {
 // handle get enrolled students
 export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
 
+
   dispatch(handleSpinner(true));
   console.log('inside get enroll students');
 
@@ -135,6 +133,7 @@ export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
     dispatch(handleSpinner(false));
   } catch (e) {
     console.log(e);
+    dispatch(handleSpinner(false));
   }
 
 
@@ -142,8 +141,6 @@ export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
 
 // handle get enrolled courses
 export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
-
-  console.log('inside get enroll students');
 
   dispatch(handleSpinner(true));
 
@@ -178,6 +175,7 @@ export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
     dispatch(handleSpinner(false));
   } catch (e) {
     console.log(e);
+    dispatch(handleSpinner(false));
   }
 
 
@@ -185,6 +183,7 @@ export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
 
 // handle get data over search text 
 export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatch) => {
+
 
   dispatch(handleSpinner(true));
   let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
@@ -234,6 +233,7 @@ export const getDataBySearch = (type, text, pageSize, pageNum) => async (dispatc
 
   } catch (e) {
     console.log(e);
+    dispatch(handleSpinner(false));
   }
 }
 
