@@ -74,9 +74,9 @@ const ViewContent = () => {
   return (
     <>
       
-      <marquee className="linecolor" direction="left">
+      {/* <marquee className="linecolor" direction="left">
         For more Information, chat with us in CU-Sevak. We will get back to you...
-      </marquee>
+      </marquee> */}
       {currentCourse && (
         <div>
           {/* <div className="main-header-view" key={currentCourse.courseId}>

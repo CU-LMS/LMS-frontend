@@ -86,6 +86,9 @@ export default function Navbar() {
 
   return (
     <>
+    <div className="home-nav-bar">
+
+  
       <header className={hideNav}>
         <div className="navbar">
           {/* <div className="max-width"> */}
@@ -173,6 +176,7 @@ export default function Navbar() {
           </li>
         </div>
       </header>
+      </div>
     </>
   );
 }
