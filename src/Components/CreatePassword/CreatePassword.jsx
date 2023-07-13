@@ -14,7 +14,7 @@ export default function CreatePassword() {
   const [confirmPassword, setConfirmpassword] = useState("");
   const [password, setPassword] = useState("");
   const dispatch = useDispatch();
-
+let isSubmit=false;
   const {
     register,
     handleSubmit,
@@ -23,42 +23,34 @@ export default function CreatePassword() {
     // resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => {
-    console.log("Abhay", data);
-    console.log("username", data.userName);
-    console.log("Password", data.password);
-    console.log("ConfPassword", data.confirmPassword);
+  const onSubmit = (data) => { 
 
-    const errorMsg = strCompare(data.password, data.confirmPassword);
-    if (errorMsg == "Matched") {
-      console.log("sending");
-      // dispatch(createPassword(data.userName, data.password, data.otp));
-      // cookies.clear();
-    }
-    console.log("Error Message", errorMsg);
+    const errorMsg = strCompare(data.password, data.confirmPassword);  
+     if(isSubmit)
+     {
+       dispatch(createPassword(data.userName, data.password, data.otp));
+     }
     setRrrorMsg(errorMsg);
   };
   const strCompare = (pass, confpass) => {
     let errMsg = "";
     if (pass !== confpass) {
+      isSubmit=false;
       errMsg = "Passwords do not match";
     } else {
+      isSubmit=true;
       errMsg = "Matched";
     }
     return errMsg;
   };
 
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    console.log("Working", e);
-    handleSubmit(onSubmit);
-  };
+  
 
   return (
     <div className="popup">
       <div className="popup-inner">
         <h2 className="create-heading">Create Password</h2>
-        <form className="was-validated" onSubmit={handleFormSubmit}>
+        <form className="was-validated">
           <label>
             <p>Email</p>
             <input
@@ -108,7 +100,7 @@ export default function CreatePassword() {
               type="text"
               placeholder="Enter OTP"
               required
-              pattern="^\d{6}$"
+              pattern="^\d{4}$"
               maxLength={6}
               {...register("otp")}
               value={otp}
@@ -117,9 +109,7 @@ export default function CreatePassword() {
           </label>
           <p className="text-danger">{errorMsg}</p>
           <div className="footer-in-modal">
-            <button type="submit" className="sure-button">
-              Create
-            </button>
+          <button className="sure-button" onClick={handleSubmit(onSubmit)}> Create</button>
           </div>
         </form>
       </div>
