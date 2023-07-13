@@ -32,7 +32,7 @@ import CourseRatingReview from "../Student/courseRating/CourseRatingReview";
 import "./ViewContent.css";
 
 const ViewContent = () => {
-  const courses = useSelector((state) => state.courseState.courses);
+  const courses = useSelector((state) => state.courseState.nonEnrollCourseList);
   // const dummyVar = courses.find(x =>x.courseId==1);
   const [currentCourse, setCurrentCourse] = useState();
   const dispatch = useDispatch();
@@ -54,6 +54,10 @@ const ViewContent = () => {
 
   const enrollTheUser = () => {
     dispatch(enrollCourse(currentCourse?.courseId));
+  };
+
+  const enrolledTheUser = () => {
+    navigate(`/watch-course?courseId=${currentCourse?.courseId}`);
   };
 
   // useEffect(() => {
@@ -119,9 +123,12 @@ const ViewContent = () => {
               {credentials?.roleId=="4" ||credentials?.roleId=="5"?
               (
                 <>
-                <button className="join-button" onClick={enrollTheUser}>
+                 {!currentCourse.isEnrolled ?<button className="join-button" onClick={enrollTheUser}>
                 Enroll Now
-              </button>{" "}
+              </button>: <button className="join-button" onClick={enrolledTheUser}>
+                Enrolled 
+              </button>}
+                
                 </>
               ):null}
               
