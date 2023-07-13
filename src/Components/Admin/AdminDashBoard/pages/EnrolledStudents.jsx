@@ -101,8 +101,7 @@ const EnrolledStudents = () => {
 
                 <div className='export-button'><ExportExcel excelData={enrolledStudents} fileName={"Enrolled Student Data"} /></div>
 
-                {!loadingState ? content : <> <div className='d-flex justify-content-center py-4'><Spinner /></div></> }
-            </div>
+               
             {<div>
                 <ResponsivePagination
                     current={currentPage}
@@ -111,7 +110,7 @@ const EnrolledStudents = () => {
                 />
             </div>}
         </div>
-          </>
+     </>
     )
 }
 
