@@ -56,3 +56,9 @@ tr td p {
         /* width: 100px; */
     }
 }
+
+.export-button{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
