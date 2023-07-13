@@ -81,8 +81,11 @@ const EnrolledStudents = () => {
                         <input type="text" className='form-control w-25 me-2' onChange={(e) => setSearchText(e.target.value)} />
                         <button type='submit' className='btn-search m-0 d-flex'> <FiSearch className='enrolled-search-icon' /></button>
                     </form>
+                    <div className='export-button'><ExportExcel excelData={enrolledStudents} fileName={"Enrolled Student Data"} /></div>
+
                     {content}
                 </div>
+               
                 {<div>
                     <ResponsivePagination
                         current={currentPage}
@@ -93,23 +96,7 @@ const EnrolledStudents = () => {
             </div>
       
 
-            <div className="table-enrolled">
-                <form className="enrolled-search py-1 d-flex justify-content-end align-items-center mb-2" onSubmit={handleSearchText}>
-                    <input type="text" className='form-control w-25 me-2' onChange={(e) => setSearchText(e.target.value)} />
-                    <button type='submit' className='btn-search m-0 d-flex'> <FiSearch className='enrolled-search-icon' /></button>
-                </form>
-
-                <div className='export-button'><ExportExcel excelData={enrolledStudents} fileName={"Enrolled Student Data"} /></div>
-
-               
-            {<div>
-                <ResponsivePagination
-                    current={currentPage}
-                    total={totalPages}
-                    onPageChange={handleSetCurrentPage}
-                />
-            </div>}
-        </div>
+            
      </>
     )
 }

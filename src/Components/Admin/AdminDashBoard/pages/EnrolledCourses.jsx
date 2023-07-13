@@ -57,17 +57,17 @@ const EnrolledCourses = () => {
                 <th>Course Name</th>
                 <th>Author Name</th>
                 <th>Start Date</th>
-                <th>End Number</th>
+                <th>End Date</th>
                 <th>Semester</th>
             </thead>
             <tbody>
-                {enrolledCourses?.map(course => {
+                {enrolledCourses?.map((course,index) => {
 
                     let startDate = moment(course?.dStartDate).format("DD-MM-YYYY");
                     let endDate = moment(course?.dEndDate).format("DD-MM-YYYY");
                     return (
                         <tr>
-                            <td><p>{course?.courseId}</p></td>
+                            <td><p>{index + 1}</p></td>
 
 
                             <td title={course?.courseName}>
@@ -78,7 +78,7 @@ const EnrolledCourses = () => {
                                 <p className="course-name-td">{course?.authorName}</p>
                             </td>
 
-                            <td title={course?.authorName}><p className='course-name-td'>{course?.authorName}</p></td>
+                            <td title={startDate}><p className='course-name-td'>{startDate}</p></td>
 
                             <td title={endDate}>
                                 <p>{endDate}</p>
@@ -113,6 +113,7 @@ const EnrolledCourses = () => {
                             fileName={"Enrolled Courses Data"}
                         />
                     </div>
+                    {content}
                 </div>
                 {<div >
                     <ResponsivePagination
@@ -125,3 +126,5 @@ const EnrolledCourses = () => {
         </>
     )
 }
+
+export default EnrolledCourses
