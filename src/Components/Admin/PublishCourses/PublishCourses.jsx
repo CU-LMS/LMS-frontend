@@ -9,9 +9,9 @@ import ResponsivePagination from 'react-responsive-pagination';
 const PublishCourses = () => {
   const dispatch = useDispatch();
   let pageSize=10; 
-  let filterValue="newdate" 
+  //let filterValue="newdate" 
 
-  
+  const [filterValue, setFilterValue] = useState('newdate');
   const totalPages = useSelector(state => state?.dashboardState?.numberOfPages);
   const [currentPage, setCurrentPage] = useState(1);
   const recordCount = useSelector(state => state?.dashboardState?.recordCount);
@@ -30,10 +30,9 @@ const PublishCourses = () => {
      
 
         const onSelectChange = (e) => {
-          filterValue=e.target.value;
+          setFilterValue(e.target.value);
           setCurrentPage(1);
-          dispatch(readPublishCourse(currentPage,pageSize,e.target.value));        
-          
+          dispatch(readPublishCourse(1,pageSize,e.target.value));         
         };
       
 
