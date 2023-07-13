@@ -23,8 +23,8 @@ let isSubmit=false;
     // resolver: yupResolver(loginSchema),
   });
 
-  const onSubmit = (data) => { 
-
+  const onSubmit = (data,e) => { 
+    e.preventDefault();
     const errorMsg = strCompare(data.password, data.confirmPassword);  
      if(isSubmit)
      {
@@ -37,7 +37,12 @@ let isSubmit=false;
     if (pass !== confpass) {
       isSubmit=false;
       errMsg = "Passwords do not match";
-    } else {
+    }
+    else if(pass=="" || confpass=="")
+    {
+      errMsg = "Please enter password";
+    } 
+    else {
       isSubmit=true;
       errMsg = "Matched";
     }
@@ -50,7 +55,7 @@ let isSubmit=false;
     <div className="popup">
       <div className="popup-inner">
         <h2 className="create-heading">Create Password</h2>
-        <form className="was-validated">
+        <form className="was-validated" >
           <label>
             <p>Email</p>
             <input
