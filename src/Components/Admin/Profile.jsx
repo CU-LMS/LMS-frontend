@@ -9,15 +9,12 @@ import "./Profile.css";
 import ChangePasswordTab from "./profile/ChangePasswordTab";
 
 const Profile = () => {
-  let localStorageData = JSON.parse(localStorage.getItem("adminData"));
+  let localStorageData = JSON.parse(localStorage.getItem("cuchdCsrf"));
 
   const [activeTab, setActiveTab] = useState("profile");
 
   return (
-    <div className="profile">
-      <div className="profile-header">
-        <h3 className="mb-0 text-white">Profile</h3>
-      </div>
+    <div className="profile-user">
       <div className="profile-tabs d-flex">
         <div
           className={`profile-tab ${
@@ -61,7 +58,7 @@ const Profile = () => {
             </button>
           </div>
 
-          <p className="mb-3 profile-name">{localStorageData.firstName}</p>
+          <p className="mb-3 profile-name">{localStorageData?.userName}</p>
 
           <div className="profile-section">
             <p className="mb-0">
@@ -73,7 +70,7 @@ const Profile = () => {
             <p className="mb-0">
               <strong>Email</strong>
             </p>
-            <p className="make-ellipses">{localStorageData.lastName}</p>
+            <p className="make-ellipses">{localStorageData?.userId}</p>
           </div>
           <div className="profile-section">
             <p className="mb-0">

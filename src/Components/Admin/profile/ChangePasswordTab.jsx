@@ -25,11 +25,11 @@ const ChangePasswordTab = () => {
       <div className="profile-right-col-content w-100">
         <h3 className="profile-right-col-title mb-4">Change Password</h3>
         <p className="mb-0">
-          <strong>Old Password</strong>
+        Old Password
         </p>
         <input
           onChange={(e) => setOldPassword(e.target.value)}
-          type="text"
+          type="password"
           className="form-control"
           value={oldPassword}
         />
@@ -38,12 +38,13 @@ const ChangePasswordTab = () => {
           <hr />
           <div className="profile-section">
             <p className="mb-0">
-              <strong>New Password</strong>
+            New Password
             </p>
             <input
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
-              type="text"
+              type="password"
               required
+              maxLength={30}
               onChange={(e) => setNewPassword(e.target.value)}
               className="form-control"
               value={newPassword}
@@ -52,12 +53,13 @@ const ChangePasswordTab = () => {
           <hr />
           <div className="profile-section">
             <p className="mb-0">
-              <strong>Confirm new password</strong>
+            Confirm new password
             </p>
             <input
-              type="text"
+              type="password"
               className="form-control"
               required
+              maxLength={30}
               pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
