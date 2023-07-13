@@ -14,8 +14,13 @@ const CourseRatingReview = ({ courseId }) => {
   const ratingData = useSelector(
     (state) => state?.ratingState?.getCourseRatingData
   );
-  console.log("demo hai", ratingData);
-
+  
+ let totalstudens =
+    ratingData?.fiveRating +
+    ratingData?.fourRating +
+    ratingData?.threeRating +
+    ratingData?.secondRating +
+    ratingData?.firstRating;
   let totalRating = 1;
   totalRating =
     ratingData?.fiveRating +
@@ -35,7 +40,7 @@ const CourseRatingReview = ({ courseId }) => {
         <span className="review-heading">Student Reviews</span>
         <div className="review-header"></div>
         <p className="totalStar-rated">
-          Total <span className="count-star">{totalRating == 1 || totalRating == 0 ? 1 : totalRating }</span> students rated
+          Total <span className="count-star">{ totalstudens }</span> students rated
           this course.
         </p>
         <div className="row">
