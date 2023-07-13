@@ -31,6 +31,7 @@ const PublishCourses = () => {
 
         const onSelectChange = (e) => {
           filterValue=e.target.value;
+          setCurrentPage(1);
           dispatch(readPublishCourse(currentPage,pageSize,e.target.value));        
           
         };
