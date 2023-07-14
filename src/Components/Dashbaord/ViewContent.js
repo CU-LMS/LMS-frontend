@@ -32,13 +32,21 @@ import CourseRatingReview from "../Student/courseRating/CourseRatingReview";
 import "./ViewContent.css";
 
 const ViewContent = () => {
-  const courses = useSelector((state) => state.courseState.nonEnrollCourseList);
+  let  courses =useSelector((state) => state.courseState.nonEnrollCourseList);;
+ 
+  let admincourse = useSelector((state) => state.courseState.courses);
+  let credentials = JSON.parse(localStorage.getItem("cuchdCsrf"));
+  if(credentials?.roleId=="1" || credentials?.roleId=="2" || credentials?.roleId=="3")
+  {
+    courses=admincourse;
+  }
+  
   // const dummyVar = courses.find(x =>x.courseId==1);
   const [currentCourse, setCurrentCourse] = useState();
   const dispatch = useDispatch();
   const [isFixed, setIsFixed] = useState(false);
   const navigate = useNavigate();
-  let credentials = JSON.parse(localStorage.getItem("cuchdCsrf"));
+  
   const { state } = useLocation();
  
 
