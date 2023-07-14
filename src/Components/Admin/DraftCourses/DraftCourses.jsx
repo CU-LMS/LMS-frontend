@@ -33,13 +33,13 @@ const DraftCourses = () => {
     return (
         <div className='catalog py-3'>
             <div className="container">
-
-
-                <div className="cards d-flex justify-content-between align-items-center flex-wrap py-4">
+                
+                <div className="cards py-4 d-flex align-items-center flex-wrap">
                     {publishCourse?.data &&
                         publishCourse?.data.map((row) => (
                             <Card row={row} pageName={"draft"} />
                         ))}
+
                 </div>
 
                 <div>

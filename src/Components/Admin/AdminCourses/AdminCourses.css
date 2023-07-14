@@ -32,7 +32,6 @@ h1 {
 .card {
   /* width: 280px; */
   height: 300px;
-
   margin-bottom: 30px;
   padding: 20px 20px;
   background-color: #fff;
@@ -53,6 +52,9 @@ h1 {
     rgba(0, 0, 0, 0.12) 0px -12px 30px, rgba(0, 0, 0, 0.12) 0px 4px 6px,
     rgba(0, 0, 0, 0.17) 0px 12px 13px, rgba(0, 0, 0, 0.09) 0px -3px 5px;
   transform: translateY(-5px);
+}
+.card-img-top {
+  height: 150px;
 }
 h3 {
   text-align: center;

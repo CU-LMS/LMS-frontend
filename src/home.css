@@ -40,7 +40,6 @@
 /* Showcase */
 #showcase {
     width: 100%;
-    height: 100vh;
     /* background-image: linear-gradient(to right, #0098d6 0%, #00cbd6 100%); */
     /* background: #1e283c; */
 
@@ -91,7 +90,7 @@
 
 .image-wrapper {
     width: 100%;
-    height: 450px;
+    height: 30rem;
     /* height: 100%; */
     background: #002244;
     border-radius: 25px 0 0 25px;
@@ -108,15 +107,13 @@
 }
 
 .showcase-container {
-    padding-top: 60px;
-    height: 60vh;
-    width: 100%;
-    
+    padding: 125px 0 !important;
+    width: 100%
 }
 
 .showcase-heading {
     color: #fff;
-    font-size: 30px !important;
+    font-size: 2rem !important;
 }
 
 .showcase-image {
@@ -140,12 +137,12 @@
 .showcase-para {
     color: #f1f1f1;
     line-height: 1.6;
-
+    font-size: 1rem;
 }
 
 .typewrite-text {
     color: #c3d8ff;
-    font-size: 25px !important;
+    font-size: 1.5rem !important;
 }
 
 .showcase-btn {

@@ -32,61 +32,55 @@ const AdminDashBoard = () => {
 
         <div className="admin-dashboard">
           <div className="grid-parent-dashboard">
-            <div className="text-center">
 
-              <Link to="/publish-courses" className="card-wrapper mb-3">
-                <Card className="card">
-                  <h2>Publish Courses</h2>
-                  <h3>{dashboardData?.totalActiveCourse}</h3>
-                  {/* <IoMdSchool size={80} className="icon" /> */}
-                </Card>
-              </Link>
+            <Link to="/publish-courses" className="card-wrapper mb-3">
+              <Card className="card">
+                <h2>Publish Courses</h2>
+                <h3>{dashboardData?.totalActiveCourse}</h3>
+                {/* <IoMdSchool size={80} className="icon" /> */}
+              </Card>
+            </Link>
 
-              <Link to="/enrolled-courses" className="card-wrapper">
-                <Card className="card">
-                  <h2>Enrolled Courses</h2>
-                  <h3>{dashboardData?.totalEnrolledCourse}</h3>
-                  {/* <MdOutlineAssignmentTurnedIn size={80} className="icon" /> */}
-                </Card>
-              </Link>
-            </div>
+            <Link to="/enrolled-courses" className="card-wrapper">
+              <Card className="card">
+                <h2>Enrolled Courses</h2>
+                <h3>{dashboardData?.totalEnrolledCourse}</h3>
+                {/* <MdOutlineAssignmentTurnedIn size={80} className="icon" /> */}
+              </Card>
+            </Link>
 
 
-            <div className="text-center">
-              <Link to="/draft-courses" className="card-wrapper mb-3">
-                <Card className="card">
-                  <h2>Draft Courses</h2>
-                  <h3>{dashboardData?.totalDraftCourse}</h3>
-                  {/* <MdDrafts size={80} className="icon" /> */}
-                </Card>
-              </Link>
-              <Link className="card-wrapper">
-                <Card className="card">
-                  <div style={wrapperStyle}>
-                    <Calendar fullscreen={false} />
-                  </div>
-                  {/* <h2>Schedule</h2> */}
-                  {/* <div className="calender-container">
+            <Link to="/draft-courses" className="card-wrapper mb-3">
+              <Card className="card">
+                <h2>Draft Courses</h2>
+                <h3>{dashboardData?.totalDraftCourse}</h3>
+                {/* <MdDrafts size={80} className="icon" /> */}
+              </Card>
+            </Link>
+            <Link className="card-wrapper">
+              <Card className="card">
+                <div style={wrapperStyle}>
+                  <Calendar fullscreen={false} />
+                </div>
+                {/* <h2>Schedule</h2> */}
+                {/* <div className="calender-container">
                   <Calendar className="calender" fullscreen={false} />
                 </div> */}
-                </Card>
-              </Link>
-            </div>
-            <div className="text-center">
-              <Link to="/enrolled-students" className="card-wrapper mb-3">
-                <Card className="card">
-                  <h2>Enrolled Students</h2>
-                  <h3>{dashboardData?.totalEnrolledStudent}</h3>
-                  {/* <BsFillPeopleFill size={80} className="icon" /> */}
-                </Card>
-              </Link>
-              <Link to="/feedback-form" className="card-wrapper">
-                <Card>
-                  <h2>Feedback</h2>
-                  {/* <MdOutlineFeedback size={80} className="icon" /> */}
-                </Card>
-              </Link>
-            </div>
+              </Card>
+            </Link>
+            <Link to="/enrolled-students" className="card-wrapper mb-3">
+              <Card className="card">
+                <h2>Enrolled Students</h2>
+                <h3>{dashboardData?.totalEnrolledStudent}</h3>
+                {/* <BsFillPeopleFill size={80} className="icon" /> */}
+              </Card>
+            </Link>
+            <Link to="/feedback-form" className="card-wrapper">
+              <Card>
+                <h2>Feedback</h2>
+                {/* <MdOutlineFeedback size={80} className="icon" /> */}
+              </Card>
+            </Link>
           </div>
         </div>
       </div>
