@@ -34,19 +34,20 @@ const EnrolledCourses = () => {
 
     const handleSetCurrentPage = (num) => {
         setCurrentPage(num);
-        dispatch(getEnrolledCourses(pageSize, num));
+        let trimmedText = searchText.trim();
+        dispatch(getEnrolledCourses(pageSize, num, trimmedText));
     };
 
     // handle search text 
     const handleSearchText = (e) => {
         e.preventDefault();
         let trimmedText = searchText.trim();
-        dispatch(getDataBySearch("enrolledCourses", searchText, pageSize, currentPage));
+        dispatch(getDataBySearch("enrolledCourses", trimmedText, pageSize, 1));
     }
 
     useEffect(() => {
         console.log("inside useEffect");
-        dispatch(getEnrolledCourses(pageSize, currentPage));
+        dispatch(getEnrolledCourses(pageSize, currentPage, searchText));
     }, []);
 
 

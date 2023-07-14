@@ -140,7 +140,7 @@ export const getEnrolledStudents = (pageSize, pageNum) => async (dispatch) => {
 }
 
 // handle get enrolled courses
-export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
+export const getEnrolledCourses = (pageSize, pageNum, searchText) => async (dispatch) => {
 
   dispatch(handleSpinner(true));
 
@@ -153,7 +153,7 @@ export const getEnrolledCourses = (pageSize, pageNum) => async (dispatch) => {
     pageNo: pageNum,
     pageSize: pageSize,
     isFilter: true,
-    filterValue: ""
+    filterValue: searchText === "" ? "" : searchText
   }
 
   try {
